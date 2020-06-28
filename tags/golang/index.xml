@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GoLang on Prashant Thakkar</title>
+    <link>/tags/golang/</link>
+    <description>Recent content in GoLang on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 Jul 2016 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Channels</title>
+      <link>/post/golang/channels/</link>
+      <pubDate>Sun, 10 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/channels/</guid>
+      <description>Go&amp;rsquo;s concurrency model is based on &amp;ldquo;Do not communicate by sharing memory; instead, share memory by communicating&amp;rdquo;, and channels is the way of achieving this. Channels are used for inter Go Routine communication. Unlike other programming language where objects/memory is shared between two or more thread by acquiring lock, in Go channels are used to pass the objects to Go Routine thereby ensuring only one Go Routine have access to it.</description>
+    </item>
+    
+    <item>
+      <title>Go Routine</title>
+      <link>/post/golang/routines/</link>
+      <pubDate>Sat, 09 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/routines/</guid>
+      <description>One of the most talked feature of Go is its support for Concurrency and Go Routine and Channel are the two most important instrument provided by Go for concurrency. In today&amp;rsquo;s blog we will try and understand what Go Routine is and how to use it. But we before start, let us try and understand what Concurrency is?
+Concurrency The most common answer is doing things in parallel and in case of programming, executing the piece of code in parallel.</description>
+    </item>
+    
+    <item>
+      <title>Interface and Composition</title>
+      <link>/post/golang/interface/</link>
+      <pubDate>Fri, 08 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/interface/</guid>
+      <description>In today&amp;rsquo;s post we are going to look at how Go supports interface and composition. Interface and composition form the base of any language and Go is no different.
+Interface Interface is defined as group of methods without the actual method implementation. It is the responsibility of implementer of the interface to provide the actual implementation. Thus Interface can be considered as a contract/protocol which needs to be fulfilled by implementer.</description>
+    </item>
+    
+    <item>
+      <title>Functions and Pointers</title>
+      <link>/post/golang/functions_pointers/</link>
+      <pubDate>Wed, 13 Jan 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/functions_pointers/</guid>
+      <description>Functions Go, does not have keywords like private, public, protected and final etc and Go does not have concept of inheritance so it is very important to understand how functions can be used to do things that we ideally do when we use any other language.
+Keyword func, is used for defining function. We have already seen the function main which is starting point of every application.
+func main() { fmt.</description>
+    </item>
+    
+    <item>
+      <title>Struct, Map, Array and Slice</title>
+      <link>/post/golang/more_datatypes/</link>
+      <pubDate>Sat, 09 Jan 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/more_datatypes/</guid>
+      <description>Struct Go is not a traditional OO language and hence does not have concept of class. Instead structures are used for holding values. If you are familiar with Java or .Net (may be true for some other OO languages too), you can co-relate struct to beans.
+type Person struct { FirstName string LastName string Age int } Here, we have defined Person of type struct, to hold values for properties/fields related to person like first name, last name and age.</description>
+    </item>
+    
+    <item>
+      <title>Control Flows</title>
+      <link>/post/golang/controlflows/</link>
+      <pubDate>Fri, 01 Jan 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/controlflows/</guid>
+      <description>The best part of programming in Go is that there are not multiple ways of doing standard things and that makes reading code and understanding it easier. But at the same time as we saw in previous post Go follows different conventions which needs to be understood.
+for Loop The for loop construct, is the only way for looping. Unlike other languages Go does not have familiar constructs like while, do-while etc.</description>
+    </item>
+    
+    <item>
+      <title>Basics: Types, Variables and Constants</title>
+      <link>/post/golang/basics/</link>
+      <pubDate>Wed, 30 Dec 2015 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/basics/</guid>
+      <description>In today&amp;rsquo;s post we will learn basics of Go language like supported Types, how to declare and initialize variables and constants. Just like any other language, Go has its own way of declaring and initializing variables and constants.
+Data Types   Boolean: Used for true and false. Use bool to declare variable of type Boolean.
+  Numeric: Go supports unsigned, signed integer, float, complex, byte and rune
+   Numeric Types Description      Unsigned integers      uint8 0-255    uint16 0-65535    uint32 0-4294967295    uint64 0-18446744073709551615   Signed integers      int8 -128-127    int16 -32768-32767    int32 -2147483648-2147483647    int64 -9223372036854775808-9223372036854775807    Floating Numbers     float32 32 bit    float64 64 bit   Floating Number with imaginary part      complex64 32 bit    complex128 64 bit   byte Alias to uint8    rune Alias to int32     In addition to above, Go also has uint and int (32 or 64 bit depending on underlying OS) and uintptr (unsigned integer to store uninterrupted bits of pointer value)</description>
+    </item>
+    
+    <item>
+      <title>Introduction to GoLang</title>
+      <link>/post/golang/introduction/</link>
+      <pubDate>Mon, 09 Nov 2015 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/introduction/</guid>
+      <description>GoLang is an open source language developed and backed by internet giant Google. GoLang is famously known as Go and that is how we are going to refer to in future. In 2007, Robert Griesemer, Rob Pike and Ken Thompson at Google started with experiment to develop a language that will have minimal of features, but will cater most of the use cases. Beside this their idea was to overcome some of the hurdles in development, build and deployment of code written in C (and also of any other languages).</description>
+    </item>
+    
+  </channel>
+</rss>

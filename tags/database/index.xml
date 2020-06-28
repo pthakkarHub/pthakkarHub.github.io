@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on Prashant Thakkar</title>
+    <link>/tags/database/</link>
+    <description>Recent content in Database on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 Jul 2011 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introduction to Android SQLite Database</title>
+      <link>/post/android/sqlite/</link>
+      <pubDate>Sun, 03 Jul 2011 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/sqlite/</guid>
+      <description>Android provide various options for data persistence like Preferences, File and Database etc. This post we will introduce you to one of the option i.e. Android SQLite Database.
+Let us take an example of Student database. i.e. student_database (DATABASE_NAME). We will create table tb_student (DATABASE_TABLE), with 3 columns i.e. _id (KEY_ROWID), name (KEY_NAME) and grade (KEY_GRADE). Columns _id is primary key and autoincrement, while name and garde are text .</description>
+    </item>
+    
+  </channel>
+</rss>

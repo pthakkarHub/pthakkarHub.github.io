@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Preferences on Prashant Thakkar</title>
+    <link>/tags/preferences/</link>
+    <description>Recent content in Preferences on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Feb 2012 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/preferences/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Change Preference Summary</title>
+      <link>/post/android/change_preference/</link>
+      <pubDate>Sun, 05 Feb 2012 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/change_preference/</guid>
+      <description>In Today&amp;rsquo;s post we are going to look at How to Change Summary of Edit Text Preference. But before moving ahead, if you want to know more about Preferences click here.
+First create a preference screen with only one preference EditTextPreference as show below in xml. Let us call this xml as setttings.xml
+&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; &amp;lt;PreferenceScreen xmlns:android=&amp;#34;http://schemas.android.com/apk/res/android&amp;#34; &amp;gt; &amp;lt;EditTextPreference android:dialogTitle=&amp;#34;Enter Name&amp;#34; android:key=&amp;#34;name&amp;#34; android:summary=&amp;#34;Enter Your Name&amp;#34; android:title=&amp;#34;Edit Text Preference&amp;#34; /&amp;gt; &amp;lt;/PreferenceScreen&amp;gt; As shown above we are creating EditTextPreference with key &amp;ldquo;name&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>Android Preferences</title>
+      <link>/post/android/preferences/</link>
+      <pubDate>Sun, 11 Jul 2010 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/preferences/</guid>
+      <description>Most of applications have some setting which user can/needs to configure, and to do this setting a screen needs to be designed along with code to read the data and display and update the data back.
+In Android we can do this with minimum efforts via Preferences. Another advantage of using Android preference for application setting helps Android user because it will be uniform across the applications.
+In this article we will look at the standard Preference available i.</description>
+    </item>
+    
+  </channel>
+</rss>

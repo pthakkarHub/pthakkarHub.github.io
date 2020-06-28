@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Control Flows - Prashant Thakkar</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="The best part of programming in Go is that there are not multiple ways of doing standard things and that makes reading code and understanding it easier. But at the same time as we saw in previous post Go follows different conventions which needs to be understood.">
+		<meta property="og:title" content="Control Flows" />
+<meta property="og:description" content="The best part of programming in Go is that there are not multiple ways of doing standard things and that makes reading code and understanding it easier. But at the same time as we saw in previous post Go follows different conventions which needs to be understood." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/golang/controlflows/" />
+<meta property="article:published_time" content="2016-01-01T13:53:25+06:30" />
+<meta property="article:modified_time" content="2016-01-01T13:53:25+06:30" />
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-74735062-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Prashant Thakkar" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Prashant Thakkar</div>
+					<div class="logo__tagline">Learning and Expressing</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">Blogs</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/articles/">
+				
+				<span class="menu__text">Articles</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book_reviews/">
+				
+				<span class="menu__text">Book Reviews</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Control Flows</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-01-01T13:53:25&#43;06:30">January 01, 2016</time></div></div>
+		</header><div class="content post__content clearfix">
+			<p>The best part of programming in Go is that there are not multiple ways of doing standard things and that makes reading code and understanding it easier. But at the same time as we saw in previous post Go follows different conventions which needs to be understood.</p>
+<h2 id="for-loop">for Loop</h2>
+<p>The <strong>for</strong> loop construct, is the only way for looping. Unlike other languages Go does not have familiar constructs like while, do-while etc. Let us look at the traditional <strong>for</strong> loop</p>
+<pre><code>func main() {
+	for i := 0; i &lt; 10; i++ {
+		fmt.Println(&quot;Value of i =&quot;, i)
+	}
+}
+</code></pre><p><a href="http://play.golang.org/p/bo7OjUCcBE">http://play.golang.org/p/bo7OjUCcBE</a></p>
+<p><strong>Output:</strong></p>
+<p>Value of i = 0<br>
+Value of i = 1<br>
+Value of i = 2<br>
+Value of i = 3<br>
+Value of i = 4<br>
+Value of i = 5<br>
+Value of i = 6<br>
+Value of i = 7<br>
+Value of i = 8<br>
+Value of i = 9</p>
+<p>An alternative to do the same thing is shown below:</p>
+<pre><code>func main() {
+	i := 0
+	for i &lt; 10 {
+		fmt.Println(&quot;Value of i =&quot;, i)
+		i++
+	}
+}
+</code></pre><p><a href="http://play.golang.org/p/6wSSofaQV4">http://play.golang.org/p/6wSSofaQV4</a></p>
+<p>Key thing to note here is that, the <strong>for</strong> loop only has a condition and does not need preceding and following semicolons. Go is good enough to understand this syntax.</p>
+<h2 id="if-else">if-else</h2>
+<p>The behavior of if-else block is the same as in any other language.</p>
+<pre><code>func main() {
+	p, q := 10, 20
+	if p &lt; q {
+		fmt.Println(&quot;q is greater than p&quot;)
+	} else if p &lt; q {
+		fmt.Println(&quot;p is greater than q&quot;)
+	} else {
+		fmt.Println(&quot;q and p are equal&quot;)
+	}
+}
+</code></pre><p><!-- raw HTML omitted --><a href="http://play.golang.org/p/St4dklsD2l">http://play.golang.org/p/St4dklsD2l</a><!-- raw HTML omitted --></p>
+<p><strong>Output:</strong></p>
+<p>q is greater than p</p>
+<h2 id="goto">goto</h2>
+<p>Go supports goto statement. As the name says it all, this statement can be used to transfer control to particular point in the program.</p>
+<pre><code>func main() {
+	i := 0
+	for ; i &lt; 10; i++ {
+		if i == 5 {
+			goto Print
+		} else if i &gt; 5 {
+			fmt.Println(&quot;Value of i =&quot;, i)
+		}
+	}
+
+Print:
+	fmt.Println(&quot;Value of i =&quot;, i)
+}
+</code></pre><p><a href="http://play.golang.org/p/s7vxx3fUfS">http://play.golang.org/p/s7vxx3fUfS</a></p>
+<p><strong>Output:</strong></p>
+<p>Value of i = 5</p>
+<p>In for loop we are checking if value of <strong>i</strong> is 5, then take the control outside for loop i.e. it will break out of the for loop and will print value of <strong>i</strong>.</p>
+<h2 id="break-continue">break-continue</h2>
+<p>The keywords <strong>break</strong> and <strong>continue</strong> work in the same was as they do in other languages. The keyword <strong>break</strong> is for breaking the loop and <strong>continue</strong> is for skipping the code and moving back to next iteration. In addition to this in Go, break and continue also support a label.</p>
+<p><strong>break</strong></p>
+<pre><code>func main() {
+
+	flag := true
+OuterLoop:
+	for i := 0; i &lt; 5; i++ {
+		for j := 0; j &lt; 5; j++ {
+			if i == 2 {
+				if flag {
+					break
+				} else {
+					break OuterLoop
+				}
+			}
+
+			fmt.Println(&quot;Value of i:j --&gt;&quot;, i, &quot;:&quot;, j)
+		}
+	}
+
+}
+</code></pre><p><!-- raw HTML omitted --><a href="http://play.golang.org/p/hCnU9V08O1">http://play.golang.org/p/hCnU9V08O1</a><!-- raw HTML omitted --></p>
+<p>Here, we have couple of <strong>for</strong> loops. The first <strong>for</strong> loop will loop five times from 0 to 4. In the second <strong>for</strong> loop we have check if value of <strong>i</strong> (from outer for loop) is 2. If yes, then it checks for the Boolean variable <strong>flag</strong>. If <strong>flag</strong> is true, it will execute break statement and if false will execute <strong>break</strong> with label <strong>OuterLoop</strong>. For using <strong>break</strong> with label, the label needs be set on for, switch or select statements.</p>
+<p><strong>Output(flag=true)</strong>:</p>
+<p>Value of i:j &ndash;&gt; 0 : 0<br>
+Value of i:j &ndash;&gt; 0 : 1<br>
+Value of i:j &ndash;&gt; 0 : 2<br>
+Value of i:j &ndash;&gt; 0 : 3<br>
+Value of i:j &ndash;&gt; 0 : 4<br>
+Value of i:j &ndash;&gt; 1 : 0<br>
+Value of i:j &ndash;&gt; 1 : 1<br>
+Value of i:j &ndash;&gt; 1 : 2<br>
+Value of i:j &ndash;&gt; 1 : 3<br>
+Value of i:j &ndash;&gt; 1 : 4<br>
+Value of i:j &ndash;&gt; 3 : 0<br>
+Value of i:j &ndash;&gt; 3 : 1<br>
+Value of i:j &ndash;&gt; 3 : 2<br>
+Value of i:j &ndash;&gt; 3 : 3<br>
+Value of i:j &ndash;&gt; 3 : 4<br>
+Value of i:j &ndash;&gt; 4 : 0<br>
+Value of i:j &ndash;&gt; 4 : 1<br>
+Value of i:j &ndash;&gt; 4 : 2<br>
+Value of i:j &ndash;&gt; 4 : 3<br>
+Value of i:j &ndash;&gt; 4 : 4</p>
+<p>In this case the boolean variable <strong>flag</strong> is true, and hence break will be executed. If you look at the output, you can see iteration for i = 2 is missing. This is because as per the condition, if i == 2 and <strong>flag</strong> is true, <strong>break</strong> will be executed and hence, inner for loop will be break, but the outer for loop is still on and hence only iteration for 2 is skipped.</p>
+<p>Now if you set <strong>flag</strong> to false, you will get the following output:</p>
+<p><strong>Output(flag=false)</strong>:</p>
+<p>Value of i:j &ndash;&gt; 0 : 0<br>
+Value of i:j &ndash;&gt; 0 : 1<br>
+Value of i:j &ndash;&gt; 0 : 2<br>
+Value of i:j &ndash;&gt; 0 : 3<br>
+Value of i:j &ndash;&gt; 0 : 4<br>
+Value of i:j &ndash;&gt; 1 : 0<br>
+Value of i:j &ndash;&gt; 1 : 1<br>
+Value of i:j &ndash;&gt; 1 : 2<br>
+Value of i:j &ndash;&gt; 1 : 3<br>
+Value of i:j &ndash;&gt; 1 : 4</p>
+<p>Here, since <strong>flag</strong> is <strong>false</strong>, break with label is executed and control moves out of both for loops.</p>
+<p>Similarly <strong>continue</strong> can also have label.</p>
+<p><strong>continue</strong></p>
+<pre><code>func main() {
+
+	flag := true
+OuterLoop:
+	for i := 0; i &lt; 5; i++ {
+		for j := 0; j &lt; 5; j++ {
+			if j == 2 {
+				if flag {
+					continue
+				} else {
+					continue OuterLoop
+				}
+			}
+
+			fmt.Println(&quot;Value of i:j --&gt;&quot;, i, &quot;:&quot;, j)
+		}
+	}
+
+}
+</code></pre><p><!-- raw HTML omitted --><a href="http://play.golang.org/p/G7wtRJl3HK">http://play.golang.org/p/G7wtRJl3HK</a><!-- raw HTML omitted --></p>
+<p><strong>Output(flag=true)</strong>:</p>
+<p>Value of i:j &ndash;&gt; 0 : 0<br>
+Value of i:j &ndash;&gt; 0 : 1<br>
+Value of i:j &ndash;&gt; 0 : 3<br>
+Value of i:j &ndash;&gt; 0 : 4<br>
+Value of i:j &ndash;&gt; 1 : 0 <br>
+Value of i:j &ndash;&gt; 1 : 1<br>
+Value of i:j &ndash;&gt; 1 : 3<br>
+Value of i:j &ndash;&gt; 1 : 4<br>
+Value of i:j &ndash;&gt; 2 : 0<br>
+Value of i:j &ndash;&gt; 2 : 1<br>
+Value of i:j &ndash;&gt; 2 : 3<br>
+Value of i:j &ndash;&gt; 2 : 4<br>
+Value of i:j &ndash;&gt; 3 : 0<br>
+Value of i:j &ndash;&gt; 3 : 1<br>
+Value of i:j &ndash;&gt; 3 : 3<br>
+Value of i:j &ndash;&gt; 3 : 4<br>
+Value of i:j &ndash;&gt; 4 : 0<br>
+Value of i:j &ndash;&gt; 4 : 1<br>
+Value of i:j &ndash;&gt; 4 : 3<br>
+Value of i:j &ndash;&gt; 4 : 4</p>
+<p>In this case <strong>flag</strong> is <strong>true</strong> and since �j == 2, if you look at the output value if j as 2 is always skipped.</p>
+<p>Now if you set <strong>flag</strong> to <strong>false</strong>, output will be:</p>
+<p><strong>Output(flag=false)</strong>:</p>
+<p>Value of i:j &ndash;&gt; 0 : 0<br>
+Value of i:j &ndash;&gt; 0 : 1<br>
+Value of i:j &ndash;&gt; 1 : 0<br>
+Value of i:j &ndash;&gt; 1 : 1<br>
+Value of i:j &ndash;&gt; 2 : 0<br>
+Value of i:j &ndash;&gt; 2 : 1<br>
+Value of i:j &ndash;&gt; 3 : 0<br>
+Value of i:j &ndash;&gt; 3 : 1<br>
+Value of i:j &ndash;&gt; 4 : 0<br>
+Value of i:j &ndash;&gt; 4 : 1</p>
+<p>Since we have a condition on j == 2 and <strong>flag</strong> is set to <strong>false</strong>, continue with label is executed and when j = 2 in each iteration, control flows back to start of outer for loop and hence only 2 values of j are printed for each value of i.</p>
+<h2 id="switch">switch</h2>
+<p>We all know <strong>switch</strong> can be used for multi-way expression. Again in Go, the way switch is implemented is slightly different and in my personal opinion the best. Let us look at an example to see how it is done is Go and why I think it is better.</p>
+<pre><code>func main() {
+	x := 0
+	switch x {
+	case 0:
+		fmt.Println(&quot;Value of x =&quot;, 0)
+	case 1:
+		fmt.Println(&quot;Value of x =&quot;, 1)
+	case 2:
+		fmt.Println(&quot;Value of x =&quot;, 2)
+	default:
+		fmt.Println(&quot;Default&quot;)
+
+	}
+}
+</code></pre><p><!-- raw HTML omitted --><a href="http://play.golang.org/p/CVRkNVnWi_">http://play.golang.org/p/CVRkNVnWi_</a><!-- raw HTML omitted --></p>
+<p>Here, switch will evaluate value of <strong>x</strong> to find the matching case. We have set <strong>x</strong> as 0, so case 0 will be matched and executed. And now comes the best part. only <strong>case 0</strong> will be executed that&rsquo;s it. Unlike other languages if you don&rsquo;t specify a <strong>break,</strong> the case statements that follow it are also executed.</p>
+<p>From your experience with other programming languages and using switch statement in them, you know that 90% of the time, you need to execute only one case. Rarely you need to fall through cases. So you end up explicitly writing <strong>break</strong> statement for each case, and if you forget to do so chances are some unwanted cases to get executed. But with Go, you don&rsquo;t need to do so in case, if you need following cases to get executed, you need to mention that explicitly. It is something small but I think a wise and most thoughtful decision.</p>
+<p><strong>Output(x=0)</strong>:
+Value of x = 0</p>
+<p><strong>Output(x=1)</strong>:
+Value of x = 1</p>
+<p><strong>Output(x&gt;2)</strong>:
+Default</p>
+<p><strong>Example of fallthrough</strong>:</p>
+<pre><code>func main() {
+
+	x := 1
+	switch x {
+	case 0:
+		fmt.Println(&quot;Value of x =&quot;, 0)
+	case 1:
+		fmt.Println(&quot;Value of x =&quot;, 1)
+		fallthrough
+	case 2:
+		fmt.Println(&quot;Value of x =&quot;, 2)
+	default:
+		fmt.Println(&quot;Default&quot;)
+
+	}
+
+}
+</code></pre><p><!-- raw HTML omitted --><a href="http://play.golang.org/p/hwd7nQS4vD">http://play.golang.org/p/hwd7nQS4vD</a><!-- raw HTML omitted --></p>
+<p>Here we have added <strong>fallthrough</strong> at the end of case 1, so now when value of x = 2, we will get following output</p>
+<p>Value of x = 1<br>
+Value of x = 2</p>
+<p>Point to note here is that <strong>fallthrough</strong> made case 2 to execute irrespective of whether case matches. But since case 2 does not have <strong>fallthrough</strong> the implicit break, breaks the flow and default is not executed.</p>
+<h2 id="defer">defer</h2>
+<p>This keyword is used to defer execution at the end of function. This statement can appear anywhere in the function, but will be executed at the end of the function. Let us look at the example below to understand more.</p>
+<pre><code>func main() {
+
+	defer completed()
+	fmt.Println(&quot;Start execution&quot;)
+	validate()
+}
+
+func completed() {
+	fmt.Println(&quot;Successfully completed execution&quot;)
+}
+
+func validate() {
+	fmt.Println(&quot;Validation successful&quot;)
+}
+</code></pre><p><a href="http://play.golang.org/p/DVh9Xqg0sb">http://play.golang.org/p/DVh9Xqg0sb</a></p>
+<p>In above example, we have 2 functions <strong>completed</strong> and <strong>validate</strong>. On first line of <strong>main</strong> function we call <strong>defer</strong> to <strong>completed</strong> function. This will defer the call to the function <strong>completed</strong> until the end of the <strong>main</strong> function.</p>
+<p><strong>Output:</strong></p>
+<p>Start execution<br>
+Validation successful<br>
+Successfully completed execution</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>We got introduced to various control flow statements like for, if-else, switch etc. Go does not have a lot of control statements, but they have made changes to use the existing ones to handle most of the use cases. In the next post, we will look at more types like struct, array, slices etc.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/control-flows/" rel="tag">Control Flows</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/go/" rel="tag">Go</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/golang/" rel="tag">GoLang</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/golang/basics/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Basics: Types, Variables and Constants</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/golang/more_datatypes/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">Struct, Map, Array and Slice</p>
+		</a>
+	</div>
+</nav>
+
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "prashantthakkar" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form action="/search/index.html">
+				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
+			</form>
+	
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">		
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link " title="Twitter" rel="noopener noreferrer" href="https://twitter.com/ppandhi" target="_blank">
+				<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-.139 9.237c.209 4.617-3.234 9.765-9.33 9.765-1.854 0-3.579-.543-5.032-1.475 1.742.205 3.48-.278 4.86-1.359-1.437-.027-2.649-.976-3.066-2.28.515.098 1.021.069 1.482-.056-1.579-.317-2.668-1.739-2.633-3.26.442.246.949.394 1.486.411-1.461-.977-1.875-2.907-1.016-4.383 1.619 1.986 4.038 3.293 6.766 3.43-.479-2.053 1.08-4.03 3.199-4.03.943 0 1.797.398 2.395 1.037.748-.147 1.451-.42 2.086-.796-.246.767-.766 1.41-1.443 1.816.664-.08 1.297-.256 1.885-.517-.439.656-.996 1.234-1.639 1.697z"/></svg>
+			</a>
+		
+			<a class="widget-social__link " title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/prashant-thakkar-7827b611" target="_blank">
+				<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+			</a>
+		
+			<a class="widget-social__link " title="Email" href="mailto:prashant.pandhi@gmail.com">
+				<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 -140 1792 1792"><path d="M1376 128q119 0 203.5 84.5t84.5 203.5v960q0 119-84.5 203.5t-203.5 84.5h-960q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960zm32 1056v-436q-31 35-64 55-34 22-132.5 85t-151.5 99q-98 69-164 69t-164-69q-46-32-141.5-92.5t-142.5-92.5q-12-8-33-27t-31-27v436q0 40 28 68t68 28h832q40 0 68-28t28-68zm0-573q0-41-27.5-70t-68.5-29h-832q-40 0-68 28t-28 68q0 37 30.5 76.5t67.5 64.5q47 32 137.5 89t129.5 83q3 2 17 11.5t21 14 21 13 23.5 13 21.5 9.5 22.5 7.5 20.5 2.5 20.5-2.5 22.5-7.5 21.5-9.5 23.5-13 21-13 21-14 17-11.5l267-174q35-23 66.5-62.5t31.5-73.5z"/></svg>
+
+			</a>
+
+		
+
+			<a class="widget-social__link " title="stack overflow" rel="noopener noreferrer" href="https://stackoverflow.com/users/2959387/prashant-thakkar" target="_blank">
+					<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-8.512 8.272l5.532 3.243-.686 1.162-5.533-3.243.687-1.162zm-1.456 3.113l6.185 1.739-.332 1.23-6.204-1.667.351-1.302zm-.672 2.813l6.498.65-.117 1.28-6.504-.586.123-1.344zm-.193 2.469h6.667v1.333h-6.667v-1.333zm8.833 3.333h-11v-7h1v6h9v-6h1v7zm-.852-8.704l-3.56-5.219 1.115-.76 3.559 5.219-1.114.76zm1.356-.841l-1.08-6.224 1.328-.231 1.082 6.224-1.33.231z"/></svg>
+			</a>
+
+		
+	</div>
+</div>
+<br/>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android/" title="Android">Android (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/async-task/" title="Async Task">Async Task (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/basics/" title="Basics">Basics (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/channels/" title="Channels">Channels (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/composition/" title="Composition">Composition (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/concurrency/" title="Concurrency">Concurrency (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/constants/" title="Constants">Constants (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pointers/" title="Pointers">Pointers (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/preferences/" title="Preferences">Preferences (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/routine/" title="Routine">Routine (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sqlite/" title="Sqlite">Sqlite (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/variables/" title="Variables">Variables (1)</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Prashant Thakkar.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

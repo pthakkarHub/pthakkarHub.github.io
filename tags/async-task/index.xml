@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Async Task on Prashant Thakkar</title>
+    <link>/tags/async-task/</link>
+    <description>Recent content in Async Task on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Aug 2010 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/async-task/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Android Async Task</title>
+      <link>/post/android/async_task/</link>
+      <pubDate>Sun, 01 Aug 2010 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/async_task/</guid>
+      <description>Through this article we will look at one of the important feature of Android i.e AsyncTask for performing task which takes long time for execution with example. Also we will look at other mechanisms and see why AsyncTask is better approach.
+Android application follows single thread model i.e. when android application is launched, a thread is created for running that application. This single thread model works fine for normal execution, but for the instance like network call which are usually long operations, UI hangs waiting for the response from the server.</description>
+    </item>
+    
+  </channel>
+</rss>

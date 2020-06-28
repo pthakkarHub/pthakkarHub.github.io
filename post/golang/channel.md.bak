@@ -1,0 +1,179 @@
++++
+css = []
+date = "2016-07-09T13:53:25+06:30"
+description = "Go's concurrency model is based on Do not communicate by sharing memory; instead, share memory by communicating, and Channels is the way of achieving this."
+draft = false
+highlight = true
+scripts = []
+tags = ["Channels", "Concurrency", "Go", "GoLang"]
+category = ["Go", "Tutorial"]
+title = "Channels"
+showdisqus = true
++++
+
+
+Go's concurrency model is based on *"Do not communicate by sharing memory; instead, share memory by communicating"*, and channels is the way of achieving this. Channels are used for inter Go Routine communication.  Unlike other programming language where objects/memory is shared between two or more thread by acquiring lock, in Go channels are used to pass the objects to Go Routine thereby ensuring only one Go Routine have access to it. Thus channels play an important role in Go's concurrency model.
+
+There are two variants of channel supported by Go:  
+1.	Unbuffered Channel  
+2.	Buffered Channel  
+
+
+## Unbuffered Channel
+
+Unbuffered channel can hold only max one value at any given point of time.  Let us look at the example below to understand more about channel.
+
+```
+package main
+
+import "fmt"
+
+func main() {
+	chann := make(chan int)
+	for i := 1; i <= 10; i++ {
+		chann <- i
+	}
+
+	close(chann)
+
+	go func() {
+		for value := range chann {
+			fmt.Println(value)
+		}
+	}()
+}
+
+```
+
+https://play.golang.org/p/uI2_oKLrGL
+
+In the example above, we have created channel **chann** of type **int** and in **for** loop we are writing values to the channel via **_chann <- i_**. Once we are done with writing we are explicitly closing the channel by calling **close** method. We have created a Go Routine(inline function **func**) which loops over the channel and print the value passed to the channel chann.
+
+Try running this example you will get following error:
+<p style="color:red;">
+fatal error: all goroutines are asleep - deadlock! </br></br>
+goroutine 1 [chan send]:</br>
+main.main()</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/tmp/sandbox251764884/main.go:8 +0x80</br>
+</p>
+
+Error says there is deadlock in the code, but where is it? As per description it is at line 8 which is **_chann <- i_**. But how can writing to channel cause deadlock? The reason is the channel we have created here is unbuffered channel and can hold only one value, and hence it is very important to read the channel after each write.
+
+Let us correct the example above, by moving the Go Routine before writing to channel in for loop, this way we will ensure that there is a reader on channel waiting to read and hence whatever is written on channel will be read.
+
+```
+package main
+
+import "fmt"
+
+func main() {
+    chann := make(chan int)
+
+    go func() {
+        for value := range chann {
+            fmt.Println(value)
+        }
+    }()
+
+    for i := 1; i <= 10; i++ {
+        chann <- i
+    }
+
+    close(chann)
+
+}
+```
+https://play.golang.org/p/W_SxaIQlOG
+
+## Buffered Channel
+Buffered channel can hold **_n_** values before they must be read, where **_n_** is size of the channel specified at the time of creating channel. Let's look at example to see how we can create and use Buffered channel.
+
+```
+package main
+
+import "fmt"
+
+
+func main(){
+    chann := make(chan int, 10)
+    
+    for i:= 1; i <= 10; i++{
+        chann <- i
+    }        
+    
+    close(chann)
+        
+    for value := range chann{
+            fmt.Println(value)
+    }
+}
+
+```
+https://play.golang.org/p/lVItHxZ7ip
+
+Here we have created buffered channel **chann** with buffer size **10** [**_chann := make(chan int, 10)_**], and then have a **for** loop to add **10** values to the channel. Once we have finished adding values to channel, we close channel by calling **close** method. And then we have **for** loop which iterates over channel and print values from the channel. 
+
+Key point here is that we were able to hold **10** values to channel before they were read. But for Buffered channel too values needs to be read before size of channel gets exhaust. So if we modify size of channel in above example from **10** to **5**[**_chann := make(chan int, 5)_**], we will get same deadlock error.
+
+
+## Select
+Select is like switch for communication operations. Each case of select reads through one channel.  Let us look at the example below which will generate 3 digit random number. Each digit of the random number will be generated independently.
+
+
+```
+package main
+
+import (
+    "fmt"
+    "math/rand"
+    "time"
+)
+
+func main() {
+    firstDigit := make(chan int)
+    secondDigit := make(chan int)
+    thirdDigit := make(chan int)
+
+    go generateRandomDigit(firstDigit)
+    go generateRandomDigit(secondDigit)
+    go generateRandomDigit(thirdDigit)
+
+    f, s, t := -1, -1, -1
+
+    for {
+        select {
+        case f = <-firstDigit:
+            fmt.Println("Computed 1st....")
+        case s = <-secondDigit:
+            fmt.Println("Computed 2nd ....")
+        case t = <-thirdDigit:
+            fmt.Println("Computed 3rd....")
+        }
+
+        if f != -1 && s != -1 && t != -1 {
+            fmt.Println(f, s, t)
+            break
+        }
+    }
+
+}
+
+func generateRandomDigit(myChannel chan int) {
+    rand.Seed(time.Now().UTC().UnixNano())
+    time.Sleep(time.Duration(rand.Intn(5)) * time.Second)
+    myChannel <- rand.Intn(10)
+}
+
+
+```
+
+https://play.golang.org/p/AJTT3oLUG3
+
+As we want 3 digit number, we first created 3 channel one for digit. We call **generateRandomDigit** function in Go Routine and pass channel as parameter to it. Function **generateRandomDigit** will sleep for random seconds and will write random int on to the channel passed.
+
+In **main** function, we have **for** loop in which we have a select statement, with each **case** of **select** will read through one channel and assign the value read from channel to a variable.  In **for** loop we have **if** statement which checks if all the 3 digits are available and if yes will print the 3 digit random number by combining all the 3 digits and **break** the loop. 
+Each of the Go Routine call to **generateRandomDigit** function will sleep for random time and then write to respective channel. Hence to make sure all the 3 digits are available, we use **select/case** combination, we assign value to corresponding variable and till all the 3 digits are not available we will loop through.
+
+
+## Conclusion
+Go provide 2 variants of channel Unbuffered and Buffered channel. We saw example for both this variant.  We also saw in an example of 3 digit random number as to how we can orchestrate communication between multiple Go Routines. With this we cover one more important feature of Go. 

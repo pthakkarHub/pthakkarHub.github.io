@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/tags/channels/</loc>
+    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/golang/channels/</loc>
+    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/concurrency/</loc>
+    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/go/</loc>
+    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/golang/</loc>
+    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/golang/routines/</loc>
+    <lastmod>2016-07-09T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/routine/</loc>
+    <lastmod>2016-07-09T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/composition/</loc>
+    <lastmod>2016-07-08T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/interface/</loc>
+    <lastmod>2016-07-08T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/golang/interface/</loc>
+    <lastmod>2016-07-08T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorial/golang/</loc>
+    <lastmod>2016-02-21T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorial/</loc>
+    <lastmod>2016-02-21T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/search/</loc>
+    <lastmod>2016-02-21T11:31:08+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/function/</loc>
+    <lastmod>2016-01-13T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/golang/functions_pointers/</loc>
+    <lastmod>2016-01-13T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/pointers/</loc>
+    <lastmod>2016-01-13T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/golang/more_datatypes/</loc>
+    <lastmod>2016-01-09T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/control-flows/</loc>
+    <lastmod>2016-01-01T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/golang/controlflows/</loc>
+    <lastmod>2016-01-01T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/basics/</loc>
+    <lastmod>2015-12-30T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/golang/basics/</loc>
+    <lastmod>2015-12-30T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/constants/</loc>
+    <lastmod>2015-12-30T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/data-types/</loc>
+    <lastmod>2015-12-30T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/variables/</loc>
+    <lastmod>2015-12-30T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/introduction/</loc>
+    <lastmod>2015-11-09T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/golang/introduction/</loc>
+    <lastmod>2015-11-09T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/android/</loc>
+    <lastmod>2012-02-05T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tutorial/android/</loc>
+    <lastmod>2012-02-05T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/android/change_preference/</loc>
+    <lastmod>2012-02-05T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/preferences/</loc>
+    <lastmod>2012-02-05T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/database/</loc>
+    <lastmod>2011-07-03T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/android/sqlite/</loc>
+    <lastmod>2011-07-03T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/sqlite/</loc>
+    <lastmod>2011-07-03T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/android/menus/</loc>
+    <lastmod>2010-10-10T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/menus/</loc>
+    <lastmod>2010-10-10T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/android/async_task/</loc>
+    <lastmod>2010-08-01T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/async-task/</loc>
+    <lastmod>2010-08-01T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/android/preferences/</loc>
+    <lastmod>2010-07-11T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/android/introduction/</loc>
+    <lastmod>2010-07-03T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
+  </url>
+  
+  <url>
+    <loc>/articles/</loc>
+  </url>
+  
+  <url>
+    <loc>/book_reviews/</loc>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+  </url>
+  
+</urlset>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Control Flows on Prashant Thakkar</title>
+    <link>/tags/control-flows/</link>
+    <description>Recent content in Control Flows on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Jan 2016 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/control-flows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Control Flows</title>
+      <link>/post/golang/controlflows/</link>
+      <pubDate>Fri, 01 Jan 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/controlflows/</guid>
+      <description>The best part of programming in Go is that there are not multiple ways of doing standard things and that makes reading code and understanding it easier. But at the same time as we saw in previous post Go follows different conventions which needs to be understood.
+for Loop The for loop construct, is the only way for looping. Unlike other languages Go does not have familiar constructs like while, do-while etc.</description>
+    </item>
+    
+  </channel>
+</rss>

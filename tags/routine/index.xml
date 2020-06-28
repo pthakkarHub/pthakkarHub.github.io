@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Routine on Prashant Thakkar</title>
+    <link>/tags/routine/</link>
+    <description>Recent content in Routine on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Jul 2016 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/routine/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go Routine</title>
+      <link>/post/golang/routines/</link>
+      <pubDate>Sat, 09 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/routines/</guid>
+      <description>One of the most talked feature of Go is its support for Concurrency and Go Routine and Channel are the two most important instrument provided by Go for concurrency. In today&amp;rsquo;s blog we will try and understand what Go Routine is and how to use it. But we before start, let us try and understand what Concurrency is?
+Concurrency The most common answer is doing things in parallel and in case of programming, executing the piece of code in parallel.</description>
+    </item>
+    
+  </channel>
+</rss>

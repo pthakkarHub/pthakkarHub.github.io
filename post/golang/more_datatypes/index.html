@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Struct, Map, Array and Slice - Prashant Thakkar</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Go is not a traditional OO language and hence does not have concept of class. Instead structures are used for holding values.">
+		<meta property="og:title" content="Struct, Map, Array and Slice" />
+<meta property="og:description" content="Go is not a traditional OO language and hence does not have concept of class. Instead structures are used for holding values." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/golang/more_datatypes/" />
+<meta property="article:published_time" content="2016-01-09T13:53:25+06:30" />
+<meta property="article:modified_time" content="2016-01-09T13:53:25+06:30" />
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-74735062-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Prashant Thakkar" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Prashant Thakkar</div>
+					<div class="logo__tagline">Learning and Expressing</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">Blogs</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/articles/">
+				
+				<span class="menu__text">Articles</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book_reviews/">
+				
+				<span class="menu__text">Book Reviews</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Struct, Map, Array and Slice</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2016-01-09T13:53:25&#43;06:30">January 09, 2016</time></div></div>
+		</header><div class="content post__content clearfix">
+			<h2 id="struct">Struct</h2>
+<p>Go is not a traditional OO language and hence does not have concept of class. Instead structures are used for holding values. If you are familiar with Java or .Net (may be true for some other OO languages too), you can co-relate <strong>struct</strong> to beans.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">type Person <span style="color:#66d9ef">struct</span> {
+	FirstName string
+	LastName  string
+	Age       <span style="color:#66d9ef">int</span>
+}
+</code></pre></div><p>Here, we have defined Person of type <strong>struct</strong>, to hold values for properties/fields related to person like first name, last name and age.</p>
+<p>Let us see, at various ways to initialize and use a struct:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+	var p1 Person
+	p2 :<span style="color:#f92672">=</span> Person{}
+	p3 :<span style="color:#f92672">=</span> Person{<span style="color:#e6db74">&#34;ABC&#34;</span>, <span style="color:#e6db74">&#34;XYZ&#34;</span>, <span style="color:#ae81ff">32</span>}
+	p4 :<span style="color:#f92672">=</span> Person{LastName: <span style="color:#e6db74">&#34;XYZ&#34;</span>, FirstName: <span style="color:#e6db74">&#34;ABC&#34;</span>}
+	p5 :<span style="color:#f92672">=</span> new(Person)
+
+	fmt.Println(<span style="color:#e6db74">&#34;Person 1 :&#34;</span>, p1)
+	fmt.Println(<span style="color:#e6db74">&#34;Person 2 :&#34;</span>, p2)
+	fmt.Println(<span style="color:#e6db74">&#34;Person 3 :&#34;</span>, p3)
+	fmt.Println(<span style="color:#e6db74">&#34;Person 4 :&#34;</span>, p4)
+	fmt.Println(<span style="color:#e6db74">&#34;Person 5 :&#34;</span>, p5)
+}
+</code></pre></div><p><a href="http://play.golang.org/p/W6yptQsvpB">http://play.golang.org/p/W6yptQsvpB</a></p>
+<p><strong>Output:</strong></p>
+<p>Person 1 : { 0}<br>
+Person 2 : { 0}<br>
+Person 3 : {ABC XYZ 32}<br>
+Person 4 : {ABC XYZ 0}<br>
+Person 5 : &amp;{ 0}</p>
+<p>As seen from output,</p>
+<ol>
+<li>
+<p>var p1 Person: This will initialize <strong>struct Person</strong> with zero value, i.e. will initialize all the fields in struct to their default values (string to empty string, int to 0 and so on).</p>
+</li>
+<li>
+<p>p2 := Person{}: Initialize <strong>struct Person</strong>, with default value i.e. each field/property of <strong>struct</strong> is initialized to default value. Since <strong>FirstName</strong> and <strong>LastName</strong> are defined as string they are initialized to &quot;&rdquo; (empty string) and Age is defined as int, initialized to 0.</p>
+</li>
+<li>
+<p>p3 := Person{&ldquo;ABC&rdquo;, &ldquo;XYZ&rdquo;, 32}: This will initialize <strong>Person</strong> with values passed i.e. will set <strong>FirstName</strong> as ABC, <strong>LastName</strong> as XYZ and <strong>Age</strong> as 32. Important to note here is that fields of <strong>struct</strong> will be initialized in sequence of the values passed.</p>
+<p>Try following code where we have interchanged the 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> two values passed and see the output, value of <strong>FirstName</strong> and <strong>LastName</strong> also gets interchanged.</p>
+<p>p3 := Person{&ldquo;XYZ&rdquo;, &ldquo;ABC&rdquo;,  32}</p>
+<p>In case if there is mismatch in the values passed and order of type of fields defined, error will be throws.</p>
+<p>Try p3 := Person{32, &ldquo;XYZ&rdquo;, &ldquo;ABC&rdquo;} and you will see following errors:
+cannot use 32 (type int) as type string in field value cannot use &ldquo;XYZ&rdquo; (type string) as type int in field value</p>
+<p>Hence if you wish not to pass value for all the fields and want to skip any field in between from setting value you the following way of initializing the <strong>struct</strong>.</p>
+</li>
+<li>
+<p>p4 := Person{LastName: &ldquo;XYZ&rdquo;, FirstName: &ldquo;ABC&rdquo;}: This will initialize p4, with <strong>Person</strong> and will set <strong>FirstName</strong> and <strong>LastName</strong>. In this case we are explicitly specifying what should set as <strong>LastName</strong> and <strong>FirstName</strong>. So order is not important.</p>
+</li>
+<li>
+<p>p5 := new(Person): Will initialize <strong>structPerson</strong>, with default value set for each of the fields in <strong>struct</strong>. Built-in function <strong>new</strong> will allocate memory and return back pointer.</p>
+</li>
+</ol>
+<h2 id="map">Map</h2>
+<p>Map is the only collection with key/value pair supported by Go. Map with any type as key and value can be created. Let us look at how we can create a map:</p>
+<p><code>m := make(map[int]string)</code></p>
+<p>Here we have created map, with <strong>int</strong> as key and string as value. Built-in function <strong>make</strong> is used for creating map as shown above.  We can also pass initial capacity as shown below:</p>
+<p><code>m := make(map[int]string, 10)</code></p>
+<p>This will create map with initial capacity 10.</p>
+<p>Let us see an example with various operations on map:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+	m :<span style="color:#f92672">=</span> make(map[<span style="color:#66d9ef">int</span>]string)
+	fmt.Println(<span style="color:#e6db74">&#34;Values in map (after creating): &#34;</span>, m)
+	m[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ABC&#34;</span> 
+	m[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;PQR&#34;</span> 
+	m[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;XYZ&#34;</span> 
+
+	fmt.Println(<span style="color:#e6db74">&#34;Length of map: &#34;</span>, len(m))
+	fmt.Println(<span style="color:#e6db74">&#34;Values in map(after adding values): &#34;</span>, m)
+
+	m[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;LMN&#34;</span>
+	fmt.Println(<span style="color:#e6db74">&#34;Values in map (after updating): &#34;</span>, m)
+
+	delete(m, <span style="color:#ae81ff">1</span>)
+	fmt.Println(<span style="color:#e6db74">&#34;Values in map: &#34;</span>, m)
+
+	<span style="color:#66d9ef">for</span> k, v :<span style="color:#f92672">=</span> range m {
+		fmt.Println(<span style="color:#e6db74">&#34;Key :&#34;</span>, k, <span style="color:#e6db74">&#34; Value :&#34;</span>, v)
+	}
+
+	fmt.Println(<span style="color:#e6db74">&#34;Value for not existing key : &#34;</span>, m[<span style="color:#ae81ff">3</span>])
+}
+</code></pre></div><p><a href="http://play.golang.org/p/iBNKcZ9XNO">http://play.golang.org/p/iBNKcZ9XNO</a></p>
+<p><strong>Output:</strong></p>
+<p>Values in map (after creating): map[]<br>
+Length of map: 3<br>
+Values in map(after adding values): map[0:ABC 1:PQR 2:XYZ]<br>
+Values in map (after updating): map[0:ABC 1:LMN 2:XYZ]<br>
+Values in map: map[0:ABC 2:XYZ]<br>
+Key : 0 Value : ABC<br>
+Key : 2 Value : XYZ<br>
+Value for not existing key :</p>
+<p>First print statement prints <strong>map m</strong> just after creating, hence we can see empty map.  Then we add 3 map entries with values <strong>ABC</strong>, <strong>PQR</strong> and <strong>XYZ</strong> for key <strong>0</strong>, **1 **and <strong>2</strong> respectively. As you can see adding value to map is simple assignment of format map[key] = value. Something similar to the way value is assigned in array. Updating value is also done is same way as assigning, so in case if key is not present key, it is  added and value is assigned and if key exists its value is updated.</p>
+<p>Note the output, for printing value for not existing key, it is empty string. Since map is holding string values, for not existing key zero value string is returned which is empty string. If map was holding int values, 0 would be returned.</p>
+<p>Use built-in function <strong>len</strong> for getting length of map as shown above. There is built-in function <strong>delete</strong> for removing entry from map. As shown above we have used delete to remove entry for key 1.</p>
+<h2 id="array">Array</h2>
+<p>A data type used for holding elements of the same type. Let us look at an example to see how arrays can be declared in Go.</p>
+<p><code>a := [5]int{}</code></p>
+<p>Here we have defined array of type <strong>int</strong>, which can hold 5 values. Array of any type can be defined. Arrays are 0 indexed, means first element in array is referred with index 0 so if length of array is 5 that means indexes are from 0 to 4.</p>
+<p>Arrays are of definite length, so an array can hold only that number of values.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+	a :<span style="color:#f92672">=</span> [<span style="color:#ae81ff">5</span>]<span style="color:#66d9ef">int</span>{}
+	fmt.Println(<span style="color:#e6db74">&#34;Values in array a (after creation) : &#34;</span>, a)
+	fmt.Println(<span style="color:#e6db74">&#34;Length of array a : &#34;</span>, len(a))
+
+	<span style="color:#66d9ef">for</span> i, _ :<span style="color:#f92672">=</span> range a {
+		a[i] <span style="color:#f92672">=</span> i
+	}
+
+	fmt.Println(<span style="color:#e6db74">&#34;Values in array a (after updating) : &#34;</span>, a)
+
+	b :<span style="color:#f92672">=</span> [...]string{<span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;B&#34;</span>, <span style="color:#e6db74">&#34;C&#34;</span>, <span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;E&#34;</span>}
+	fmt.Println(<span style="color:#e6db74">&#34;Values in array b : &#34;</span>, b)
+}
+</code></pre></div><p><a href="http://play.golang.org/p/gf2qtFGbB9">http://play.golang.org/p/gf2qtFGbB9</a></p>
+<p><strong>Output:</strong></p>
+<p>Values in array a (after creation) : [0 0 0 0 0]<br>
+Length of array a : 5<br>
+Values in array a (after updating) : [0 1 2 3 4]<br>
+Values in array b : [A B C D E]</p>
+<p>We have declared 2 arrays, <strong>a</strong> and <strong>b</strong>. Array <strong>a</strong> is of type <strong>int</strong> and of length 5. Since array <strong>a</strong> is of type <strong>int</strong>, if we print its value just after creation, they are all set to 0. Array <strong>b</strong>, is declared to hold values of type <strong>string</strong>. Array <strong>b</strong> we haven&rsquo;t set length, but instead array gets its length from the number of values that it is holding. Since we are not assigning length we use three dots ([&hellip;]) to indicate the same.</p>
+<p>Use built-in function <strong>len</strong> to check length of array.</p>
+<p>Example above shows how to iterate over array. While iterating, range returns 2 values index(key in case of map) and value. Since in for loop we are not using value we have skipped it and for doing so we using <strong>_</strong> (underscore) as 2<!-- raw HTML omitted -->nd<!-- raw HTML omitted --> value in for loop.</p>
+<p>In Go, whenever we want to skip any value returned, we can use _ (underscore). It is also known as <strong>Blank Identifier</strong>. If we do not want to use any value and we assign it to any variable, Go compiler will complain for unused variable and hence we are using the Blank Identifier since we are not interested in the value.</p>
+<p>All the arrays defined and used above, are single dimension array, Go also supports creating a multi-dimensional array. For example, see 2 dimensional array below:</p>
+<p><code>a := [5][4]int{}</code></p>
+<p>Here we will have 5 elements each will be have 4 values. Since array is of type <strong>int</strong>, they all will be initialized to 0.</p>
+<p>[[0 0 0 0] [0 0 0 0] [0 0 0 0] [0 0 0 0] [0 0 0 0]]</p>
+<h2 id="slice">Slice</h2>
+<p>Slice is a special data type that wraps on top of array. Slice can represent either entire array or portion of array as needed. Unlike array which has its own storage, slice share the same storage as of the underlying array and hence multiple slice on same array will share same memory. Slice is created using built-in function <strong>make</strong>, as shown below:</p>
+<p>s := make([]int, length, capacity)</p>
+<p>length: Used to define length of the slice. Length can be any non-negative number less than capacity (if provided). Use built-in function <strong>len</strong> to get length of slice.</p>
+<p>capacity: Used to define capacity of underlying array. It is optional to provide capacity, and if not mentioned capacity is equal to length.</p>
+<p><strong>Example:</strong></p>
+<p><code>s := make([]int, 5, 10)</code></p>
+<p>Here slice <strong>s</strong>, of length 5 is created with capacity 10. So this mean slice s can hold max 5 values, but underlying array can hold 10 values.</p>
+<p>Slice can also be created in same as array, by skipping the preceding length as shown below:</p>
+<p><code>s := []int{0, 1, 2, 3}</code></p>
+<p>It is slice and not array which is mostly used in Go, and hence it is very important to understand how it is used. It is not always that we create empty slice, but we also create slice on top of already defined array as shown below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+
+	a :<span style="color:#f92672">=</span> [...]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>}
+
+	s :<span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>]
+
+	fmt.Println(s)
+}
+
+</code></pre></div><p><a href="http://play.golang.org/p/vRishSMCcU">http://play.golang.org/p/vRishSMCcU</a></p>
+<p><strong>Output:</strong>
+[1 2 3 4 5]</p>
+<p>Here we created array <strong>a</strong> of type <strong>int</strong> having values from 1 to 10. Then we create a <strong>slice</strong> on top of the array <strong>a,</strong> a of slice of length 5 (<strong>a[0:5]</strong>) i.e. with index 0 to 4. If you look at the output we have printed values in slice **s, ** it has 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> five values from array <strong>a</strong>. This is one of the use-case of slice, creating subset of array.</p>
+<p>Let us look at another example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+
+	a :<span style="color:#f92672">=</span> [...]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span>}
+	s1 :<span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>]
+	s2 :<span style="color:#f92672">=</span> a[<span style="color:#ae81ff">2</span><span style="color:#f92672">:</span><span style="color:#ae81ff">7</span>]
+
+	fmt.Println(<span style="color:#e6db74">&#34;Array :&#34;</span>, a)
+	fmt.Println(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, s1)
+	fmt.Println(<span style="color:#e6db74">&#34;Slice 2 :&#34;</span>, s2)
+
+	s1[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>
+
+	fmt.Println(<span style="color:#e6db74">&#34;------- After Updating ----------&#34;</span>)
+	fmt.Println(<span style="color:#e6db74">&#34;Array :&#34;</span>, a)
+	fmt.Println(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, s1)
+	fmt.Println(<span style="color:#e6db74">&#34;Slice 2 :&#34;</span>, s2)
+}
+</code></pre></div><p><a href="http://play.golang.org/p/EmsxZXuf1N">http://play.golang.org/p/EmsxZXuf1N</a></p>
+<p><strong>Output:</strong></p>
+<p>Array : [1 2 3 4 5 6 7 8 9 0]<br>
+Slice 1 : [1 2 3 4 5]<br>
+Slice 2 : [3 4 5 6 7]<br>
+&mdash;&mdash;- After Updating &mdash;&mdash;&mdash;-<br>
+Array : [1 2 3 11 5 6 7 8 9 0]<br>
+Slice 1 : [1 2 3 11 5]<br>
+Slice 2 : [3 11 5 6 7]</p>
+<p>In this example, we created 2 slice <strong>s1</strong> and <strong>s2</strong> each of length 5 and on top of array <strong>a</strong>. But slice <strong>s1</strong> and <strong>s2</strong>, both represent different range of values of the underlying array <strong>a</strong>.</p>
+<p>Look at the output for values in slice <strong>s1</strong> and <strong>s2</strong> and you will see slice <strong>s1</strong> have 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> five values and slice <strong>s2</strong> have 5 values from array starting from index 2, this is because we created slice <strong>s2</strong> as <strong>a[2:7]</strong>.</p>
+<p>We updated value at index 3 on slice s1 to 11, and then printed values in both the slices and you can see that value in slice <strong>s2</strong> is also updated. This is because both the slice <strong>s1</strong> and <strong>s2</strong> are created on top of array <strong>a</strong>. Also check the value of array at index 3, it has also got updated.This is because slice <!-- raw HTML omitted --><strong>s1</strong><!-- raw HTML omitted --> and <!-- raw HTML omitted --><strong>s2</strong><!-- raw HTML omitted --> on array <!-- raw HTML omitted --><strong>a</strong><!-- raw HTML omitted -->**,** and they all share same memory.</p>
+<p>If we create slice on top of array, as <strong>s1 := a[:]</strong>, this means that slice with length equivalent to the length of underlying array <strong>a</strong> will be created.</p>
+<p>Now let us look at the example below to understand why slice is used more than array and why it is not just a subset of array.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+
+	a :<span style="color:#f92672">=</span> [...]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>}
+	s1 :<span style="color:#f92672">=</span> a[<span style="color:#f92672">:</span>]
+
+	fmt.Println(<span style="color:#e6db74">&#34;Array :&#34;</span>, a)
+	fmt.Println(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, s1)
+	fmt.Println(<span style="color:#e6db74">&#34;Length of Slice 1 :&#34;</span>, len(s1))
+	fmt.Println(<span style="color:#e6db74">&#34;Capacity of Slice 1 :&#34;</span>, cap(s1))
+
+	s1 <span style="color:#f92672">=</span> append(s1, <span style="color:#ae81ff">11</span>)
+
+	fmt.Println(<span style="color:#e6db74">&#34;---------- After adding new value ------------&#34;</span>)
+	fmt.Println(<span style="color:#e6db74">&#34;Array :&#34;</span>, a)
+	fmt.Println(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, s1)
+	fmt.Println(<span style="color:#e6db74">&#34;Length of Slice 1 :&#34;</span>, len(s1))
+	fmt.Println(<span style="color:#e6db74">&#34;Capacity of Slice 1 :&#34;</span>, cap(s1))
+}
+</code></pre></div><p><a href="http://play.golang.org/p/JkJz_DbkPe">http://play.golang.org/p/JkJz_DbkPe</a></p>
+<p><strong>Output:</strong></p>
+<p>Array : [1 2 3 4 5 6 7 8 9 10]<br>
+Slice 1 : [1 2 3 4 5 6 7 8 9 10]<br>
+Length of Slice 1 : 10<br>
+Capacity of Slice 1 : 10<br>
+&mdash;&mdash;&mdash;- After adding new value &mdash;&mdash;&mdash;&mdash;<br>
+Array : [1 2 3 4 5 6 7 8 9 10]<br>
+Slice 1 : [1 2 3 4 5 6 7 8 9 10 11]<br>
+Length of Slice 1 : 11<br>
+Capacity of Slice 1 : 20</p>
+<p>Here, we created slice <strong>s1</strong>, on array <strong>a</strong>. Since we haven&rsquo;t specified range while creating slice <strong>s1</strong>, it will represent complete array <strong>a</strong>, and hence length of slice <strong>s1</strong> is 10. See the output to check the values, length and capacity of <strong>s1</strong>.</p>
+<p>We used built-in function <strong>append</strong>, to add value to slice <strong>s1</strong>. And now print values, length and capacity and you will see newly added value and new length of slice <strong>s1</strong> is 11 now. But if you look at new capacity it is 20, double the previous capacity.</p>
+<p>Note, the value of array, before and after adding new value to slice, it is same. This is because when we created array, we had passed 10 values and hence length of array is 10 and addition of new value to slice will not increase the length of array.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Today, we got introduced to struct, map, array and slice. Go does not have too many data types or collections to be used and hence what we have learned today is what gets used in Go applications. In next post we will learn about functions and pointers.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/go/" rel="tag">Go</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/golang/" rel="tag">GoLang</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/golang/controlflows/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Control Flows</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/golang/functions_pointers/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">Functions and Pointers</p>
+		</a>
+	</div>
+</nav>
+
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "prashantthakkar" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form action="/search/index.html">
+				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
+			</form>
+	
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">		
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link " title="Twitter" rel="noopener noreferrer" href="https://twitter.com/ppandhi" target="_blank">
+				<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-.139 9.237c.209 4.617-3.234 9.765-9.33 9.765-1.854 0-3.579-.543-5.032-1.475 1.742.205 3.48-.278 4.86-1.359-1.437-.027-2.649-.976-3.066-2.28.515.098 1.021.069 1.482-.056-1.579-.317-2.668-1.739-2.633-3.26.442.246.949.394 1.486.411-1.461-.977-1.875-2.907-1.016-4.383 1.619 1.986 4.038 3.293 6.766 3.43-.479-2.053 1.08-4.03 3.199-4.03.943 0 1.797.398 2.395 1.037.748-.147 1.451-.42 2.086-.796-.246.767-.766 1.41-1.443 1.816.664-.08 1.297-.256 1.885-.517-.439.656-.996 1.234-1.639 1.697z"/></svg>
+			</a>
+		
+			<a class="widget-social__link " title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/prashant-thakkar-7827b611" target="_blank">
+				<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+			</a>
+		
+			<a class="widget-social__link " title="Email" href="mailto:prashant.pandhi@gmail.com">
+				<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 -140 1792 1792"><path d="M1376 128q119 0 203.5 84.5t84.5 203.5v960q0 119-84.5 203.5t-203.5 84.5h-960q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960zm32 1056v-436q-31 35-64 55-34 22-132.5 85t-151.5 99q-98 69-164 69t-164-69q-46-32-141.5-92.5t-142.5-92.5q-12-8-33-27t-31-27v436q0 40 28 68t68 28h832q40 0 68-28t28-68zm0-573q0-41-27.5-70t-68.5-29h-832q-40 0-68 28t-28 68q0 37 30.5 76.5t67.5 64.5q47 32 137.5 89t129.5 83q3 2 17 11.5t21 14 21 13 23.5 13 21.5 9.5 22.5 7.5 20.5 2.5 20.5-2.5 22.5-7.5 21.5-9.5 23.5-13 21-13 21-14 17-11.5l267-174q35-23 66.5-62.5t31.5-73.5z"/></svg>
+
+			</a>
+
+		
+
+			<a class="widget-social__link " title="stack overflow" rel="noopener noreferrer" href="https://stackoverflow.com/users/2959387/prashant-thakkar" target="_blank">
+					<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-8.512 8.272l5.532 3.243-.686 1.162-5.533-3.243.687-1.162zm-1.456 3.113l6.185 1.739-.332 1.23-6.204-1.667.351-1.302zm-.672 2.813l6.498.65-.117 1.28-6.504-.586.123-1.344zm-.193 2.469h6.667v1.333h-6.667v-1.333zm8.833 3.333h-11v-7h1v6h9v-6h1v7zm-.852-8.704l-3.56-5.219 1.115-.76 3.559 5.219-1.114.76zm1.356-.841l-1.08-6.224 1.328-.231 1.082 6.224-1.33.231z"/></svg>
+			</a>
+
+		
+	</div>
+</div>
+<br/>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android/" title="Android">Android (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/async-task/" title="Async Task">Async Task (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/basics/" title="Basics">Basics (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/channels/" title="Channels">Channels (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/composition/" title="Composition">Composition (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/concurrency/" title="Concurrency">Concurrency (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/constants/" title="Constants">Constants (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pointers/" title="Pointers">Pointers (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/preferences/" title="Preferences">Preferences (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/routine/" title="Routine">Routine (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sqlite/" title="Sqlite">Sqlite (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/variables/" title="Variables">Variables (1)</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Prashant Thakkar.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

@@ -1,0 +1,248 @@
++++
+css = []
+date = "2016-07-09T13:53:25+06:30"
+description = "In today's post we are going to look at how Go supports interface and composition. Interface and composition form the base of any language and Go is no different."
+draft = false
+highlight = true
+scripts = []
+tags = ["Interface", "Composition", "Go", "GoLang"]
+category = ["Go", "Tutorial"]
+title = "Interface and Composition"
+showdisqus = true
++++
+
+
+In today's post we are going to look at how Go supports interface and composition. Interface and composition form the base of any language and Go is no different.  
+
+## Interface
+
+Interface is defined as group of methods without the actual method implementation. It is the responsibility of implementer of the interface to provide the actual implementation. Thus Interface can be considered as a contract/protocol which needs to be fulfilled by implementer.
+Go, has a keyword **interface** which is used for declaring an interface as shown below:
+
+```
+type TaxCalculator  interface {
+	calculate(basicAmount float32) float32
+}
+
+```
+Here, we have declared interface called **TaxCalculator**, having method **calculate** which accepts basic amount on which tax is to be computed and returns back tax. 
+Let us look at the example below, and see how we have used interface **TaxCalculator** to compute tax for different states.
+
+```
+package main 
+
+import (
+	"fmt"
+)
+
+type TaxCalculaor interface {
+	calculate(basicAmount float32) float32
+}
+
+type State1 struct {
+	name    string
+	taxRate float32
+}
+
+type State2 struct {
+	name    string
+	taxRate float32
+}
+
+func (t State1) calculate(basicAmount float32) float32 {
+	return basicAmount * t.taxRate / 100
+}
+
+func (t State2) calculate(basicAmount float32) float32 {
+	return basicAmount * t.taxRate / 100
+}
+
+func calculateTax(basicAmount float32, t TaxCalculaor) {
+	fmt.Printf("The tax is %.2f\n", t.calculate(basicAmount))
+}
+
+func main() {
+	st1 := State1{"State1", 10.0}
+	st2 := State2{"State2", 9.00}
+	var income float32 = 100.00
+	calculateTax(income, st1)
+	calculateTax(income, st2)
+	fmt.Println(&st1)
+	fmt.Println(&st2)
+}
+```
+
+
+**Ouput:**
+
+The tax is 10.00  
+The tax is 9.00  
+&{State1 10}  
+&{State2 9}  
+
+https://play.golang.org/p/UAhUxCYiuz
+
+Here we have assumed 2 states, **State1** and **State2** and have defined struct for each of the state. Each of this states have different tax rate and computation logic.
+We have defined 2 calculate methods, one with **State1** as receiver and another with **State2** as receiver.
+
+
+```
+func (t State1) calculate(basicAmount float32) float32 {
+...
+}
+func (t State2) calculate(basicAmount float32) float32 {
+...
+}
+
+```
+
+
+Now since **TaxCalculator** interface, has **calculate** method with same signature, **State1** and **State2** are said to be implementing interface **TaxCalculator**.
+
+### iTable
+Go, on runtime creates something called as iTable (interface table) which holds information like underlying concrete type and list of functions. Now when method is called, iTable is looked up based on concrete type to find the function to be called. (*Note only function that matches the method declared in interface are listed in iTable.*)
+
+<p><img src="../../../images/interface/go_interface_itable.png" width="660" height="413" class="img-responsive img-thumbnail center-block" alt="iTable Illustration"> <small class="center-block text-center text-muted img-label">iTable Illustration</small></p>
+
+In our case 2 iTable, one for each state is created with function **calculate** in them. When **calculate** for **State1** is called a lookup is made to get handle to the **calculate** function for **State1**.
+
+### Empty Interface (interface {})
+As the same says, it is an Interface with no methods. This is a special interface, which is implemented by all the concrete types in Go. Empty interface can be used when we are not sure about the type of element that can be passed and we need to support all the types. 
+One of the example where Go, uses empty interface is function, **Println** from **fmt** package.
+```
+func Println(a...interface{})(nint,errerror)
+```
+
+We have already used **Println**, and passed variety of types like, int, string, struct and it has printed all of them. 
+Function **Println**, does lot of things internally to print, but basically it uses reflection to identify the type and then accordingly handle each type. 
+
+Let us look at simple example below to understand usage of empty interface.
+
+```
+package main
+
+import (
+	"fmt"
+)
+
+type Person struct {
+	name string
+}
+
+func main() {
+
+	b := true
+	i := 10
+	p := Person{"ABC"}
+
+	printType(b)
+	printType(i)
+	printType(p)
+
+}
+
+func printType(i interface{}) {
+	switch i.(type) {
+	case bool:
+		fmt.Println(i, " is boolean")
+	case int:
+		fmt.Println(i, " is int")
+	default:
+		fmt.Println(i, " is unknown")
+	}
+}
+
+```
+
+**Output:**  
+true  is boolean  
+10  is int  
+{ABC}  is unknown  
+
+https://play.golang.org/p/1cxXTuleuF
+
+In example above we have method **printType** which excepts empty interface and then use *type* to identify the type of value passed. We have used switch statement for prinitng appropriate statements.
+
+## Composition
+
+Composition is way of reusing the objects by referring them in another object there by supporting a mechanism of composing an object from smaller reusable objects. For example object Address can be used to hold address for objects like Employee, Vendor and Locations etc.
+Let us modify the above example and see how we can use composition and interface together.
+
+
+```
+package main
+
+import (
+	"fmt"
+)
+
+type TaxCalculaor interface {
+	calculate(basicAmount float32) float32
+}
+type State struct {
+	name    string
+	taxRate float32
+}
+type State1 struct {
+	State
+}
+type State2 struct {
+	State
+}
+
+type State3 struct {
+	State
+}
+
+func (t State) calculate(basicAmount float32) float32 {
+	return basicAmount * t.taxRate / 100
+}
+
+func (t State3) calculate(basicAmount float32) float32 {
+	return (basicAmount / 2) * t.taxRate / 100
+}
+
+func calculateTax(basicAmount float32, t TaxCalculaor) {
+	fmt.Println(t)
+	fmt.Printf("The tax is %.2f\n", t.calculate(basicAmount))
+}
+
+func main() {
+	st1 := State1{State{"State1", 10.0}}
+	st2 := State2{State{"State2", 9.00}}
+	st3 := State3{State{"State3", 9.00}}
+	var income float32 = 100.00
+
+	fmt.Println("Basic Amount to be taxed:", income)
+
+	st := [...]TaxCalculaor{st1, st2, st3}
+	for _, s := range st {
+		calculateTax(income, s)
+	}
+
+}
+
+```
+
+**Output:**  
+Basic Amount to be taxed: 100  
+{{State1 10}}  
+The tax is 10.00  
+{{State2 9}}  
+The tax is 9.00  
+{{State3 9}}  
+The tax is 4.50  
+
+https://play.golang.org/p/aw0QEsw5LE
+
+1.	We are using same interface TaxCalculator, with method calculate. 
+2.	Since property name and taxRate are common to all the states for this example we have defined a struct State for holding this properties. 
+3.	Defined 3 states, State1, State2 and State3. Each of this state objects are composite object and use State object. 
+4.	We have defined 2 variants of calculate method with different receiver State and State3. Method calculate for State3 considers only 50% of basic amount for tax.
+5.	Since we have not defined any calculate method on State1 and State2, calculate method with State as receiver will be called.
+6.	In function main we have defined st1, st2 and st3 instance variable for objects State1, State2 and State3 respectively. Tax Rate for State1, State2 and State3 is 10, 9 and 9. 
+7.	We have defined an array of State to hold this st1, st2 and st3 instance variable and iterate over this array and call calculate method on each of the state instance.
+8.	As we know, for st1 and st2 calculate method with State as receiver will be called and full basic amount will be consider for tax and for st3 calculate method with State3 as receiver will be called and 50% of basic amount will be taxed.
+
+## Conclusion
+Today we looked at the way Go supports interface and composition. It is very important to understand these concepts especially usage of interface. Here in Go, unlike other OO language we don't explicitly declare usage of interface (For example in Java uses **implements** keyword to indicate usage of interface), but we directly override a method of interface. These make both easy to implement but at time will make difficult to read code. Hence it is very important to do proper documentation around usage of implemented method to indicate same.

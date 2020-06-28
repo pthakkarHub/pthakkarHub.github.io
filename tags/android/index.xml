@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on Prashant Thakkar</title>
+    <link>/tags/android/</link>
+    <description>Recent content in Android on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 05 Feb 2012 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Change Preference Summary</title>
+      <link>/post/android/change_preference/</link>
+      <pubDate>Sun, 05 Feb 2012 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/change_preference/</guid>
+      <description>In Today&amp;rsquo;s post we are going to look at How to Change Summary of Edit Text Preference. But before moving ahead, if you want to know more about Preferences click here.
+First create a preference screen with only one preference EditTextPreference as show below in xml. Let us call this xml as setttings.xml
+&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; &amp;lt;PreferenceScreen xmlns:android=&amp;#34;http://schemas.android.com/apk/res/android&amp;#34; &amp;gt; &amp;lt;EditTextPreference android:dialogTitle=&amp;#34;Enter Name&amp;#34; android:key=&amp;#34;name&amp;#34; android:summary=&amp;#34;Enter Your Name&amp;#34; android:title=&amp;#34;Edit Text Preference&amp;#34; /&amp;gt; &amp;lt;/PreferenceScreen&amp;gt; As shown above we are creating EditTextPreference with key &amp;ldquo;name&amp;rdquo;.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Android SQLite Database</title>
+      <link>/post/android/sqlite/</link>
+      <pubDate>Sun, 03 Jul 2011 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/sqlite/</guid>
+      <description>Android provide various options for data persistence like Preferences, File and Database etc. This post we will introduce you to one of the option i.e. Android SQLite Database.
+Let us take an example of Student database. i.e. student_database (DATABASE_NAME). We will create table tb_student (DATABASE_TABLE), with 3 columns i.e. _id (KEY_ROWID), name (KEY_NAME) and grade (KEY_GRADE). Columns _id is primary key and autoincrement, while name and garde are text .</description>
+    </item>
+    
+    <item>
+      <title>Android Menus</title>
+      <link>/post/android/menus/</link>
+      <pubDate>Sun, 10 Oct 2010 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/menus/</guid>
+      <description>Menus are one of the most important parts of any application and when it comes to mobile Menus become more important considering the fact that area available is restricted. Through this blog we will look at the following various type of Android Menus available with example for each of them:
+ Options Menu Context Menu Submenu  Options Menu: Menu opened when MENU key on the device is clicked is called options menu.</description>
+    </item>
+    
+    <item>
+      <title>Android Async Task</title>
+      <link>/post/android/async_task/</link>
+      <pubDate>Sun, 01 Aug 2010 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/async_task/</guid>
+      <description>Through this article we will look at one of the important feature of Android i.e AsyncTask for performing task which takes long time for execution with example. Also we will look at other mechanisms and see why AsyncTask is better approach.
+Android application follows single thread model i.e. when android application is launched, a thread is created for running that application. This single thread model works fine for normal execution, but for the instance like network call which are usually long operations, UI hangs waiting for the response from the server.</description>
+    </item>
+    
+    <item>
+      <title>Android Preferences</title>
+      <link>/post/android/preferences/</link>
+      <pubDate>Sun, 11 Jul 2010 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/preferences/</guid>
+      <description>Most of applications have some setting which user can/needs to configure, and to do this setting a screen needs to be designed along with code to read the data and display and update the data back.
+In Android we can do this with minimum efforts via Preferences. Another advantage of using Android preference for application setting helps Android user because it will be uniform across the applications.
+In this article we will look at the standard Preference available i.</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Android UI Layouts</title>
+      <link>/post/android/introduction/</link>
+      <pubDate>Sat, 03 Jul 2010 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/introduction/</guid>
+      <description>Considering the fact that available space on mobile screen is small, UI design of mobile application is very important. For Android each screen follows one or more layout. Layouts are like container that holds various view or layouts. Placing of views on the screen depends on the layout selected.
+This article will introduce following basic layouts with examples:
+ Linear Layout Table Layout Absolute Layout Relative Layout Frame Layout  Let us now look at each of them in details and understand them.</description>
+    </item>
+    
+  </channel>
+</rss>

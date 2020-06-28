@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Android Menus - Prashant Thakkar</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Menus are one of the most important parts of any application and when it comes to mobile Menus become more important considering the fact that area available is restricted. Through this blog we will  look at the following various type of Android Menus available with example for each of them.">
+		<meta property="og:title" content="Android Menus" />
+<meta property="og:description" content="Menus are one of the most important parts of any application and when it comes to mobile Menus become more important considering the fact that area available is restricted. Through this blog we will  look at the following various type of Android Menus available with example for each of them." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/android/menus/" />
+<meta property="article:published_time" content="2010-10-10T13:53:25+06:30" />
+<meta property="article:modified_time" content="2010-10-10T13:53:25+06:30" />
+
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-74735062-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Prashant Thakkar" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Prashant Thakkar</div>
+					<div class="logo__tagline">Learning and Expressing</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">Menu</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/">
+				<i class='fa fa-heart'></i>
+				<span class="menu__text">Blogs</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/articles/">
+				
+				<span class="menu__text">Articles</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/book_reviews/">
+				
+				<span class="menu__text">Book Reviews</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Android Menus</h1>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2010-10-10T13:53:25&#43;06:30">October 10, 2010</time></div></div>
+		</header><div class="content post__content clearfix">
+			<p>Menus are one of the most important parts of any application and when it comes to mobile Menus become more important considering the fact that area available is restricted. Through this blog we will look at the following various type of Android Menus available with example for each of them:</p>
+<ul>
+<li>Options Menu</li>
+<li>Context Menu</li>
+<li>Submenu</li>
+</ul>
+<h2 id="options-menu">Options Menu:</h2>
+<p>Menu opened when MENU key on the device is clicked is called <strong>options menu</strong>.</p>
+<p>Based on the number of menu options, <strong>options menu</strong> can be further classified as</p>
+<ul>
+<li><strong>Icon Menu</strong> : Options menu can have any number of menu options, but only 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> six options are shown directly on MENU key click of device and this is called as <strong>Icon Menu.</strong></li>
+<li><strong>Expanded Menu</strong> : In case there are more than six options then 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> five are show directly and remaining are available when <strong>More</strong> button is clicked and is called as <strong>Expanded Menu</strong>.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">onCreateOptionsMenu</span><span style="color:#f92672">(</span>Menu menu<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+  menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_VIEW<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;View&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setIcon</span><span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">drawable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ic_menu_view</span><span style="color:#f92672">);</span>
+  menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_UPLOAD<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Upload&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setIcon</span><span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">drawable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ic_menu_upload</span><span style="color:#f92672">);</span>
+  menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_SEND<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Send&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setIcon</span><span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">drawable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ic_menu_send</span><span style="color:#f92672">);</span>
+  menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_SEARCH<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Search&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setIcon</span><span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">drawable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ic_menu_search</span><span style="color:#f92672">);</span>
+  menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_SETTINGS<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Settings&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setIcon</span><span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">drawable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ic_menu_settings</span><span style="color:#f92672">);</span>
+  menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_MY_LOCATION<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;My Location&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setIcon</span><span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">drawable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ic_menu_mylocation</span><span style="color:#f92672">);</span>
+  menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_INFO<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Info&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">setIcon</span><span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">drawable</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ic_menu_info_details</span><span style="color:#f92672">);</span>
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">onOptionsItemSelected</span><span style="color:#f92672">(</span>MenuItem item<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">switch</span><span style="color:#f92672">(</span>item<span style="color:#f92672">.</span><span style="color:#a6e22e">getItemId</span><span style="color:#f92672">()){</span>
+	<span style="color:#66d9ef">case</span> MENU_VIEW<span style="color:#f92672">:</span>
+		<span style="color:#75715e">// Code for menu option View
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">case</span> MENU_UPLOAD<span style="color:#f92672">:</span>
+		<span style="color:#75715e">// Code for menu option Upload
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">case</span> MENU_SEND<span style="color:#f92672">:</span>
+		<span style="color:#75715e">// Code for menu option Send
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">case</span> MENU_SEARCH<span style="color:#f92672">:</span>
+		<span style="color:#75715e">// Code for menu option Search
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">case</span> MENU_MY_LOCATION<span style="color:#f92672">:</span>
+		<span style="color:#75715e">// Code for menu option Location
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">case</span> MENU_SETTINGS<span style="color:#f92672">:</span>
+		<span style="color:#75715e">// Code for menu option Settings
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">case</span> MENU_INFO<span style="color:#f92672">:</span>
+		<span style="color:#75715e">// Code for menu option Info
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+
+</code></pre></div><p><p>
+ <div style="display: flex; justify-content: center;">
+            <img src="../../../images/async_task/option_menu_1.png" alt="Options Menu (Icon Menu)" style="width: 200"/>
+</div>
+<div style="display: flex; justify-content: center;">
+	<p>Options Menu (Icon Menu)</p>
+</div>
+</p>
+
+<p>
+ <div style="display: flex; justify-content: center;">
+            <img src="../../../images/async_task/option_menu_2.png" alt="Options Menu (Icon Menu)" style="width: 200"/>
+</div>
+<div style="display: flex; justify-content: center;">
+	<p>Options Menu (Icon Menu)</p>
+</div>
+</p>
+</p>
+<h3 id="points-to-remember"><strong>Points to Remember:</strong></h3>
+<ul>
+<li><em><strong>onCreateOptionsMenu()</strong></em>: This method of the Activity is called on Menu Key click of the device. Override this method in the activity to populate the Menu object passed as parameter to this method.</li>
+<li>Multiple <strong><em>add()</em></strong> methods are available for adding Menu options. Use the one that accepts <em>itemId</em> as a parameter.</li>
+<li><em><strong>setIcon()</strong></em> is used for assigning icon.</li>
+<li><strong><em>onOptionItemSelected()</em></strong>: This method of the activity is called when a particular Item/Option of the menu is clicked. Override this method in the activity and provide code to perform respective actions based on the menu option selected.</li>
+</ul>
+<p>It is not mandatory to have icon for Icon Menu options. But in case if icons are associated with menu options in that case Icon are displayed for Icon Menu only.</p>
+<h2 id="context-menu">Context Menu:</h2>
+<p>As name suggest, Context Menu is the menu in context/associated with some object. Long-press on the view will bring up registered Context menu.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreateContextMenu</span><span style="color:#f92672">(</span>ContextMenu menu<span style="color:#f92672">,</span> View v<span style="color:#f92672">,</span>
+			ContextMenuInfo menuInfo<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onCreateContextMenu</span><span style="color:#f92672">(</span>menu<span style="color:#f92672">,</span> v<span style="color:#f92672">,</span> menuInfo<span style="color:#f92672">);</span>
+	menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_SMS<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;SMS&#34;</span><span style="color:#f92672">);</span>
+	menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_EMAIL<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Email&#34;</span><span style="color:#f92672">);</span>
+	<span style="color:#f92672">}</span>
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">onContextItemSelected</span><span style="color:#f92672">(</span>MenuItem item<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">switch</span><span style="color:#f92672">(</span>item<span style="color:#f92672">.</span><span style="color:#a6e22e">getItemId</span><span style="color:#f92672">()){</span>
+	<span style="color:#66d9ef">case</span> MENU_SMS<span style="color:#f92672">:</span>
+		<span style="color:#75715e">// Code for menu option Edit
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">case</span> MENU_EMAIL<span style="color:#f92672">:</span>
+		<span style="color:#75715e">// Code for menu option Delete
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+	<span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><p>For this example context menu is register to be shown on Button.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Button share <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Button<span style="color:#f92672">)</span>findViewById<span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Share</span><span style="color:#f92672">);</span>
+registerForContextMenu<span style="color:#f92672">(</span>share<span style="color:#f92672">);</span>
+</code></pre></div><p>
+ <div style="display: flex; justify-content: center;">
+            <img src="../../../images/async_task/context_menu_1.png" alt="Context Menu Example" style="width: 200"/>
+</div>
+<div style="display: flex; justify-content: center;">
+	<p>Context Menu Example</p>
+</div>
+</p>
+
+<p>
+ <div style="display: flex; justify-content: center;">
+            <img src="../../../images/async_task/context_menu_2.png" alt="Context Menu" style="width: 200"/>
+</div>
+<div style="display: flex; justify-content: center;">
+	<p>Context Menu</p>
+</div>
+</p>
+
+<h3 id="points-to-remember-1">Points to Remember:</h3>
+<ul>
+<li><em>registerForContextMenu()</em>: This method is used to registered context menu with view.</li>
+<li><em>onCreateContextMenu()</em>: This method of Activity is called on click (long-press) of registered view. Override this method to populate Context menu options.</li>
+<li><em>onContextItemSelected()</em>: This method of activity is called when item/option from context menu is selected. Override this method in the activity and provide code to perform respective actions based on the menu option selected.</li>
+</ul>
+<h2 id="submenus">Submenus:</h2>
+<p>Sub menu is the nested menu that can be added to any type of menu (options or context menu).</p>
+<p>Below code shows adding Submenu for Options menu:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">onCreateOptionsMenu</span><span style="color:#f92672">(</span>Menu menu<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	SubMenu subMenu <span style="color:#f92672">=</span> menu<span style="color:#f92672">.</span><span style="color:#a6e22e">addSubMenu</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Details&#34;</span><span style="color:#f92672">);</span>
+	subMenu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span>MENU_VIEW<span style="color:#f92672">,</span>0<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;View&#34;</span><span style="color:#f92672">);</span>
+	subMenu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span>MENU_EDIT<span style="color:#f92672">,</span>0<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Edit&#34;</span><span style="color:#f92672">);</span>
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCreateContextMenu</span><span style="color:#f92672">(</span>ContextMenu menu<span style="color:#f92672">,</span> View v<span style="color:#f92672">,</span>
+			ContextMenuInfo menuInfo<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onCreateContextMenu</span><span style="color:#f92672">(</span>menu<span style="color:#f92672">,</span> v<span style="color:#f92672">,</span> menuInfo<span style="color:#f92672">);</span>
+	menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_SMS<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;SMS&#34;</span><span style="color:#f92672">);</span>
+	menu<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> MENU_EMAIL<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Email&#34;</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>
+ <div style="display: flex; justify-content: center;">
+            <img src="../../../images/async_task/option_sub_menu_1.png" alt="Option Sub Menu Example" style="width: 200"/>
+</div>
+<div style="display: flex; justify-content: center;">
+	<p>Option Sub Menu Example</p>
+</div>
+</p>
+
+<p>
+ <div style="display: flex; justify-content: center;">
+            <img src="../../../images/async_task/option_sub_menu_2.png" alt="Option Sub Menu" style="width: 200"/>
+</div>
+<div style="display: flex; justify-content: center;">
+	<p>Option Sub Menu</p>
+</div>
+</p>
+
+<h3 id="points-to-remember-2">Points to Remember:</h3>
+<ul>
+<li>Sub menu cannot be nested further i.e. Sub menu cannot have sub menu.</li>
+<li>When sub menu item is clicked, the parent menus onItemSelected method is called. In above example, sub menu is for options menu item hence, on click of sub menu item, <strong>onOptionsItemSelected</strong> method is called.</li>
+</ul>
+<h2 id="defining-menu-via-xml"><strong>Defining Menu via XML</strong></h2>
+<p>Instead initiating Menu in code as shown above the best practice is to define menu in XML and then inflate menu using this XML in the code. Thus by defining menu in XML, we separate design and implementation.</p>
+<h3 id="options-menu-via-xml">Options Menu via XML</h3>
+<p>Create <strong>sampleoptionsmenu.xml</strong> under folder <strong>res/menu</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;menu</span> <span style="color:#a6e22e">xmlns:android=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res/android&#34;</span><span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">android:title=</span><span style="color:#e6db74">&#34;View&#34;</span> <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/MENU_VIEW&#34;</span>
+		<span style="color:#a6e22e">android:icon=</span><span style="color:#e6db74">&#34;@drawable/ic_menu_view&#34;</span> <span style="color:#f92672">/&gt;</span>
+	<span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">android:title=</span><span style="color:#e6db74">&#34;Upload&#34;</span> <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/MENU_UPLOAD&#34;</span>
+		<span style="color:#a6e22e">android:icon=</span><span style="color:#e6db74">&#34;@drawable/ic_menu_upload&#34;</span> <span style="color:#f92672">/&gt;</span>
+	<span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">android:title=</span><span style="color:#e6db74">&#34;Send&#34;</span> <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/MENU_SEND&#34;</span>
+		<span style="color:#a6e22e">android:icon=</span><span style="color:#e6db74">&#34;@drawable/ic_menu_send&#34;</span> <span style="color:#f92672">/&gt;</span>
+	<span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">android:title=</span><span style="color:#e6db74">&#34;Search&#34;</span> <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/MENU_SEARCH&#34;</span>
+		<span style="color:#a6e22e">android:icon=</span><span style="color:#e6db74">&#34;@drawable/ic_menu_search&#34;</span> <span style="color:#f92672">/&gt;</span>
+	<span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">android:title=</span><span style="color:#e6db74">&#34;Settings&#34;</span> <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/MENU_SETTINGS&#34;</span>
+		<span style="color:#a6e22e">android:icon=</span><span style="color:#e6db74">&#34;@drawable/ic_menu_settings&#34;</span> <span style="color:#f92672">/&gt;</span>
+	<span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">android:title=</span><span style="color:#e6db74">&#34;My Location&#34;</span> <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/MENU_MY_LOCATION&#34;</span>
+		<span style="color:#a6e22e">android:icon=</span><span style="color:#e6db74">&#34;@drawable/ic_menu_mylocation&#34;</span> <span style="color:#f92672">/&gt;</span>
+	<span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">android:title=</span><span style="color:#e6db74">&#34;Info&#34;</span> <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/MENU_INFO&#34;</span>
+		<span style="color:#a6e22e">android:icon=</span><span style="color:#e6db74">&#34;@drawable/ic_menu_info_details&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/menu&gt;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">onCreateOptionsMenu</span><span style="color:#f92672">(</span>Menu menu<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+	MenuInflater inflater <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MenuInflater<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">);</span>
+	inflater<span style="color:#f92672">.</span><span style="color:#a6e22e">inflate</span><span style="color:#f92672">(</span>R<span style="color:#f92672">.</span><span style="color:#a6e22e">menu</span><span style="color:#f92672">.</span><span style="color:#a6e22e">sampleoptionsmenu</span><span style="color:#f92672">,</span> menu<span style="color:#f92672">);</span>
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><p>As we can see if we use XML for creating menu the code in <em>onCreateOptionsMenu()</em> method is reduced.</p>
+<p>Let us look at each element:</p>
+<ul>
+<li><strong>&lt;menu&gt;:</strong> This element act as a container for menu items. This element must be the root node of the file.</li>
+<li><strong>&lt;item&gt;:</strong> Represents menu item. Can have &lt;menu&gt; as sub elements for creating sub menus</li>
+<li><strong>&lt;group&gt;:</strong> Optional element, that allows grouping of element.</li>
+</ul>
+<h3 id="submenu-via-xml">Submenu via XML</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span style="color:#f92672">&lt;menu</span>
+  <span style="color:#a6e22e">xmlns:android=</span><span style="color:#e6db74">&#34;http://schemas.android.com/apk/res/android&#34;</span><span style="color:#f92672">&gt;</span>
+  <span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/MENU_DETAILS&#34;</span>
+	<span style="color:#a6e22e">android:title=</span><span style="color:#e6db74">&#34;Details&#34;</span><span style="color:#f92672">&gt;</span>
+	<span style="color:#f92672">&lt;menu&gt;</span>
+		<span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/MENU_VIEW&#34;</span> <span style="color:#a6e22e">android:title=</span><span style="color:#e6db74">&#34;View&#34;</span><span style="color:#f92672">&gt;&lt;/item&gt;</span>
+		<span style="color:#f92672">&lt;item</span> <span style="color:#a6e22e">android:id=</span><span style="color:#e6db74">&#34;@+id/MENU_EDIT&#34;</span> <span style="color:#a6e22e">android:title=</span><span style="color:#e6db74">&#34;Edit&#34;</span><span style="color:#f92672">&gt;&lt;/item&gt;</span>
+	<span style="color:#f92672">&lt;/menu&gt;</span>
+  <span style="color:#f92672">&lt;/item&gt;</span>
+<span style="color:#f92672">&lt;/menu&gt;</span>
+
+</code></pre></div><h2 id="conculsion"><strong>Conculsion</strong></h2>
+<p>This blog post covered all type of menus (options, context and submenu) available in Android with sample code.</p>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/android/" rel="tag">Android</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/menus/" rel="tag">Menus</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/android/async_task/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;Previous</span>
+			<p class="pager__title">Android Async Task</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/android/sqlite/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">Introduction to Android SQLite Database</p>
+		</a>
+	</div>
+</nav>
+
+
+<section class="comments">
+	<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "prashantthakkar" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form action="/search/index.html">
+				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
+			</form>
+	
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">Social</h4>
+	<div class="widget-social__content widget__content">		
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link " title="Twitter" rel="noopener noreferrer" href="https://twitter.com/ppandhi" target="_blank">
+				<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-.139 9.237c.209 4.617-3.234 9.765-9.33 9.765-1.854 0-3.579-.543-5.032-1.475 1.742.205 3.48-.278 4.86-1.359-1.437-.027-2.649-.976-3.066-2.28.515.098 1.021.069 1.482-.056-1.579-.317-2.668-1.739-2.633-3.26.442.246.949.394 1.486.411-1.461-.977-1.875-2.907-1.016-4.383 1.619 1.986 4.038 3.293 6.766 3.43-.479-2.053 1.08-4.03 3.199-4.03.943 0 1.797.398 2.395 1.037.748-.147 1.451-.42 2.086-.796-.246.767-.766 1.41-1.443 1.816.664-.08 1.297-.256 1.885-.517-.439.656-.996 1.234-1.639 1.697z"/></svg>
+			</a>
+		
+			<a class="widget-social__link " title="LinkedIn" rel="noopener noreferrer" href="https://linkedin.com/in/prashant-thakkar-7827b611" target="_blank">
+				<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+			</a>
+		
+			<a class="widget-social__link " title="Email" href="mailto:prashant.pandhi@gmail.com">
+				<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 -140 1792 1792"><path d="M1376 128q119 0 203.5 84.5t84.5 203.5v960q0 119-84.5 203.5t-203.5 84.5h-960q-119 0-203.5-84.5t-84.5-203.5v-960q0-119 84.5-203.5t203.5-84.5h960zm32 1056v-436q-31 35-64 55-34 22-132.5 85t-151.5 99q-98 69-164 69t-164-69q-46-32-141.5-92.5t-142.5-92.5q-12-8-33-27t-31-27v436q0 40 28 68t68 28h832q40 0 68-28t28-68zm0-573q0-41-27.5-70t-68.5-29h-832q-40 0-68 28t-28 68q0 37 30.5 76.5t67.5 64.5q47 32 137.5 89t129.5 83q3 2 17 11.5t21 14 21 13 23.5 13 21.5 9.5 22.5 7.5 20.5 2.5 20.5-2.5 22.5-7.5 21.5-9.5 23.5-13 21-13 21-14 17-11.5l267-174q35-23 66.5-62.5t31.5-73.5z"/></svg>
+
+			</a>
+
+		
+
+			<a class="widget-social__link " title="stack overflow" rel="noopener noreferrer" href="https://stackoverflow.com/users/2959387/prashant-thakkar" target="_blank">
+					<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-8.512 8.272l5.532 3.243-.686 1.162-5.533-3.243.687-1.162zm-1.456 3.113l6.185 1.739-.332 1.23-6.204-1.667.351-1.302zm-.672 2.813l6.498.65-.117 1.28-6.504-.586.123-1.344zm-.193 2.469h6.667v1.333h-6.667v-1.333zm8.833 3.333h-11v-7h1v6h9v-6h1v7zm-.852-8.704l-3.56-5.219 1.115-.76 3.559 5.219-1.114.76zm1.356-.841l-1.08-6.224 1.328-.231 1.082 6.224-1.33.231z"/></svg>
+			</a>
+
+		
+	</div>
+</div>
+<br/>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">Tags</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/android/" title="Android">Android (6)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/async-task/" title="Async Task">Async Task (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/basics/" title="Basics">Basics (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/channels/" title="Channels">Channels (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/composition/" title="Composition">Composition (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/concurrency/" title="Concurrency">Concurrency (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/constants/" title="Constants">Constants (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/pointers/" title="Pointers">Pointers (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/preferences/" title="Preferences">Preferences (2)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/routine/" title="Routine">Routine (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/sqlite/" title="Sqlite">Sqlite (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/variables/" title="Variables">Variables (1)</a>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 Prashant Thakkar.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>

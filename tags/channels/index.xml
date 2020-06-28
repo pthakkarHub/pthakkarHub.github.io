@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Channels on Prashant Thakkar</title>
+    <link>/tags/channels/</link>
+    <description>Recent content in Channels on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 Jul 2016 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/channels/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Channels</title>
+      <link>/post/golang/channels/</link>
+      <pubDate>Sun, 10 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/channels/</guid>
+      <description>Go&amp;rsquo;s concurrency model is based on &amp;ldquo;Do not communicate by sharing memory; instead, share memory by communicating&amp;rdquo;, and channels is the way of achieving this. Channels are used for inter Go Routine communication. Unlike other programming language where objects/memory is shared between two or more thread by acquiring lock, in Go channels are used to pass the objects to Go Routine thereby ensuring only one Go Routine have access to it.</description>
+    </item>
+    
+  </channel>
+</rss>

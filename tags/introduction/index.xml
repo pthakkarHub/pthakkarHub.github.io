@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Introduction on Prashant Thakkar</title>
+    <link>/tags/introduction/</link>
+    <description>Recent content in Introduction on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 09 Nov 2015 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/introduction/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introduction to GoLang</title>
+      <link>/post/golang/introduction/</link>
+      <pubDate>Mon, 09 Nov 2015 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/introduction/</guid>
+      <description>GoLang is an open source language developed and backed by internet giant Google. GoLang is famously known as Go and that is how we are going to refer to in future. In 2007, Robert Griesemer, Rob Pike and Ken Thompson at Google started with experiment to develop a language that will have minimal of features, but will cater most of the use cases. Beside this their idea was to overcome some of the hurdles in development, build and deployment of code written in C (and also of any other languages).</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Android UI Layouts</title>
+      <link>/post/android/introduction/</link>
+      <pubDate>Sat, 03 Jul 2010 13:53:25 +0630</pubDate>
+      
+      <guid>/post/android/introduction/</guid>
+      <description>Considering the fact that available space on mobile screen is small, UI design of mobile application is very important. For Android each screen follows one or more layout. Layouts are like container that holds various view or layouts. Placing of views on the screen depends on the layout selected.
+This article will introduce following basic layouts with examples:
+ Linear Layout Table Layout Absolute Layout Relative Layout Frame Layout  Let us now look at each of them in details and understand them.</description>
+    </item>
+    
+  </channel>
+</rss>

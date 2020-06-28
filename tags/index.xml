@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Prashant Thakkar</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 Jul 2016 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Channels</title>
+      <link>/tags/channels/</link>
+      <pubDate>Sun, 10 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/channels/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Concurrency</title>
+      <link>/tags/concurrency/</link>
+      <pubDate>Sun, 10 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/concurrency/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>/tags/go/</link>
+      <pubDate>Sun, 10 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GoLang</title>
+      <link>/tags/golang/</link>
+      <pubDate>Sun, 10 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Routine</title>
+      <link>/tags/routine/</link>
+      <pubDate>Sat, 09 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/routine/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Composition</title>
+      <link>/tags/composition/</link>
+      <pubDate>Fri, 08 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/composition/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interface</title>
+      <link>/tags/interface/</link>
+      <pubDate>Fri, 08 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/interface/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Function</title>
+      <link>/tags/function/</link>
+      <pubDate>Wed, 13 Jan 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/function/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pointers</title>
+      <link>/tags/pointers/</link>
+      <pubDate>Wed, 13 Jan 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/pointers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Control Flows</title>
+      <link>/tags/control-flows/</link>
+      <pubDate>Fri, 01 Jan 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/control-flows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Basics</title>
+      <link>/tags/basics/</link>
+      <pubDate>Wed, 30 Dec 2015 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/basics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Constants</title>
+      <link>/tags/constants/</link>
+      <pubDate>Wed, 30 Dec 2015 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/constants/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Types</title>
+      <link>/tags/data-types/</link>
+      <pubDate>Wed, 30 Dec 2015 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/data-types/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Variables</title>
+      <link>/tags/variables/</link>
+      <pubDate>Wed, 30 Dec 2015 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/variables/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Introduction</title>
+      <link>/tags/introduction/</link>
+      <pubDate>Mon, 09 Nov 2015 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/introduction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Android</title>
+      <link>/tags/android/</link>
+      <pubDate>Sun, 05 Feb 2012 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Preferences</title>
+      <link>/tags/preferences/</link>
+      <pubDate>Sun, 05 Feb 2012 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/preferences/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Database</title>
+      <link>/tags/database/</link>
+      <pubDate>Sun, 03 Jul 2011 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sqlite</title>
+      <link>/tags/sqlite/</link>
+      <pubDate>Sun, 03 Jul 2011 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/sqlite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Menus</title>
+      <link>/tags/menus/</link>
+      <pubDate>Sun, 10 Oct 2010 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/menus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Async Task</title>
+      <link>/tags/async-task/</link>
+      <pubDate>Sun, 01 Aug 2010 13:53:25 +0630</pubDate>
+      
+      <guid>/tags/async-task/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

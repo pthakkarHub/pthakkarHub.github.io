@@ -1,0 +1,23 @@
++++
+css = []
+date = "2016-02-21T13:53:25+06:30"
+description = "GoLang or popularly known as Go, is the new language by Google."
+draft = false
+highlight = true
+scripts = []
+tags = []
+category = ["Go", "Tutorial"]
+title = "GoLang Tutorial"
+index = true
++++
+
+## Index
+
+
+1. [Introduction to GoLang](/post/golang/introduction)
+1. [Basics: Types, Variables and Constants ](/post/golang/basics/)
+1. [Control Flows](/post/golang/controlflows/)
+1. [Struct, Map, Array and Slice](/post/golang/more_datatypes/)
+1. [Functions and Pointers](/post/golang/functions_pointers/)
+1. [Interface and Composition](/post/golang/interface/)
+1. [Go Routines](/post/golang/routines/)

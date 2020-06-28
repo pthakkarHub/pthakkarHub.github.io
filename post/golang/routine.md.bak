@@ -1,0 +1,276 @@
++++
+css = []
+date = "2016-07-09T13:53:25+06:30"
+description = "One of the most talked feature of Go is its support for Concurrency and Go Routine and Channel are the two most important instrument provided by Go for concurrency. In today’s blog we will try and understand what Go Routine is and how to use it. But before start, let us try and understand what Concurrency is?"
+draft = false
+highlight = true
+scripts = []
+tags = ["Routine", "Concurrency", "Go", "GoLang"]
+category = ["Go", "Tutorial"]
+title = "Go Routine"
+showdisqus = true
++++
+
+
+One of the most talked feature of Go is its support for Concurrency and Go Routine and Channel are the two most important instrument provided by Go for concurrency. In today’s blog we will try and understand what Go Routine is and how to use it. But we before start, let us try and understand what Concurrency is?
+
+## Concurrency
+
+The most common answer is doing things in parallel and in case of programming, executing the piece of code in parallel.  
+But what if we are having single core processor supporting single thread, in this scenario code will mostly be executed sequentially. Depending upon the underlying hardware when CPU is waiting for IO operation or on timely based approach CPU can execute multiple threads one after another giving and impression of concurrency.   
+
+So execution of code in parallel depends on the underlying hardware, but it is more important how to write the code that can be executed in parallel. 
+And this is where Go concurrency is different compare to other languages as it is built in feature and the way it is implemented actually makes it easy to achieve concurrency.  
+
+Erlang is the other language which has similar (not same) implementation or support for concurrency.  
+
+Before we start on Go Routine let us look at an example where we have a method **doSomeWork** which will sleep for 1 second and print the number passed to the method.  In following example we will call this method in a for loop for 25 times.
+
+```
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+const COUNT int = 25
+
+func main() {
+	var startTime = time.Now()
+	for i:=1; i <= COUNT; i++ {
+		doSomeWork(i);
+	}
+	
+	fmt.Println("Total Time Taken:", time.Now().Sub(startTime))
+}
+
+func doSomeWork(i int){
+	time.Sleep(1 * time.Second)
+	fmt.Println("Finished Work: ", i)	
+}
+
+```
+**Output:**  
+Finished Work:  1  
+Finished Work:  2  
+Finished Work:  3  
+Finished Work:  4  
+Finished Work:  5  
+Finished Work:  6  
+Finished Work:  7  
+Finished Work:  8  
+Finished Work:  9  
+Finished Work:  10  
+Finished Work:  11  
+Finished Work:  12  
+Finished Work:  13  
+Finished Work:  14  
+Finished Work:  15  
+Finished Work:  16  
+Finished Work:  17  
+Finished Work:  18  
+Finished Work:  19  
+Finished Work:  20  
+Finished Work:  21  
+Finished Work:  22  
+Finished Work:  23  
+Finished Work:  24  
+Finished Work:  25  
+Total Time Taken: 25s  
+
+
+https://play.golang.org/p/7mlYUCP5gw
+
+From output we can see, **doSomeWork** was called 25 times serially and since each time method was made to sleep for 1 second, total time take is 25s.
+
+
+
+
+## Go Routine
+Go Routine, is the way of doing things concurrently. To understand Go Routine let us 1st convert the above example to call **doSomeWork** via Go Rotuines and this can be achieved by preceding call to method **doSomeWork** with keyword **go** (Note, **go** is in small caps).  Let us modify example above and see what gets printed.
+
+```
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+const COUNT int = 25
+
+func main() {
+	var startTime = time.Now()
+	for i:=1; i <= COUNT; i++ {
+		go doSomeWork(i);
+	}
+	
+	fmt.Println("Total Time Taken:", time.Now().Sub(startTime))
+}
+
+func doSomeWork(i int){
+	time.Sleep(1 * time.Second)
+	fmt.Println("Finished Work: ", i)	
+}
+
+```
+**Output:**  
+Total Time Taken: 0  
+
+https://play.golang.org/p/deH1ksLxND
+
+Let us understand what happened and why nothing got printed. In code above we are calling **doSomeWork** in Go Routine. And Go Routine will make **doSomeWork** execute on a Thread. Go Routine Thread will be executing in parallel to main Thread executing the main function. Go program exits as soon as main thread (main function) finishes and hence program exist with above statement because after that print statement there is no other statement to execute.  
+
+**What is Go Routine?**  
+Go Routine is light weight processes that can be executed on each Thread and each Thread can execute multiple Go Routines. Creating Go Routine is not expensive, but still has some overload and hence needs to be used wisely.  
+
+How to make code above function and print the statements and make sure main function is still alive till Go Routines are finished.  
+
+One of the simplest and quick solution for above problem is to add call to time.Sleep method before printing the total time. Since in our example we already know that we are going to call **doSomeWork** 25 times and each call will be minimum 1 second (call to time.Sleep in *doSomeWork* method sleeps for 1 seconds). We will add sleep for 26 seconds one second more.  
+
+```
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+const COUNT int = 25
+
+func main() {
+	var startTime = time.Now()
+	for i:=1; i <= COUNT; i++ {
+		go doSomeWork(i);
+	}
+
+	time.Sleep(26 * time.Second)	
+	fmt.Println("Total Time Taken:", time.Now().Sub(startTime))
+}
+
+func doSomeWork(i int){
+	time.Sleep(1 * time.Second)
+	fmt.Println("Finished Work: ", i)	
+}
+
+
+```
+
+**Output:**  
+Finished Work:  2  
+Finished Work:  1  
+Finished Work:  25  
+Finished Work:  24  
+Finished Work:  23  
+Finished Work:  22  
+Finished Work:  5  
+Finished Work:  20  
+Finished Work:  19  
+Finished Work:  18  
+Finished Work:  17  
+Finished Work:  16  
+Finished Work:  15  
+Finished Work:  14  
+Finished Work:  13  
+Finished Work:  12  
+Finished Work:  11  
+Finished Work:  10  
+Finished Work:  9  
+Finished Work:  8  
+Finished Work:  7  
+Finished Work:  6  
+Finished Work:  21  
+Finished Work:  4  
+Finished Work:  3  
+Total Time Taken: 26s  
+  
+
+https://play.golang.org/p/BntVIuM2kk
+
+Note the random print statement which indicates that **doSomeWork** was not executed serially. You may also notice that while execution even after all the print statements for all 25 calls to **doSomeWork** have been printed but still program will be on and Total Time Taken when printed will be 26s which is equal to the sleep time,
+But there are 2 problems to the above solution that **doSomeWork** for now is sleeping for 1 second, but in real life **doSomeWork** execution time may differ for each call. Also it is not good solution to based this Go Routine on **time.Sleep**.
+So of the better solution would to have counter and to update the counter synchronously and check if all Go Routines have been completed. 
+Go provides this functionally via **WaitGroup**.
+
+
+## WaitGroup
+WaitGroup is part of sync Package and provides a mechanism to check if all the Go Routine started have finished.
+
+
+```
+package main
+
+import (
+	"fmt"
+	"time"
+	"sync"
+)
+
+const COUNT int = 25
+var wg sync.WaitGroup
+
+func main() {
+	var startTime = time.Now()
+	for i:=1; i <= COUNT; i++ {
+	        wg.Add(1)
+		go doSomeWork(i);
+	}
+	
+	wg.Wait()
+	fmt.Println("Total Time Taken:", time.Now().Sub(startTime))
+}
+
+func doSomeWork(i int){
+	time.Sleep(1 * time.Second)
+	fmt.Println("Finished Work: ", i)	
+	wg.Done()
+}
+
+```
+
+**Output:**  
+Finished Work:  1  
+Finished Work:  25  
+Finished Work:  24  
+Finished Work:  23  
+Finished Work:  22  
+Finished Work:  21  
+Finished Work:  20  
+Finished Work:  19  
+Finished Work:  18  
+Finished Work:  17  
+Finished Work:  16  
+Finished Work:  15  
+Finished Work:  14  
+Finished Work:  13  
+Finished Work:  12  
+Finished Work:  11  
+Finished Work:  10  
+Finished Work:  9  
+Finished Work:  8  
+Finished Work:  7  
+Finished Work:  6  
+Finished Work:  5  
+Finished Work:  4  
+Finished Work:  3  
+Finished Work:  2  
+Total Time Taken: 1s  
+ 
+
+https://play.golang.org/p/sh7dK3j5td
+
+1.	We have imported sync package and declared a global variable **wg**
+2.	In for loop we call **wg.Add(1)**, 1 is the count of Go Routine. Since in for loop we are create one Go Routine we are adding one. Since we already know the number of Go Routines to get created (COUNT which is 25), we can also call **wg.Add(_COUNT_)** just above the for loop and instead of calling **wg.Add(1)** in loop. 
+3.	After for loop we call **wg.Wait()**, this call is a blocking call and will wait till all the Go Routines are finished.
+4.	Finally we call **wg.Done()** at the end of **doSomeWork** this will indicate end of function and thereby Go Routine and will intimate the same to **WaitGroup** which will internally update the counter.
+5.	Note the Total Time Taken, it is 1 second. (*This may vary across multiple runs and machines.*)
+
+## GoMaxProcs
+Using function GOMAXPROCS from runtime package you can set number of logical CPU that may be used to execute code simultaneously. By default GOMAXPROCS was set to 1 for Go Version prior to 1.5, but since Go Version 1.5 it is set to number of CPU.  
+Use function NumCPU from runtime package to check logical CPU usable by current process. 
+It is very important to understand your system and application while setting GOMAXPROCS. Ideally best way would be to try multiple values and see which gives more consistent and best result.
+
+
+## Conclusion
+Go Routine is a process which gets executed on a Thread, so each thread can execute multiple Go Routines. The way Go Routine is created in Go is simple and mainly depends on the code to be executed concurrently so it is important to write a code which can be executed concurrently. Couple of points to remember is not to create too many Go Routines and appropriately set GOMAXPROCS value. 

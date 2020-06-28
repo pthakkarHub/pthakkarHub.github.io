@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Interface on Prashant Thakkar</title>
+    <link>/tags/interface/</link>
+    <description>Recent content in Interface on Prashant Thakkar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 08 Jul 2016 13:53:25 +0630</lastBuildDate>
+    
+	<atom:link href="/tags/interface/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Interface and Composition</title>
+      <link>/post/golang/interface/</link>
+      <pubDate>Fri, 08 Jul 2016 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/interface/</guid>
+      <description>In today&amp;rsquo;s post we are going to look at how Go supports interface and composition. Interface and composition form the base of any language and Go is no different.
+Interface Interface is defined as group of methods without the actual method implementation. It is the responsibility of implementer of the interface to provide the actual implementation. Thus Interface can be considered as a contract/protocol which needs to be fulfilled by implementer.</description>
+    </item>
+    
+  </channel>
+</rss>
