@@ -37,7 +37,8 @@ if (!doNotTrack) {
 	<script src="/tipuesearch/tipuesearch_content.js"></script>
 	<link href="/tipuesearch/tipuesearch.css" rel="stylesheet">
 	<script src="/tipuesearch/tipuesearch_set.js"></script>
-	<script src="/tipuesearch/tipuesearch.min.js"></script>
+	<script src="/tipuesearch/tipuesearch.js"></script>
+	
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -266,9 +267,15 @@ One of the methods that promptly come to our mind is to create a new thread and 
 <p><strong>AsynTask&lt;String, void, String&gt;</strong></p>
 <p>Things to note here are:</p>
 <ul>
-<li>1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> String represents <strong>Params</strong> i.e the type of parameter <strong>doInBackground</strong> method will accept and also represents the type of parameter <strong>execute</strong> method will accept.</li>
-<li>2<!-- raw HTML omitted -->nd<!-- raw HTML omitted --> void represent <strong>Progress</strong> i.e the parameter type for <strong>onProgressUpdate</strong> method</li>
-<li>3<!-- raw HTML omitted -->rd<!-- raw HTML omitted --> String represents <strong>Result</strong> i.e the type of parameter accepted by <strong>onPostExecute</strong> method</li>
+<li>1<sup>st</sup>
+
+ String represents <strong>Params</strong> i.e the type of parameter <strong>doInBackground</strong> method will accept and also represents the type of parameter <strong>execute</strong> method will accept.</li>
+<li>2<sup>nd</sup>
+
+ void represent <strong>Progress</strong> i.e the parameter type for <strong>onProgressUpdate</strong> method</li>
+<li>3<sup>rd</sup>
+
+ String represents <strong>Result</strong> i.e the type of parameter accepted by <strong>onPostExecute</strong> method</li>
 </ul>
 <h2 id="rules-to-remember">Rules to Remember</h2>
 <p>While implementing AsyncTask we need to remember following rules:</p>
@@ -343,19 +350,19 @@ One of the methods that promptly come to our mind is to create a new thread and 
 			</div>
 			<aside class="sidebar"><div class="widget-search widget">
 	<form action="/search/index.html">
-				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
-			</form>
+		<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" placeholder="Enter min 3 chars for search" required></h1>
+	</form>
 	
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/defer/">Defer</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
 		</ul>
 	</div>
 </div>
@@ -399,9 +406,10 @@ One of the methods that promptly come to our mind is to create a new thread and 
 		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/defer/" title="Defer">Defer (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (9)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (9)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
@@ -423,7 +431,16 @@ One of the methods that promptly come to our mind is to create a new thread and 
 		</div>
 	</div>
 </footer>
-	</div>
+	</div>	
+<script>
+$(document).ready(function() {
+$('#tipue_search_input').tipuesearch({
+	'showURL': false
+});
+});
+</script>	
 <script async defer src="/js/menu.js"></script>
-<script src="/tipuesearch/tipuesearch_content.js"></script><script src="/tipuesearch/tipuesearch_set.js"></script><script src="/tipuesearch/tipuesearch.min.js"></script></body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

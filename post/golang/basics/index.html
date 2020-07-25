@@ -37,7 +37,8 @@ if (!doNotTrack) {
 	<script src="/tipuesearch/tipuesearch_content.js"></script>
 	<link href="/tipuesearch/tipuesearch.css" rel="stylesheet">
 	<script src="/tipuesearch/tipuesearch_set.js"></script>
-	<script src="/tipuesearch/tipuesearch.min.js"></script>
+	<script src="/tipuesearch/tipuesearch.js"></script>
+	
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -222,116 +223,118 @@ if (!doNotTrack) {
 <h2 id="variables">Variables</h2>
 <p>Now let us look at how we can declare and initialize variables. If you are developer form OO oriented world and use languages like Java or .Net you will find this quite different.</p>
 <p>Let us look at an example:</p>
-<pre><code>func main() {
-	var x int
-	x = 10
-	fmt.Println(&quot;Value of x :&quot;, x)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span>
+	<span style="color:#a6e22e">x</span> = <span style="color:#ae81ff">10</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of x :&#34;</span>, <span style="color:#a6e22e">x</span>)
 }
-</code></pre><p>Here we have declared variable <strong>x</strong> of type <strong>int</strong> and on next line we are assigning value <strong>10</strong> to it. But this not the ideal way in which we will declare and assign value to variable. Typically we declare and initialize variable in single statement as shown below.</p>
-<p><code>var x int = 10</code></p>
-<p>But in Go, we have one more way to do this, and the most widely used way of declaring and assigning an initial value to a variable:</p>
-<p><code>x := 10</code></p>
-<p>Key thing to note here is the use of <strong>:=</strong> (colon followed with equal sign). This way of declaring variable is called short hand variable.</p>
+</code></pre></div><p>Here we have declared variable <strong>x</strong> of type <strong>int</strong> and on next line we are assigning value <strong>10</strong> to it. But this not the ideal way in which we will declare and assign value to variable. Typically we declare and initialize variable in single statement as shown below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">x</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">10</span>
+</code></pre></div><p>But in Go, we have one more way to do this, and the most widely used way of declaring and assigning an initial value to a variable:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+</code></pre></div><p>Key thing to note here is the use of <strong>:=</strong> (colon followed with equal sign). This way of declaring variable is called short hand variable.</p>
 <p>Since Go, is statically typed language at compile time it will identify the type of value in this case an <strong>int</strong> and since we have used <strong>:=</strong>, compiler will automatically consider <strong>x</strong> as of type <strong>int</strong></p>
 <p>Note: Short Hand variable (:=) is only allowed within function. One cannot use <strong>:=</strong> for global variables</p>
 <p><strong>This is not allowed</strong></p>
-<pre><code>p := 0                                          #A
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>                                          <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">A</span>
 
-func main() {
-	x := 10                                 #B
-	fmt.Println(&quot;Value of x : &quot;, x)
-	fmt.Println(&quot;Value of p : &quot;, p)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>                                 <span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">B</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of x : &#34;</span>, <span style="color:#a6e22e">x</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of p : &#34;</span>, <span style="color:#a6e22e">p</span>)
 }
-</code></pre><p><strong>#A</strong> : Not allowed since it is declared at a global level i.e. outside the function main<br>
+</code></pre></div><p><strong>#A</strong> : Not allowed since it is declared at a global level i.e. outside the function main<br>
 <strong>#B</strong> : Allowed since the variable is declared locally inside the function main</p>
 <p><strong>Allowed</strong></p>
-<pre><code>var p int
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#66d9ef">int</span>
 
-func main() {
-	x := 10
-	fmt.Println(&quot;Value of x : &quot;, x)
-	fmt.Println(&quot;Value of p : &quot;, p)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of x : &#34;</span>, <span style="color:#a6e22e">x</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of p : &#34;</span>, <span style="color:#a6e22e">p</span>)
 }
-</code></pre><p><strong>This will print:</strong></p>
+</code></pre></div><p><strong>This will print:</strong></p>
 <p>Value of x :  10<br>
 Value of p :  0</p>
 <p><!-- raw HTML omitted --><a href="http://play.golang.org/p/PS7GJhYxyc">http://play.golang.org/p/PS7GJhYxyc</a><!-- raw HTML omitted --></p>
 <p>Let us look at one more example</p>
-<pre><code>var p int
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#66d9ef">int</span>
 
-func main() {
-	x := 10
-	p := 100
-	fmt.Println(&quot;Value of x : &quot;, x)
-	fmt.Println(&quot;Value of p in main : &quot;, p)
-	printP()
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+	<span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">100</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of x : &#34;</span>, <span style="color:#a6e22e">x</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of p in main : &#34;</span>, <span style="color:#a6e22e">p</span>)
+	<span style="color:#a6e22e">printP</span>()
 }
 
-func printP() {
-	fmt.Println(&quot;Value of p in func : &quot;, p)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printP</span>() {
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of p in func : &#34;</span>, <span style="color:#a6e22e">p</span>)
 }
-</code></pre><p><strong>Output:</strong></p>
+</code></pre></div><p><strong>Output:</strong></p>
 <p>Value of x :  10<br>
 Value of p in main :  100<br>
 Value of p in func :  0</p>
 <p><!-- raw HTML omitted --><a href="http://play.golang.org/p/4d_E34uQ8P">http://play.golang.org/p/4d_E34uQ8P</a><!-- raw HTML omitted --></p>
 <p>As you can see from output, value of variable <strong>p</strong> is 100 in function <strong>main</strong> and 0 when printed via function <strong>printP</strong> and reason is in function main we have declared short hand variable <strong>p</strong> with value 100 and scope of this variable is function main, where as in <strong>printP</strong> function, the variable <strong>p</strong> from global scope is used (which is not initialized) hence 0 is printed.</p>
 <p>Go, also supports declaring multiple variables same or different types in one line as shown below:</p>
-<pre><code>var p, q int
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span>, <span style="color:#a6e22e">q</span> <span style="color:#66d9ef">int</span>
 
-func main() {
-	x, p := 10, 100.01
-	fmt.Println(&quot;Value of x : &quot;, x)
-	fmt.Println(&quot;Value of q : &quot;, q)
-	fmt.Println(&quot;Value of p in main : &quot;, p)
-	printP()
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">100.01</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of x : &#34;</span>, <span style="color:#a6e22e">x</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of q : &#34;</span>, <span style="color:#a6e22e">q</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of p in main : &#34;</span>, <span style="color:#a6e22e">p</span>)
+	<span style="color:#a6e22e">printP</span>()
 
 }
 
-func printP() {
-	fmt.Println(&quot;Value of p in func : &quot;, p)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printP</span>() {
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of p in func : &#34;</span>, <span style="color:#a6e22e">p</span>)
 }
-</code></pre><p><strong>Output:</strong></p>
+</code></pre></div><p><strong>Output:</strong></p>
 <p>Value of x :  10<br>
 Value of q :  0<br>
 Value of p in main :  100.01<br>
 Value of p in func :  0</p>
 <p><!-- raw HTML omitted --><a href="http://play.golang.org/p/iIpQwDbaZd">http://play.golang.org/p/iIpQwDbaZd</a><!-- raw HTML omitted --></p>
-<p>As seen above we have declared variables <strong>p</strong> and <strong>q</strong> of type <strong>int.</strong> Similarly in the function <strong>main</strong> on 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> line, we have declared variables <strong>x</strong> and <strong>p</strong> and initialized them with 10 and 100.01 respectively. So in this case <strong>x</strong> is of type <strong>int</strong>, while <strong>p</strong> of type <strong>float</strong></p>
-<p>Unlike <strong>p</strong> and <strong>q</strong> above, in case if we need to declare multiple variables of different types one way to do so is to declare it like</p>
-<pre><code>var p int
-var q string
-</code></pre><p>But in Go, we can do it as follows:</p>
-<pre><code>var (
-	p int
-	q string
-)
-</code></pre><p>Similarly, you can initialize them, as follows:</p>
-<pre><code>var (
-	p = 100
-	q = &quot;example&quot;
-)
-</code></pre><h2 id="constants">Constants</h2>
-<p>They are special variables, which once initialized, their values cannot be changed. Go has a keyword <strong>const</strong> for declaring a constant variable.</p>
-<p><code>const x = 100</code></p>
-<p>Here we have declared, constant <strong>x</strong> and initialized it to 100. Note here we have not used <strong>:=</strong>, but still <strong>x</strong> will be of type <strong>int.</strong></p>
-<p>Let us look at some code below:</p>
-<pre><code>const x = 100
+<p>As seen above we have declared variables <strong>p</strong> and <strong>q</strong> of type <strong>int.</strong> Similarly in the function <strong>main</strong> on 1<sup>st</sup>
 
-func main() {
-	const y = 200.01
-	fmt.Println(&quot;Value of constant x : &quot;, x)
-	fmt.Println(&quot;Value of constant y : &quot;, y)
+ line, we have declared variables <strong>x</strong> and <strong>p</strong> and initialized them with 10 and 100.01 respectively. So in this case <strong>x</strong> is of type <strong>int</strong>, while <strong>p</strong> of type <strong>float</strong></p>
+<p>Unlike <strong>p</strong> and <strong>q</strong> above, in case if we need to declare multiple variables of different types one way to do so is to declare it like</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#66d9ef">int</span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">q</span> <span style="color:#66d9ef">string</span>
+</code></pre></div><p>But in Go, we can do it as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> (
+	<span style="color:#a6e22e">p</span> <span style="color:#66d9ef">int</span>
+	<span style="color:#a6e22e">q</span> <span style="color:#66d9ef">string</span>
+)
+</code></pre></div><p>Similarly, you can initialize them, as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> (
+	<span style="color:#a6e22e">p</span> = <span style="color:#ae81ff">100</span>
+	<span style="color:#a6e22e">q</span> = <span style="color:#e6db74">&#34;example&#34;</span>
+)
+</code></pre></div><h2 id="constants">Constants</h2>
+<p>They are special variables, which once initialized, their values cannot be changed. Go has a keyword <strong>const</strong> for declaring a constant variable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">x</span> = <span style="color:#ae81ff">100</span>
+</code></pre></div><p>Here we have declared, constant <strong>x</strong> and initialized it to 100. Note here we have not used <strong>:=</strong>, but still <strong>x</strong> will be of type <strong>int.</strong></p>
+<p>Let us look at some code below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">x</span> = <span style="color:#ae81ff">100</span>
+
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">y</span> = <span style="color:#ae81ff">200.01</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of constant x : &#34;</span>, <span style="color:#a6e22e">x</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of constant y : &#34;</span>, <span style="color:#a6e22e">y</span>)
 }
-</code></pre><p><strong>Output:</strong></p>
+</code></pre></div><p><strong>Output:</strong></p>
 <p>Value of constant x :  100<br>
 Value of constant y :  200.01</p>
 <p><!-- raw HTML omitted --><a href="http://play.golang.org/p/3X4MPYm4U9">http://play.golang.org/p/3X4MPYm4U9</a><!-- raw HTML omitted --></p>
 <p>We can also declare a constant within the function, and its scope will be within that function.</p>
 <p>Important: Go does not have keywords like public, private etc. Instead Go follow different conventions for declaring public and private variables. If name of a variable starts with an Upper Case letter, it is considered as <strong>public</strong> and if not than it is considered to be <strong>private</strong>. And this is true for all variables, functions, structure etc</p>
 <p>If you carefully observe, the code used for printing statement on the console:</p>
-<p><code>fmt.Println(&quot;...&quot;)</code></p>
-<p>&ldquo;<strong>fmt</strong>&rdquo; is package name, and we are invoking the method <strong>Println</strong>. Since it starts with uppercase, it as become a public method and is available for use outside the package.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;...&#34;</span>)
+</code></pre></div><p>&ldquo;<strong>fmt</strong>&rdquo; is package name, and we are invoking the method <strong>Println</strong>. Since it starts with uppercase, it as become a public method and is available for use outside the package.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Today, we learned basics of Go programming like data types, declaring variables and constants. There are different conventions for doing things in Go, compared to other widely used OO languages. It may take some time to get used to them. But this is part and parcel of learning a new language. In the next post we will look at Control Flow statements.</p>
 
@@ -409,19 +412,19 @@ Value of constant y :  200.01</p>
 			</div>
 			<aside class="sidebar"><div class="widget-search widget">
 	<form action="/search/index.html">
-				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
-			</form>
+		<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" placeholder="Enter min 3 chars for search" required></h1>
+	</form>
 	
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/defer/">Defer</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
 		</ul>
 	</div>
 </div>
@@ -465,9 +468,10 @@ Value of constant y :  200.01</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/defer/" title="Defer">Defer (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (9)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (9)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
@@ -489,7 +493,16 @@ Value of constant y :  200.01</p>
 		</div>
 	</div>
 </footer>
-	</div>
+	</div>	
+<script>
+$(document).ready(function() {
+$('#tipue_search_input').tipuesearch({
+	'showURL': false
+});
+});
+</script>	
 <script async defer src="/js/menu.js"></script>
-<script src="/tipuesearch/tipuesearch_content.js"></script><script src="/tipuesearch/tipuesearch_set.js"></script><script src="/tipuesearch/tipuesearch.min.js"></script></body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

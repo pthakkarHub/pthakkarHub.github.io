@@ -3,6 +3,41 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/tags/defer/</loc>
+    <lastmod>2020-07-25T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/golang/defer/</loc>
+    <lastmod>2020-07-25T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/go/</loc>
+    <lastmod>2020-07-25T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/golang/</loc>
+    <lastmod>2020-07-25T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-07-25T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-07-25T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-07-25T13:53:25+06:30</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/channels/</loc>
     <lastmod>2016-07-10T13:53:25+06:30</lastmod>
   </url>
@@ -14,31 +49,6 @@
   
   <url>
     <loc>/tags/concurrency/</loc>
-    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/go/</loc>
-    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/golang/</loc>
-    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2016-07-10T13:53:25+06:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2016-07-10T13:53:25+06:30</lastmod>
   </url>
   

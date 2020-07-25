@@ -37,7 +37,8 @@ if (!doNotTrack) {
 	<script src="/tipuesearch/tipuesearch_content.js"></script>
 	<link href="/tipuesearch/tipuesearch.css" rel="stylesheet">
 	<script src="/tipuesearch/tipuesearch_set.js"></script>
-	<script src="/tipuesearch/tipuesearch.min.js"></script>
+	<script src="/tipuesearch/tipuesearch.js"></script>
+	
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -104,7 +105,9 @@ if (!doNotTrack) {
 		</header><div class="content post__content clearfix">
 			<p>Android provide various options for data persistence like Preferences, File and Database etc. This post we will introduce you to one of the option i.e. Android SQLite Database.</p>
 <p>Let us take an example of Student database. i.e. student_database (<strong>DATABASE_NAME</strong>). We will create table tb_student (<strong>DATABASE_TABLE</strong>), with 3 columns i.e. _id (<strong>KEY_ROWID</strong>), name (<strong>KEY_NAME</strong>) and grade (<strong>KEY_GRADE</strong>). Columns <strong>_id</strong> is primary key and autoincrement, while <strong>name</strong> and <strong>garde</strong> are text .</p>
-<p>We will 1st create a class called <strong>DatabaseUtil</strong>. <strong>DatabaseUtil</strong> is the main class that will used by other activities and will have various method to perform database operations like insert, delete etc.</p>
+<p>We will 1<sup>st</sup>
+
+ create a class called <strong>DatabaseUtil</strong>. <strong>DatabaseUtil</strong> is the main class that will used by other activities and will have various method to perform database operations like insert, delete etc.</p>
 <p><strong>DatabaseUtil</strong> has private inner class <strong>DatabaseHelper</strong>, which is responsible for creating and updating database.</p>
 <p>Below is the code for <strong>DatabaseUtil.</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.dbexample<span style="color:#f92672">;</span>
@@ -275,7 +278,9 @@ if (!doNotTrack) {
 <li>close</li>
 </ol>
 <!-- raw HTML omitted -->
-<p>Out Of the above methods, <strong>onCreate</strong> and <strong>onUpgrade</strong> are two methods which we have overridden in subclass DatabaseHelper. Method <strong>onCreate</strong> is called for the 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> time when database is created/opened, and hence is used for creating table and populating them with predefined data if needed. Method <strong>onUpgrade</strong> is called when database needs to be upgarded in terms like, adding new tables, new colums to the existing tables etc based on the database version.</p>
+<p>Out Of the above methods, <strong>onCreate</strong> and <strong>onUpgrade</strong> are two methods which we have overridden in subclass DatabaseHelper. Method <strong>onCreate</strong> is called for the 1<sup>st</sup>
+
+ time when database is created/opened, and hence is used for creating table and populating them with predefined data if needed. Method <strong>onUpgrade</strong> is called when database needs to be upgarded in terms like, adding new tables, new colums to the existing tables etc based on the database version.</p>
 <p>Database version for this example is set to 1 via <strong>DATABASE_VERSION</strong> variable.</p>
 <p><strong>Note:</strong> this class assumes monotonically increasing version numbers for upgrades. Also, there is no concept of a database downgrade; installing a new version of your app which uses a lower version number than a previously-installed version will result in undefined behavior.</p>
 <p>Method <strong>onOpen</strong> is called when connection to database is opened. This method can be used for instance like checking read-only before updating database.</p>
@@ -365,19 +370,19 @@ dbUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">close</spa
 			</div>
 			<aside class="sidebar"><div class="widget-search widget">
 	<form action="/search/index.html">
-				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
-			</form>
+		<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" placeholder="Enter min 3 chars for search" required></h1>
+	</form>
 	
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/defer/">Defer</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
 		</ul>
 	</div>
 </div>
@@ -421,9 +426,10 @@ dbUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">close</spa
 		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/defer/" title="Defer">Defer (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (9)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (9)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
@@ -445,7 +451,16 @@ dbUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">close</spa
 		</div>
 	</div>
 </footer>
-	</div>
+	</div>	
+<script>
+$(document).ready(function() {
+$('#tipue_search_input').tipuesearch({
+	'showURL': false
+});
+});
+</script>	
 <script async defer src="/js/menu.js"></script>
-<script src="/tipuesearch/tipuesearch_content.js"></script><script src="/tipuesearch/tipuesearch_set.js"></script><script src="/tipuesearch/tipuesearch.min.js"></script></body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

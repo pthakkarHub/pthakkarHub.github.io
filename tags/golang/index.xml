@@ -6,10 +6,21 @@
     <description>Recent content in GoLang on Prashant Thakkar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 10 Jul 2016 13:53:25 +0630</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jul 2020 13:53:25 +0630</lastBuildDate>
     
 	<atom:link href="/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Defer</title>
+      <link>/post/golang/defer/</link>
+      <pubDate>Sat, 25 Jul 2020 13:53:25 +0630</pubDate>
+      
+      <guid>/post/golang/defer/</guid>
+      <description>Going by literal meaning of the word Defer, means “put off an action or event to later time i.e. postponed”. In GO to the usage of keyword defer is to defer/postponed the execution.
+So next thing comes to our mind is till what time will the execution be deferred? And answer is to the end of method or function in which it is used.
+Let’s look at few examples to understand the usage of defer keyword.</description>
+    </item>
     
     <item>
       <title>Channels</title>

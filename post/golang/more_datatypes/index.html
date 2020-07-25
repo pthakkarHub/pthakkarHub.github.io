@@ -37,7 +37,8 @@ if (!doNotTrack) {
 	<script src="/tipuesearch/tipuesearch_content.js"></script>
 	<link href="/tipuesearch/tipuesearch.css" rel="stylesheet">
 	<script src="/tipuesearch/tipuesearch_set.js"></script>
-	<script src="/tipuesearch/tipuesearch.min.js"></script>
+	<script src="/tipuesearch/tipuesearch.js"></script>
+	
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -104,25 +105,25 @@ if (!doNotTrack) {
 		</header><div class="content post__content clearfix">
 			<h2 id="struct">Struct</h2>
 <p>Go is not a traditional OO language and hence does not have concept of class. Instead structures are used for holding values. If you are familiar with Java or .Net (may be true for some other OO languages too), you can co-relate <strong>struct</strong> to beans.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">type Person <span style="color:#66d9ef">struct</span> {
-	FirstName string
-	LastName  string
-	Age       <span style="color:#66d9ef">int</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">FirstName</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">LastName</span>  <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">Age</span>       <span style="color:#66d9ef">int</span>
 }
 </code></pre></div><p>Here, we have defined Person of type <strong>struct</strong>, to hold values for properties/fields related to person like first name, last name and age.</p>
 <p>Let us see, at various ways to initialize and use a struct:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
-	var p1 Person
-	p2 :<span style="color:#f92672">=</span> Person{}
-	p3 :<span style="color:#f92672">=</span> Person{<span style="color:#e6db74">&#34;ABC&#34;</span>, <span style="color:#e6db74">&#34;XYZ&#34;</span>, <span style="color:#ae81ff">32</span>}
-	p4 :<span style="color:#f92672">=</span> Person{LastName: <span style="color:#e6db74">&#34;XYZ&#34;</span>, FirstName: <span style="color:#e6db74">&#34;ABC&#34;</span>}
-	p5 :<span style="color:#f92672">=</span> new(Person)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p1</span> <span style="color:#a6e22e">Person</span>
+	<span style="color:#a6e22e">p2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Person</span>{}
+	<span style="color:#a6e22e">p3</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Person</span>{<span style="color:#e6db74">&#34;ABC&#34;</span>, <span style="color:#e6db74">&#34;XYZ&#34;</span>, <span style="color:#ae81ff">32</span>}
+	<span style="color:#a6e22e">p4</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Person</span>{<span style="color:#a6e22e">LastName</span>: <span style="color:#e6db74">&#34;XYZ&#34;</span>, <span style="color:#a6e22e">FirstName</span>: <span style="color:#e6db74">&#34;ABC&#34;</span>}
+	<span style="color:#a6e22e">p5</span> <span style="color:#f92672">:=</span> new(<span style="color:#a6e22e">Person</span>)
 
-	fmt.Println(<span style="color:#e6db74">&#34;Person 1 :&#34;</span>, p1)
-	fmt.Println(<span style="color:#e6db74">&#34;Person 2 :&#34;</span>, p2)
-	fmt.Println(<span style="color:#e6db74">&#34;Person 3 :&#34;</span>, p3)
-	fmt.Println(<span style="color:#e6db74">&#34;Person 4 :&#34;</span>, p4)
-	fmt.Println(<span style="color:#e6db74">&#34;Person 5 :&#34;</span>, p5)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Person 1 :&#34;</span>, <span style="color:#a6e22e">p1</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Person 2 :&#34;</span>, <span style="color:#a6e22e">p2</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Person 3 :&#34;</span>, <span style="color:#a6e22e">p3</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Person 4 :&#34;</span>, <span style="color:#a6e22e">p4</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Person 5 :&#34;</span>, <span style="color:#a6e22e">p5</span>)
 }
 </code></pre></div><p><a href="http://play.golang.org/p/W6yptQsvpB">http://play.golang.org/p/W6yptQsvpB</a></p>
 <p><strong>Output:</strong></p>
@@ -141,7 +142,9 @@ Person 5 : &amp;{ 0}</p>
 </li>
 <li>
 <p>p3 := Person{&ldquo;ABC&rdquo;, &ldquo;XYZ&rdquo;, 32}: This will initialize <strong>Person</strong> with values passed i.e. will set <strong>FirstName</strong> as ABC, <strong>LastName</strong> as XYZ and <strong>Age</strong> as 32. Important to note here is that fields of <strong>struct</strong> will be initialized in sequence of the values passed.</p>
-<p>Try following code where we have interchanged the 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> two values passed and see the output, value of <strong>FirstName</strong> and <strong>LastName</strong> also gets interchanged.</p>
+<p>Try following code where we have interchanged the 1<sup>st</sup>
+
+ two values passed and see the output, value of <strong>FirstName</strong> and <strong>LastName</strong> also gets interchanged.</p>
 <p>p3 := Person{&ldquo;XYZ&rdquo;, &ldquo;ABC&rdquo;,  32}</p>
 <p>In case if there is mismatch in the values passed and order of type of fields defined, error will be throws.</p>
 <p>Try p3 := Person{32, &ldquo;XYZ&rdquo;, &ldquo;ABC&rdquo;} and you will see following errors:
@@ -157,32 +160,32 @@ cannot use 32 (type int) as type string in field value cannot use &ldquo;XYZ&rdq
 </ol>
 <h2 id="map">Map</h2>
 <p>Map is the only collection with key/value pair supported by Go. Map with any type as key and value can be created. Let us look at how we can create a map:</p>
-<p><code>m := make(map[int]string)</code></p>
-<p>Here we have created map, with <strong>int</strong> as key and string as value. Built-in function <strong>make</strong> is used for creating map as shown above.  We can also pass initial capacity as shown below:</p>
-<p><code>m := make(map[int]string, 10)</code></p>
-<p>This will create map with initial capacity 10.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#66d9ef">string</span>)
+</code></pre></div><p>Here we have created map, with <strong>int</strong> as key and string as value. Built-in function <strong>make</strong> is used for creating map as shown above.  We can also pass initial capacity as shown below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#66d9ef">string</span>, <span style="color:#ae81ff">10</span>)
+</code></pre></div><p>This will create map with initial capacity 10.</p>
 <p>Let us see an example with various operations on map:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
-	m :<span style="color:#f92672">=</span> make(map[<span style="color:#66d9ef">int</span>]string)
-	fmt.Println(<span style="color:#e6db74">&#34;Values in map (after creating): &#34;</span>, m)
-	m[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ABC&#34;</span> 
-	m[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;PQR&#34;</span> 
-	m[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;XYZ&#34;</span> 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">m</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">int</span>]<span style="color:#66d9ef">string</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Values in map (after creating): &#34;</span>, <span style="color:#a6e22e">m</span>)
+	<span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">0</span>] = <span style="color:#e6db74">&#34;ABC&#34;</span> 
+	<span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">1</span>] = <span style="color:#e6db74">&#34;PQR&#34;</span> 
+	<span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">2</span>] = <span style="color:#e6db74">&#34;XYZ&#34;</span> 
 
-	fmt.Println(<span style="color:#e6db74">&#34;Length of map: &#34;</span>, len(m))
-	fmt.Println(<span style="color:#e6db74">&#34;Values in map(after adding values): &#34;</span>, m)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Length of map: &#34;</span>, len(<span style="color:#a6e22e">m</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Values in map(after adding values): &#34;</span>, <span style="color:#a6e22e">m</span>)
 
-	m[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;LMN&#34;</span>
-	fmt.Println(<span style="color:#e6db74">&#34;Values in map (after updating): &#34;</span>, m)
+	<span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">1</span>] = <span style="color:#e6db74">&#34;LMN&#34;</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Values in map (after updating): &#34;</span>, <span style="color:#a6e22e">m</span>)
 
-	delete(m, <span style="color:#ae81ff">1</span>)
-	fmt.Println(<span style="color:#e6db74">&#34;Values in map: &#34;</span>, m)
+	delete(<span style="color:#a6e22e">m</span>, <span style="color:#ae81ff">1</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Values in map: &#34;</span>, <span style="color:#a6e22e">m</span>)
 
-	<span style="color:#66d9ef">for</span> k, v :<span style="color:#f92672">=</span> range m {
-		fmt.Println(<span style="color:#e6db74">&#34;Key :&#34;</span>, k, <span style="color:#e6db74">&#34; Value :&#34;</span>, v)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">k</span>, <span style="color:#a6e22e">v</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">m</span> {
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Key :&#34;</span>, <span style="color:#a6e22e">k</span>, <span style="color:#e6db74">&#34; Value :&#34;</span>, <span style="color:#a6e22e">v</span>)
 	}
 
-	fmt.Println(<span style="color:#e6db74">&#34;Value for not existing key : &#34;</span>, m[<span style="color:#ae81ff">3</span>])
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value for not existing key : &#34;</span>, <span style="color:#a6e22e">m</span>[<span style="color:#ae81ff">3</span>])
 }
 </code></pre></div><p><a href="http://play.golang.org/p/iBNKcZ9XNO">http://play.golang.org/p/iBNKcZ9XNO</a></p>
 <p><strong>Output:</strong></p>
@@ -199,23 +202,23 @@ Value for not existing key :</p>
 <p>Use built-in function <strong>len</strong> for getting length of map as shown above. There is built-in function <strong>delete</strong> for removing entry from map. As shown above we have used delete to remove entry for key 1.</p>
 <h2 id="array">Array</h2>
 <p>A data type used for holding elements of the same type. Let us look at an example to see how arrays can be declared in Go.</p>
-<p><code>a := [5]int{}</code></p>
-<p>Here we have defined array of type <strong>int</strong>, which can hold 5 values. Array of any type can be defined. Arrays are 0 indexed, means first element in array is referred with index 0 so if length of array is 5 that means indexes are from 0 to 4.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">5</span>]<span style="color:#66d9ef">int</span>{}
+</code></pre></div><p>Here we have defined array of type <strong>int</strong>, which can hold 5 values. Array of any type can be defined. Arrays are 0 indexed, means first element in array is referred with index 0 so if length of array is 5 that means indexes are from 0 to 4.</p>
 <p>Arrays are of definite length, so an array can hold only that number of values.</p>
 <p><strong>Example</strong>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
-	a :<span style="color:#f92672">=</span> [<span style="color:#ae81ff">5</span>]<span style="color:#66d9ef">int</span>{}
-	fmt.Println(<span style="color:#e6db74">&#34;Values in array a (after creation) : &#34;</span>, a)
-	fmt.Println(<span style="color:#e6db74">&#34;Length of array a : &#34;</span>, len(a))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">5</span>]<span style="color:#66d9ef">int</span>{}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Values in array a (after creation) : &#34;</span>, <span style="color:#a6e22e">a</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Length of array a : &#34;</span>, len(<span style="color:#a6e22e">a</span>))
 
-	<span style="color:#66d9ef">for</span> i, _ :<span style="color:#f92672">=</span> range a {
-		a[i] <span style="color:#f92672">=</span> i
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">a</span> {
+		<span style="color:#a6e22e">a</span>[<span style="color:#a6e22e">i</span>] = <span style="color:#a6e22e">i</span>
 	}
 
-	fmt.Println(<span style="color:#e6db74">&#34;Values in array a (after updating) : &#34;</span>, a)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Values in array a (after updating) : &#34;</span>, <span style="color:#a6e22e">a</span>)
 
-	b :<span style="color:#f92672">=</span> [...]string{<span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;B&#34;</span>, <span style="color:#e6db74">&#34;C&#34;</span>, <span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;E&#34;</span>}
-	fmt.Println(<span style="color:#e6db74">&#34;Values in array b : &#34;</span>, b)
+	<span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> [<span style="color:#f92672">...</span>]<span style="color:#66d9ef">string</span>{<span style="color:#e6db74">&#34;A&#34;</span>, <span style="color:#e6db74">&#34;B&#34;</span>, <span style="color:#e6db74">&#34;C&#34;</span>, <span style="color:#e6db74">&#34;D&#34;</span>, <span style="color:#e6db74">&#34;E&#34;</span>}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Values in array b : &#34;</span>, <span style="color:#a6e22e">b</span>)
 }
 </code></pre></div><p><a href="http://play.golang.org/p/gf2qtFGbB9">http://play.golang.org/p/gf2qtFGbB9</a></p>
 <p><strong>Output:</strong></p>
@@ -225,11 +228,13 @@ Values in array a (after updating) : [0 1 2 3 4]<br>
 Values in array b : [A B C D E]</p>
 <p>We have declared 2 arrays, <strong>a</strong> and <strong>b</strong>. Array <strong>a</strong> is of type <strong>int</strong> and of length 5. Since array <strong>a</strong> is of type <strong>int</strong>, if we print its value just after creation, they are all set to 0. Array <strong>b</strong>, is declared to hold values of type <strong>string</strong>. Array <strong>b</strong> we haven&rsquo;t set length, but instead array gets its length from the number of values that it is holding. Since we are not assigning length we use three dots ([&hellip;]) to indicate the same.</p>
 <p>Use built-in function <strong>len</strong> to check length of array.</p>
-<p>Example above shows how to iterate over array. While iterating, range returns 2 values index(key in case of map) and value. Since in for loop we are not using value we have skipped it and for doing so we using <strong>_</strong> (underscore) as 2<!-- raw HTML omitted -->nd<!-- raw HTML omitted --> value in for loop.</p>
+<p>Example above shows how to iterate over array. While iterating, range returns 2 values index(key in case of map) and value. Since in for loop we are not using value we have skipped it and for doing so we using <strong>_</strong> (underscore) as 2<sup>nd</sup>
+
+ value in for loop.</p>
 <p>In Go, whenever we want to skip any value returned, we can use _ (underscore). It is also known as <strong>Blank Identifier</strong>. If we do not want to use any value and we assign it to any variable, Go compiler will complain for unused variable and hence we are using the Blank Identifier since we are not interested in the value.</p>
 <p>All the arrays defined and used above, are single dimension array, Go also supports creating a multi-dimensional array. For example, see 2 dimensional array below:</p>
-<p><code>a := [5][4]int{}</code></p>
-<p>Here we will have 5 elements each will be have 4 values. Since array is of type <strong>int</strong>, they all will be initialized to 0.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> [<span style="color:#ae81ff">5</span>][<span style="color:#ae81ff">4</span>]<span style="color:#66d9ef">int</span>{}
+</code></pre></div><p>Here we will have 5 elements each will be have 4 values. Since array is of type <strong>int</strong>, they all will be initialized to 0.</p>
 <p>[[0 0 0 0] [0 0 0 0] [0 0 0 0] [0 0 0 0] [0 0 0 0]]</p>
 <h2 id="slice">Slice</h2>
 <p>Slice is a special data type that wraps on top of array. Slice can represent either entire array or portion of array as needed. Unlike array which has its own storage, slice share the same storage as of the underlying array and hence multiple slice on same array will share same memory. Slice is created using built-in function <strong>make</strong>, as shown below:</p>
@@ -237,41 +242,43 @@ Values in array b : [A B C D E]</p>
 <p>length: Used to define length of the slice. Length can be any non-negative number less than capacity (if provided). Use built-in function <strong>len</strong> to get length of slice.</p>
 <p>capacity: Used to define capacity of underlying array. It is optional to provide capacity, and if not mentioned capacity is equal to length.</p>
 <p><strong>Example:</strong></p>
-<p><code>s := make([]int, 5, 10)</code></p>
-<p>Here slice <strong>s</strong>, of length 5 is created with capacity 10. So this mean slice s can hold max 5 values, but underlying array can hold 10 values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">10</span>)
+</code></pre></div><p>Here slice <strong>s</strong>, of length 5 is created with capacity 10. So this mean slice s can hold max 5 values, but underlying array can hold 10 values.</p>
 <p>Slice can also be created in same as array, by skipping the preceding length as shown below:</p>
-<p><code>s := []int{0, 1, 2, 3}</code></p>
-<p>It is slice and not array which is mostly used in Go, and hence it is very important to understand how it is used. It is not always that we create empty slice, but we also create slice on top of already defined array as shown below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>}
+</code></pre></div><p>It is slice and not array which is mostly used in Go, and hence it is very important to understand how it is used. It is not always that we create empty slice, but we also create slice on top of already defined array as shown below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	a :<span style="color:#f92672">=</span> [...]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>}
+	<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> [<span style="color:#f92672">...</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>}
 
-	s :<span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>]
+	<span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">5</span>]
 
-	fmt.Println(s)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">s</span>)
 }
 
 </code></pre></div><p><a href="http://play.golang.org/p/vRishSMCcU">http://play.golang.org/p/vRishSMCcU</a></p>
 <p><strong>Output:</strong>
 [1 2 3 4 5]</p>
-<p>Here we created array <strong>a</strong> of type <strong>int</strong> having values from 1 to 10. Then we create a <strong>slice</strong> on top of the array <strong>a,</strong> a of slice of length 5 (<strong>a[0:5]</strong>) i.e. with index 0 to 4. If you look at the output we have printed values in slice **s, ** it has 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> five values from array <strong>a</strong>. This is one of the use-case of slice, creating subset of array.</p>
+<p>Here we created array <strong>a</strong> of type <strong>int</strong> having values from 1 to 10. Then we create a <strong>slice</strong> on top of the array <strong>a,</strong> a of slice of length 5 (<strong>a[0:5]</strong>) i.e. with index 0 to 4. If you look at the output we have printed values in slice <strong>s,</strong> it has 1<sup>st</sup>
+
+ five values from array <strong>a</strong>. This is one of the use-case of slice, creating subset of array.</p>
 <p>Let us look at another example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	a :<span style="color:#f92672">=</span> [...]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span>}
-	s1 :<span style="color:#f92672">=</span> a[<span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>]
-	s2 :<span style="color:#f92672">=</span> a[<span style="color:#ae81ff">2</span><span style="color:#f92672">:</span><span style="color:#ae81ff">7</span>]
+	<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> [<span style="color:#f92672">...</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">0</span>}
+	<span style="color:#a6e22e">s1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">0</span>:<span style="color:#ae81ff">5</span>]
+	<span style="color:#a6e22e">s2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">2</span>:<span style="color:#ae81ff">7</span>]
 
-	fmt.Println(<span style="color:#e6db74">&#34;Array :&#34;</span>, a)
-	fmt.Println(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, s1)
-	fmt.Println(<span style="color:#e6db74">&#34;Slice 2 :&#34;</span>, s2)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Array :&#34;</span>, <span style="color:#a6e22e">a</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, <span style="color:#a6e22e">s1</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Slice 2 :&#34;</span>, <span style="color:#a6e22e">s2</span>)
 
-	s1[<span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>
+	<span style="color:#a6e22e">s1</span>[<span style="color:#ae81ff">3</span>] = <span style="color:#ae81ff">11</span>
 
-	fmt.Println(<span style="color:#e6db74">&#34;------- After Updating ----------&#34;</span>)
-	fmt.Println(<span style="color:#e6db74">&#34;Array :&#34;</span>, a)
-	fmt.Println(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, s1)
-	fmt.Println(<span style="color:#e6db74">&#34;Slice 2 :&#34;</span>, s2)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;------- After Updating ----------&#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Array :&#34;</span>, <span style="color:#a6e22e">a</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, <span style="color:#a6e22e">s1</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Slice 2 :&#34;</span>, <span style="color:#a6e22e">s2</span>)
 }
 </code></pre></div><p><a href="http://play.golang.org/p/EmsxZXuf1N">http://play.golang.org/p/EmsxZXuf1N</a></p>
 <p><strong>Output:</strong></p>
@@ -283,27 +290,29 @@ Array : [1 2 3 11 5 6 7 8 9 0]<br>
 Slice 1 : [1 2 3 11 5]<br>
 Slice 2 : [3 11 5 6 7]</p>
 <p>In this example, we created 2 slice <strong>s1</strong> and <strong>s2</strong> each of length 5 and on top of array <strong>a</strong>. But slice <strong>s1</strong> and <strong>s2</strong>, both represent different range of values of the underlying array <strong>a</strong>.</p>
-<p>Look at the output for values in slice <strong>s1</strong> and <strong>s2</strong> and you will see slice <strong>s1</strong> have 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> five values and slice <strong>s2</strong> have 5 values from array starting from index 2, this is because we created slice <strong>s2</strong> as <strong>a[2:7]</strong>.</p>
+<p>Look at the output for values in slice <strong>s1</strong> and <strong>s2</strong> and you will see slice <strong>s1</strong> have 1<sup>st</sup>
+
+ five values and slice <strong>s2</strong> have 5 values from array starting from index 2, this is because we created slice <strong>s2</strong> as <strong>a[2:7]</strong>.</p>
 <p>We updated value at index 3 on slice s1 to 11, and then printed values in both the slices and you can see that value in slice <strong>s2</strong> is also updated. This is because both the slice <strong>s1</strong> and <strong>s2</strong> are created on top of array <strong>a</strong>. Also check the value of array at index 3, it has also got updated.This is because slice <!-- raw HTML omitted --><strong>s1</strong><!-- raw HTML omitted --> and <!-- raw HTML omitted --><strong>s2</strong><!-- raw HTML omitted --> on array <!-- raw HTML omitted --><strong>a</strong><!-- raw HTML omitted -->**,** and they all share same memory.</p>
 <p>If we create slice on top of array, as <strong>s1 := a[:]</strong>, this means that slice with length equivalent to the length of underlying array <strong>a</strong> will be created.</p>
 <p>Now let us look at the example below to understand why slice is used more than array and why it is not just a subset of array.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	a :<span style="color:#f92672">=</span> [...]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>}
-	s1 :<span style="color:#f92672">=</span> a[<span style="color:#f92672">:</span>]
+	<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> [<span style="color:#f92672">...</span>]<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>}
+	<span style="color:#a6e22e">s1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>[:]
 
-	fmt.Println(<span style="color:#e6db74">&#34;Array :&#34;</span>, a)
-	fmt.Println(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, s1)
-	fmt.Println(<span style="color:#e6db74">&#34;Length of Slice 1 :&#34;</span>, len(s1))
-	fmt.Println(<span style="color:#e6db74">&#34;Capacity of Slice 1 :&#34;</span>, cap(s1))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Array :&#34;</span>, <span style="color:#a6e22e">a</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, <span style="color:#a6e22e">s1</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Length of Slice 1 :&#34;</span>, len(<span style="color:#a6e22e">s1</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Capacity of Slice 1 :&#34;</span>, cap(<span style="color:#a6e22e">s1</span>))
 
-	s1 <span style="color:#f92672">=</span> append(s1, <span style="color:#ae81ff">11</span>)
+	<span style="color:#a6e22e">s1</span> = append(<span style="color:#a6e22e">s1</span>, <span style="color:#ae81ff">11</span>)
 
-	fmt.Println(<span style="color:#e6db74">&#34;---------- After adding new value ------------&#34;</span>)
-	fmt.Println(<span style="color:#e6db74">&#34;Array :&#34;</span>, a)
-	fmt.Println(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, s1)
-	fmt.Println(<span style="color:#e6db74">&#34;Length of Slice 1 :&#34;</span>, len(s1))
-	fmt.Println(<span style="color:#e6db74">&#34;Capacity of Slice 1 :&#34;</span>, cap(s1))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;---------- After adding new value ------------&#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Array :&#34;</span>, <span style="color:#a6e22e">a</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Slice 1 :&#34;</span>, <span style="color:#a6e22e">s1</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Length of Slice 1 :&#34;</span>, len(<span style="color:#a6e22e">s1</span>))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Capacity of Slice 1 :&#34;</span>, cap(<span style="color:#a6e22e">s1</span>))
 }
 </code></pre></div><p><a href="http://play.golang.org/p/JkJz_DbkPe">http://play.golang.org/p/JkJz_DbkPe</a></p>
 <p><strong>Output:</strong></p>
@@ -384,19 +393,19 @@ Capacity of Slice 1 : 20</p>
 			</div>
 			<aside class="sidebar"><div class="widget-search widget">
 	<form action="/search/index.html">
-				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
-			</form>
+		<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" placeholder="Enter min 3 chars for search" required></h1>
+	</form>
 	
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/defer/">Defer</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
 		</ul>
 	</div>
 </div>
@@ -440,9 +449,10 @@ Capacity of Slice 1 : 20</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/defer/" title="Defer">Defer (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (9)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (9)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
@@ -464,7 +474,16 @@ Capacity of Slice 1 : 20</p>
 		</div>
 	</div>
 </footer>
-	</div>
+	</div>	
+<script>
+$(document).ready(function() {
+$('#tipue_search_input').tipuesearch({
+	'showURL': false
+});
+});
+</script>	
 <script async defer src="/js/menu.js"></script>
-<script src="/tipuesearch/tipuesearch_content.js"></script><script src="/tipuesearch/tipuesearch_set.js"></script><script src="/tipuesearch/tipuesearch.min.js"></script></body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

@@ -37,7 +37,8 @@ if (!doNotTrack) {
 	<script src="/tipuesearch/tipuesearch_content.js"></script>
 	<link href="/tipuesearch/tipuesearch.css" rel="stylesheet">
 	<script src="/tipuesearch/tipuesearch_set.js"></script>
-	<script src="/tipuesearch/tipuesearch.min.js"></script>
+	<script src="/tipuesearch/tipuesearch.js"></script>
+	
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -110,123 +111,123 @@ if (!doNotTrack) {
 </ol>
 <h2 id="unbuffered-channel">Unbuffered Channel</h2>
 <p>Unbuffered channel can hold only max one value at any given point of time.  Let us look at the example below to understand more about channel.</p>
-<pre><code>package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import &quot;fmt&quot;
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 
-func main() {
-	chann := make(chan int)
-	for i := 1; i &lt;= 10; i++ {
-		chann &lt;- i
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">chann</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">chann</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">i</span>
 	}
 
-	close(chann)
+	close(<span style="color:#a6e22e">chann</span>)
 
-	go func() {
-		for value := range chann {
-			fmt.Println(value)
+	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">chann</span> {
+			<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">value</span>)
 		}
 	}()
 }
 
-</code></pre><p><a href="https://play.golang.org/p/uI2_oKLrGL">https://play.golang.org/p/uI2_oKLrGL</a></p>
+</code></pre></div><p><a href="https://play.golang.org/p/uI2_oKLrGL">https://play.golang.org/p/uI2_oKLrGL</a></p>
 <p>In the example above, we have created channel <strong>chann</strong> of type <strong>int</strong> and in <strong>for</strong> loop we are writing values to the channel via <strong><em>chann &lt;- i</em></strong>. Once we are done with writing we are explicitly closing the channel by calling <strong>close</strong> method. We have created a Go Routine(inline function <strong>func</strong>) which loops over the channel and print the value passed to the channel chann.</p>
 <p>Try running this example you will get following error:</p>
 <!-- raw HTML omitted -->
 <p>Error says there is deadlock in the code, but where is it? As per description it is at line 8 which is <strong><em>chann &lt;- i</em></strong>. But how can writing to channel cause deadlock? The reason is the channel we have created here is unbuffered channel and can hold only one value, and hence it is very important to read the channel after each write.</p>
 <p>Let us correct the example above, by moving the Go Routine before writing to channel in for loop, this way we will ensure that there is a reader on channel waiting to read and hence whatever is written on channel will be read.</p>
-<pre><code>package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import &quot;fmt&quot;
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 
-func main() {
-    chann := make(chan int)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">chann</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
 
-    go func() {
-        for value := range chann {
-            fmt.Println(value)
+    <span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>() {
+        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">chann</span> {
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">value</span>)
         }
     }()
 
-    for i := 1; i &lt;= 10; i++ {
-        chann &lt;- i
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+        <span style="color:#a6e22e">chann</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">i</span>
     }
 
-    close(chann)
+    close(<span style="color:#a6e22e">chann</span>)
 
 }
-</code></pre><p><a href="https://play.golang.org/p/W_SxaIQlOG">https://play.golang.org/p/W_SxaIQlOG</a></p>
+</code></pre></div><p><a href="https://play.golang.org/p/W_SxaIQlOG">https://play.golang.org/p/W_SxaIQlOG</a></p>
 <h2 id="buffered-channel">Buffered Channel</h2>
 <p>Buffered channel can hold <strong><em>n</em></strong> values before they must be read, where <strong><em>n</em></strong> is size of the channel specified at the time of creating channel. Let&rsquo;s look at example to see how we can create and use Buffered channel.</p>
-<pre><code>package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import &quot;fmt&quot;
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
 
 
-func main(){
-    chann := make(chan int, 10)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>(){
+    <span style="color:#a6e22e">chann</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>, <span style="color:#ae81ff">10</span>)
     
-    for i:= 1; i &lt;= 10; i++{
-        chann &lt;- i
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>{
+        <span style="color:#a6e22e">chann</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">i</span>
     }        
     
-    close(chann)
+    close(<span style="color:#a6e22e">chann</span>)
         
-    for value := range chann{
-            fmt.Println(value)
+    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">chann</span>{
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">value</span>)
     }
 }
 
-</code></pre><p><a href="https://play.golang.org/p/lVItHxZ7ip">https://play.golang.org/p/lVItHxZ7ip</a></p>
+</code></pre></div><p><a href="https://play.golang.org/p/lVItHxZ7ip">https://play.golang.org/p/lVItHxZ7ip</a></p>
 <p>Here we have created buffered channel <strong>chann</strong> with buffer size <strong>10</strong> [<strong><em>chann := make(chan int, 10)</em></strong>], and then have a <strong>for</strong> loop to add <strong>10</strong> values to the channel. Once we have finished adding values to channel, we close channel by calling <strong>close</strong> method. And then we have <strong>for</strong> loop which iterates over channel and print values from the channel.</p>
 <p>Key point here is that we were able to hold <strong>10</strong> values to channel before they were read. But for Buffered channel too values needs to be read before size of channel gets exhaust. So if we modify size of channel in above example from <strong>10</strong> to <strong>5</strong>[<strong><em>chann := make(chan int, 5)</em></strong>], we will get same deadlock error.</p>
 <h2 id="select">Select</h2>
 <p>Select is like switch for communication operations. Each case of select reads through one channel.  Let us look at the example below which will generate 3 digit random number. Each digit of the random number will be generated independently.</p>
-<pre><code>package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-    &quot;fmt&quot;
-    &quot;math/rand&quot;
-    &quot;time&quot;
+<span style="color:#f92672">import</span> (
+    <span style="color:#e6db74">&#34;fmt&#34;</span>
+    <span style="color:#e6db74">&#34;math/rand&#34;</span>
+    <span style="color:#e6db74">&#34;time&#34;</span>
 )
 
-func main() {
-    firstDigit := make(chan int)
-    secondDigit := make(chan int)
-    thirdDigit := make(chan int)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#a6e22e">firstDigit</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+    <span style="color:#a6e22e">secondDigit</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
+    <span style="color:#a6e22e">thirdDigit</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>)
 
-    go generateRandomDigit(firstDigit)
-    go generateRandomDigit(secondDigit)
-    go generateRandomDigit(thirdDigit)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">generateRandomDigit</span>(<span style="color:#a6e22e">firstDigit</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">generateRandomDigit</span>(<span style="color:#a6e22e">secondDigit</span>)
+    <span style="color:#66d9ef">go</span> <span style="color:#a6e22e">generateRandomDigit</span>(<span style="color:#a6e22e">thirdDigit</span>)
 
-    f, s, t := -1, -1, -1
+    <span style="color:#a6e22e">f</span>, <span style="color:#a6e22e">s</span>, <span style="color:#a6e22e">t</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
 
-    for {
-        select {
-        case f = &lt;-firstDigit:
-            fmt.Println(&quot;Computed 1st....&quot;)
-        case s = &lt;-secondDigit:
-            fmt.Println(&quot;Computed 2nd ....&quot;)
-        case t = &lt;-thirdDigit:
-            fmt.Println(&quot;Computed 3rd....&quot;)
+    <span style="color:#66d9ef">for</span> {
+        <span style="color:#66d9ef">select</span> {
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">f</span> = <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">firstDigit</span>:
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Computed 1st....&#34;</span>)
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">s</span> = <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">secondDigit</span>:
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Computed 2nd ....&#34;</span>)
+        <span style="color:#66d9ef">case</span> <span style="color:#a6e22e">t</span> = <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">thirdDigit</span>:
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Computed 3rd....&#34;</span>)
         }
 
-        if f != -1 &amp;&amp; s != -1 &amp;&amp; t != -1 {
-            fmt.Println(f, s, t)
-            break
+        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">f</span> <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">s</span> <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> {
+            <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">f</span>, <span style="color:#a6e22e">s</span>, <span style="color:#a6e22e">t</span>)
+            <span style="color:#66d9ef">break</span>
         }
     }
 
 }
 
-func generateRandomDigit(myChannel chan int) {
-    rand.Seed(time.Now().UTC().UnixNano())
-    time.Sleep(time.Duration(rand.Intn(5)) * time.Second)
-    myChannel &lt;- rand.Intn(10)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">generateRandomDigit</span>(<span style="color:#a6e22e">myChannel</span> <span style="color:#66d9ef">chan</span> <span style="color:#66d9ef">int</span>) {
+    <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Seed</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">UTC</span>().<span style="color:#a6e22e">UnixNano</span>())
+    <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Duration</span>(<span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#ae81ff">5</span>)) <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+    <span style="color:#a6e22e">myChannel</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#ae81ff">10</span>)
 }
 
 
-</code></pre><p><a href="https://play.golang.org/p/AJTT3oLUG3">https://play.golang.org/p/AJTT3oLUG3</a></p>
+</code></pre></div><p><a href="https://play.golang.org/p/AJTT3oLUG3">https://play.golang.org/p/AJTT3oLUG3</a></p>
 <p>As we want 3 digit number, we first created 3 channel one for digit. We call <strong>generateRandomDigit</strong> function in Go Routine and pass channel as parameter to it. Function <strong>generateRandomDigit</strong> will sleep for random seconds and will write random int on to the channel passed.</p>
 <p>In <strong>main</strong> function, we have <strong>for</strong> loop in which we have a select statement, with each <strong>case</strong> of <strong>select</strong> will read through one channel and assign the value read from channel to a variable.  In <strong>for</strong> loop we have <strong>if</strong> statement which checks if all the 3 digits are available and if yes will print the 3 digit random number by combining all the 3 digits and <strong>break</strong> the loop.
 Each of the Go Routine call to <strong>generateRandomDigit</strong> function will sleep for random time and then write to respective channel. Hence to make sure all the 3 digits are available, we use <strong>select/case</strong> combination, we assign value to corresponding variable and till all the 3 digits are not available we will loop through.</p>
@@ -265,6 +266,12 @@ Each of the Go Routine call to <strong>generateRandomDigit</strong> function wil
 			<p class="pager__title">Go Routine</p>
 		</a>
 	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/golang/defer/" rel="next">
+			<span class="pager__subtitle">Next&thinsp;»</span>
+			<p class="pager__title">Defer</p>
+		</a>
+	</div>
 </nav>
 
 
@@ -295,19 +302,19 @@ Each of the Go Routine call to <strong>generateRandomDigit</strong> function wil
 			</div>
 			<aside class="sidebar"><div class="widget-search widget">
 	<form action="/search/index.html">
-				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
-			</form>
+		<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" placeholder="Enter min 3 chars for search" required></h1>
+	</form>
 	
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/defer/">Defer</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
 		</ul>
 	</div>
 </div>
@@ -351,9 +358,10 @@ Each of the Go Routine call to <strong>generateRandomDigit</strong> function wil
 		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/defer/" title="Defer">Defer (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (9)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (9)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
@@ -375,7 +383,16 @@ Each of the Go Routine call to <strong>generateRandomDigit</strong> function wil
 		</div>
 	</div>
 </footer>
-	</div>
+	</div>	
+<script>
+$(document).ready(function() {
+$('#tipue_search_input').tipuesearch({
+	'showURL': false
+});
+});
+</script>	
 <script async defer src="/js/menu.js"></script>
-<script src="/tipuesearch/tipuesearch_content.js"></script><script src="/tipuesearch/tipuesearch_set.js"></script><script src="/tipuesearch/tipuesearch.min.js"></script></body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

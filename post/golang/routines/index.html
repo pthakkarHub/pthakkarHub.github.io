@@ -37,7 +37,8 @@ if (!doNotTrack) {
 	<script src="/tipuesearch/tipuesearch_content.js"></script>
 	<link href="/tipuesearch/tipuesearch.css" rel="stylesheet">
 	<script src="/tipuesearch/tipuesearch_set.js"></script>
-	<script src="/tipuesearch/tipuesearch.min.js"></script>
+	<script src="/tipuesearch/tipuesearch.js"></script>
+	
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -110,30 +111,30 @@ But what if we are having single core processor supporting single thread, in thi
 And this is where Go concurrency is different compare to other languages as it is built in feature and the way it is implemented actually makes it easy to achieve concurrency.</p>
 <p>Erlang is the other language which has similar (not same) implementation or support for concurrency.</p>
 <p>Before we start on Go Routine let us look at an example where we have a method <strong>doSomeWork</strong> which will sleep for 1 second and print the number passed to the method.  In following example we will call this method in a for loop for 25 times.</p>
-<pre><code>package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-	&quot;fmt&quot;
-	&quot;time&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;time&#34;</span>
 )
 
-const COUNT int = 25
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">COUNT</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">25</span>
 
-func main() {
-	var startTime = time.Now()
-	for i:=1; i &lt;= COUNT; i++ {
-		doSomeWork(i);
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">startTime</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">COUNT</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#a6e22e">doSomeWork</span>(<span style="color:#a6e22e">i</span>);
 	}
 	
-	fmt.Println(&quot;Total Time Taken:&quot;, time.Now().Sub(startTime))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Total Time Taken:&#34;</span>, <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Sub</span>(<span style="color:#a6e22e">startTime</span>))
 }
 
-func doSomeWork(i int){
-	time.Sleep(1 * time.Second)
-	fmt.Println(&quot;Finished Work: &quot;, i)	
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">doSomeWork</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>){
+	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Finished Work: &#34;</span>, <span style="color:#a6e22e">i</span>)	
 }
 
-</code></pre><p><strong>Output:</strong><br>
+</code></pre></div><p><strong>Output:</strong><br>
 Finished Work:  1<br>
 Finished Work:  2<br>
 Finished Work:  3<br>
@@ -164,30 +165,30 @@ Total Time Taken: 25s</p>
 <p>From output we can see, <strong>doSomeWork</strong> was called 25 times serially and since each time method was made to sleep for 1 second, total time take is 25s.</p>
 <h2 id="go-routine">Go Routine</h2>
 <p>Go Routine, is the way of doing things concurrently. To understand Go Routine let us 1st convert the above example to call <strong>doSomeWork</strong> via Go Rotuines and this can be achieved by preceding call to method <strong>doSomeWork</strong> with keyword <strong>go</strong> (Note, <strong>go</strong> is in small caps).  Let us modify example above and see what gets printed.</p>
-<pre><code>package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-	&quot;fmt&quot;
-	&quot;time&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;time&#34;</span>
 )
 
-const COUNT int = 25
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">COUNT</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">25</span>
 
-func main() {
-	var startTime = time.Now()
-	for i:=1; i &lt;= COUNT; i++ {
-		go doSomeWork(i);
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">startTime</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">COUNT</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">doSomeWork</span>(<span style="color:#a6e22e">i</span>);
 	}
 	
-	fmt.Println(&quot;Total Time Taken:&quot;, time.Now().Sub(startTime))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Total Time Taken:&#34;</span>, <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Sub</span>(<span style="color:#a6e22e">startTime</span>))
 }
 
-func doSomeWork(i int){
-	time.Sleep(1 * time.Second)
-	fmt.Println(&quot;Finished Work: &quot;, i)	
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">doSomeWork</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>){
+	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Finished Work: &#34;</span>, <span style="color:#a6e22e">i</span>)	
 }
 
-</code></pre><p><strong>Output:</strong><br>
+</code></pre></div><p><strong>Output:</strong><br>
 Total Time Taken: 0</p>
 <p><a href="https://play.golang.org/p/deH1ksLxND">https://play.golang.org/p/deH1ksLxND</a></p>
 <p>Let us understand what happened and why nothing got printed. In code above we are calling <strong>doSomeWork</strong> in Go Routine. And Go Routine will make <strong>doSomeWork</strong> execute on a Thread. Go Routine Thread will be executing in parallel to main Thread executing the main function. Go program exits as soon as main thread (main function) finishes and hence program exist with above statement because after that print statement there is no other statement to execute.</p>
@@ -195,32 +196,32 @@ Total Time Taken: 0</p>
 Go Routine is light weight processes that can be executed on each Thread and each Thread can execute multiple Go Routines. Creating Go Routine is not expensive, but still has some overload and hence needs to be used wisely.</p>
 <p>How to make code above function and print the statements and make sure main function is still alive till Go Routines are finished.</p>
 <p>One of the simplest and quick solution for above problem is to add call to time.Sleep method before printing the total time. Since in our example we already know that we are going to call <strong>doSomeWork</strong> 25 times and each call will be minimum 1 second (call to time.Sleep in <em>doSomeWork</em> method sleeps for 1 seconds). We will add sleep for 26 seconds one second more.</p>
-<pre><code>package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-	&quot;fmt&quot;
-	&quot;time&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;time&#34;</span>
 )
 
-const COUNT int = 25
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">COUNT</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">25</span>
 
-func main() {
-	var startTime = time.Now()
-	for i:=1; i &lt;= COUNT; i++ {
-		go doSomeWork(i);
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">startTime</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">COUNT</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+		<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">doSomeWork</span>(<span style="color:#a6e22e">i</span>);
 	}
 
-	time.Sleep(26 * time.Second)	
-	fmt.Println(&quot;Total Time Taken:&quot;, time.Now().Sub(startTime))
+	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">26</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)	
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Total Time Taken:&#34;</span>, <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Sub</span>(<span style="color:#a6e22e">startTime</span>))
 }
 
-func doSomeWork(i int){
-	time.Sleep(1 * time.Second)
-	fmt.Println(&quot;Finished Work: &quot;, i)	
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">doSomeWork</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>){
+	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Finished Work: &#34;</span>, <span style="color:#a6e22e">i</span>)	
 }
 
 
-</code></pre><p><strong>Output:</strong><br>
+</code></pre></div><p><strong>Output:</strong><br>
 Finished Work:  2<br>
 Finished Work:  1<br>
 Finished Work:  25<br>
@@ -254,35 +255,35 @@ So of the better solution would to have counter and to update the counter synchr
 Go provides this functionally via <strong>WaitGroup</strong>.</p>
 <h2 id="waitgroup">WaitGroup</h2>
 <p>WaitGroup is part of sync Package and provides a mechanism to check if all the Go Routine started have finished.</p>
-<pre><code>package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-	&quot;fmt&quot;
-	&quot;time&quot;
-	&quot;sync&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
+	<span style="color:#e6db74">&#34;time&#34;</span>
+	<span style="color:#e6db74">&#34;sync&#34;</span>
 )
 
-const COUNT int = 25
-var wg sync.WaitGroup
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">COUNT</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">25</span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wg</span> <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>
 
-func main() {
-	var startTime = time.Now()
-	for i:=1; i &lt;= COUNT; i++ {
-	        wg.Add(1)
-		go doSomeWork(i);
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">startTime</span> = <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>()
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">:=</span><span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#a6e22e">COUNT</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+	        <span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">1</span>)
+		<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">doSomeWork</span>(<span style="color:#a6e22e">i</span>);
 	}
 	
-	wg.Wait()
-	fmt.Println(&quot;Total Time Taken:&quot;, time.Now().Sub(startTime))
+	<span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Total Time Taken:&#34;</span>, <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Now</span>().<span style="color:#a6e22e">Sub</span>(<span style="color:#a6e22e">startTime</span>))
 }
 
-func doSomeWork(i int){
-	time.Sleep(1 * time.Second)
-	fmt.Println(&quot;Finished Work: &quot;, i)	
-	wg.Done()
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">doSomeWork</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>){
+	<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Finished Work: &#34;</span>, <span style="color:#a6e22e">i</span>)	
+	<span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Done</span>()
 }
 
-</code></pre><p><strong>Output:</strong><br>
+</code></pre></div><p><strong>Output:</strong><br>
 Finished Work:  1<br>
 Finished Work:  25<br>
 Finished Work:  24<br>
@@ -392,19 +393,19 @@ It is very important to understand your system and application while setting GOM
 			</div>
 			<aside class="sidebar"><div class="widget-search widget">
 	<form action="/search/index.html">
-				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
-			</form>
+		<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" placeholder="Enter min 3 chars for search" required></h1>
+	</form>
 	
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/defer/">Defer</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
 		</ul>
 	</div>
 </div>
@@ -448,9 +449,10 @@ It is very important to understand your system and application while setting GOM
 		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/defer/" title="Defer">Defer (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (9)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (9)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
@@ -472,7 +474,16 @@ It is very important to understand your system and application while setting GOM
 		</div>
 	</div>
 </footer>
-	</div>
+	</div>	
+<script>
+$(document).ready(function() {
+$('#tipue_search_input').tipuesearch({
+	'showURL': false
+});
+});
+</script>	
 <script async defer src="/js/menu.js"></script>
-<script src="/tipuesearch/tipuesearch_content.js"></script><script src="/tipuesearch/tipuesearch_set.js"></script><script src="/tipuesearch/tipuesearch.min.js"></script></body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

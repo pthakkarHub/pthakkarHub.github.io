@@ -37,7 +37,8 @@ if (!doNotTrack) {
 	<script src="/tipuesearch/tipuesearch_content.js"></script>
 	<link href="/tipuesearch/tipuesearch.css" rel="stylesheet">
 	<script src="/tipuesearch/tipuesearch_set.js"></script>
-	<script src="/tipuesearch/tipuesearch.min.js"></script>
+	<script src="/tipuesearch/tipuesearch.js"></script>
+	
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -105,67 +106,69 @@ if (!doNotTrack) {
 			<h2 id="functions">Functions</h2>
 <p>Go, does not have keywords like private, public, protected and final etc and Go does not have concept of inheritance so it is very important to understand how functions can be used to do things that we ideally do when we use any other language.</p>
 <p>Keyword <strong>func</strong>, is used for defining function. We have already seen the function <strong>main</strong> which is starting point of every application.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
-	fmt.Println(<span style="color:#e6db74">&#34;Hello, playground&#34;</span>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Hello, playground&#34;</span>)
 }
 </code></pre></div><p>Function <strong>main</strong> is a special function, and when defined in <strong>package main,</strong> it is used as a starting point of your application. Function <strong>main</strong> neither accepts any input nor does it return any value. As soon as function <strong>main</strong> completes execution, the program exits.</p>
 <p>Similar to function <strong>main,</strong> we can declare a custom function, which can accept an input and returns a value as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">funcName</span>(i <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
-	<span style="color:#66d9ef">return</span> i
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">funcName</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">i</span>
 }
 </code></pre></div><p>Here we have declared function <strong>funcName</strong>, which accepts <strong>i</strong> of type <strong>int</strong> as input and returns the same value back.</p>
 <h3 id="return-multiple-values">Return multiple values</h3>
 <p>Now let us modify function <strong>funcName</strong> to accept 2 input parameters and return them.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">funcName</span>(i <span style="color:#66d9ef">int</span>, s string) (<span style="color:#66d9ef">int</span>, string) {
-	<span style="color:#66d9ef">return</span> i, s
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">funcName</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>) (<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">string</span>) {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">s</span>
 }
 </code></pre></div><p>Function <strong>funcName</strong>, returns back 2 values of type int and string. It is possible to return multiple values from a function. Caller of this function can chose whether to use all the returned value. In case if you do not want to use all the returned values use <strong>Blank Identifier</strong> (&quot;_&rdquo; Underscore) to skip. As shown below:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">i, _ <span style="color:#f92672">=</span> funcName(<span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#34;ABC&#34;</span>)
-</code></pre></div><p>This will skip 2<!-- raw HTML omitted -->nd<!-- raw HTML omitted --> value returned from function.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">_</span> = <span style="color:#a6e22e">funcName</span>(<span style="color:#ae81ff">10</span>, <span style="color:#e6db74">&#34;ABC&#34;</span>)
+</code></pre></div><p>This will skip 2<sup>nd</sup>
+
+ value returned from function.</p>
 <p>Let us add one more parameter of type <strong>int</strong> to <strong>funcName</strong>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">funcName</span>(i, j <span style="color:#66d9ef">int</span>, s string) (<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span>, string) {
-	<span style="color:#66d9ef">return</span> i, j, s
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">funcName</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">s</span> <span style="color:#66d9ef">string</span>) (<span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">string</span>) {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>, <span style="color:#a6e22e">s</span>
 }
 </code></pre></div><p>Now function <strong>funcName</strong> is accepting 3 parameters, 2 of type <strong>int</strong> (<strong>i</strong> and <strong>j</strong>) and one of type <strong>string</strong>. Note the way in which <strong>i</strong> and <strong>j</strong> are declared.</p>
 <h3 id="anonymous-inline">Anonymous (inline)</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
-	i, j :<span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>
-	c :<span style="color:#f92672">=</span> func(a, b <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
-		<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
-	}(i, j)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>
+	}(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>)
 
-	fmt.Println(<span style="color:#e6db74">&#34;Total :&#34;</span>, c)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Total :&#34;</span>, <span style="color:#a6e22e">c</span>)
 }
 </code></pre></div><p><a href="http://play.golang.org/p/POfVLVe9je">http://play.golang.org/p/POfVLVe9je</a></p>
 <p><strong>Output:</strong></p>
 <p>Total : 30</p>
 <p>Here we have created an inline function for adding two numbers. Function takes 2 values as input and returns result of addition, which we are assigning to variable c. Check (I, j) at the end of the inline function after &ldquo;}&rdquo;, this will invoke the function immediately after declaration.</p>
 <p>But in case if that&rsquo;s not the requirement, we can do something as follows:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	i, j :<span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>
+	<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">20</span>
 
-	c :<span style="color:#f92672">=</span> func(a, b <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
-		<span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
+	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span> <span style="color:#66d9ef">int</span>) <span style="color:#66d9ef">int</span> {
+		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">b</span>
 	}
 
-	fmt.Println(<span style="color:#e6db74">&#34;Total :&#34;</span>, c(i, j))
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Total :&#34;</span>, <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>))
 }
 </code></pre></div><p><a href="http://play.golang.org/p/0Ya9JnvI0_">http://play.golang.org/p/0Ya9JnvI0_</a></p>
 <p><strong>Output:</strong></p>
 <p>Total : 30</p>
 <p>Here we have declared inline function, and assigned it to <strong>c</strong>, now <strong>c</strong> is pointing to inline function which we are invoking in <strong>Println</strong> statement via c(i, j).</p>
 <h3 id="function-with-named-return">Function with Named Return</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
-	i, j :<span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>
-	result, remainder :<span style="color:#f92672">=</span> divide(i, j)
-	fmt.Printf(<span style="color:#e6db74">&#34;Divide %d by %d. Result %d, remainder %d&#34;</span>, i, j, result, remainder)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>
+	<span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">remainder</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">divide</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Divide %d by %d. Result %d, remainder %d&#34;</span>, <span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span>, <span style="color:#a6e22e">result</span>, <span style="color:#a6e22e">remainder</span>)
 }
 
-func <span style="color:#a6e22e">divide</span>(i, j <span style="color:#66d9ef">int</span>) (result <span style="color:#66d9ef">int</span>, mod <span style="color:#66d9ef">int</span>) {
-	<span style="color:#66d9ef">if</span> j <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
-		result <span style="color:#f92672">=</span> i <span style="color:#f92672">/</span> j
-		mod <span style="color:#f92672">=</span> i <span style="color:#f92672">%</span> j
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">divide</span>(<span style="color:#a6e22e">i</span>, <span style="color:#a6e22e">j</span> <span style="color:#66d9ef">int</span>) (<span style="color:#a6e22e">result</span> <span style="color:#66d9ef">int</span>, <span style="color:#a6e22e">mod</span> <span style="color:#66d9ef">int</span>) {
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">j</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span> {
+		<span style="color:#a6e22e">result</span> = <span style="color:#a6e22e">i</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">j</span>
+		<span style="color:#a6e22e">mod</span> = <span style="color:#a6e22e">i</span> <span style="color:#f92672">%</span> <span style="color:#a6e22e">j</span>
 	}
 	<span style="color:#66d9ef">return</span>
 }
@@ -175,13 +178,13 @@ func <span style="color:#a6e22e">divide</span>(i, j <span style="color:#66d9ef">
 <p>We have declared function <strong>divide</strong>, for dividing 2 integers and return <strong>result</strong> and <strong>remainder</strong>. Check the way we have declared values to be returned for function <strong>divide</strong>. We have given them name <strong>result</strong> and <strong>remainder</strong> and used them in function for holding result and remainder respectively. Note that in this case we are not passing values to be returned in return statement at the end of the function. Since we have named return values in function declaration, Go will internally return them.</p>
 <p>Note: Named parameters will be initialized to their Zero values by Go. In this case since <strong>result</strong> and <strong>mod</strong> are declared as <strong>int</strong> they will be initialized to 0. Now if we do not use them in function, 0 will be returned.</p>
 <h3 id="variadic-function-arbitrary-number-of-parameters">Variadic Function (Arbitrary Number of Parameters)</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
-	fmt.Printf(<span style="color:#e6db74">&#34;Total = %d&#34;</span>, computeTotal(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>))
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Total = %d&#34;</span>, <span style="color:#a6e22e">computeTotal</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>))
 }
 
-func <span style="color:#a6e22e">computeTotal</span>(nums ...<span style="color:#66d9ef">int</span>) (total <span style="color:#66d9ef">int</span>) {
-	<span style="color:#66d9ef">for</span> _, i :<span style="color:#f92672">=</span> range nums {
-		total <span style="color:#f92672">+=</span> i
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">computeTotal</span>(<span style="color:#a6e22e">nums</span> <span style="color:#f92672">...</span><span style="color:#66d9ef">int</span>) (<span style="color:#a6e22e">total</span> <span style="color:#66d9ef">int</span>) {
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">nums</span> {
+		<span style="color:#a6e22e">total</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">i</span>
 	}
 	<span style="color:#66d9ef">return</span>
 }
@@ -192,17 +195,17 @@ func <span style="color:#a6e22e">computeTotal</span>(nums ...<span style="color:
 <h3 id="pass-by-value">Pass By Value</h3>
 <p>When values are passed to a function they are passed by value i.e. new copy of the type is created and passed as parameter to the function.</p>
 <p>Let us look at the example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	i :<span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
-	fmt.Println(<span style="color:#e6db74">&#34;Value in main before calling function :&#34;</span>, i)
-	computeAndPrint(i)
-	fmt.Println(<span style="color:#e6db74">&#34;Value in main after calling function :&#34;</span>, i)
+	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value in main before calling function :&#34;</span>, <span style="color:#a6e22e">i</span>)
+	<span style="color:#a6e22e">computeAndPrint</span>(<span style="color:#a6e22e">i</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value in main after calling function :&#34;</span>, <span style="color:#a6e22e">i</span>)
 }
 
-func <span style="color:#a6e22e">computeAndPrint</span>(i <span style="color:#66d9ef">int</span>) {
-	i <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
-	fmt.Println(<span style="color:#e6db74">&#34;Value in function :&#34;</span>, i)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">computeAndPrint</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">int</span>) {
+	<span style="color:#a6e22e">i</span> = <span style="color:#ae81ff">100</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value in function :&#34;</span>, <span style="color:#a6e22e">i</span>)
 }
 </code></pre></div><p><a href="http://play.golang.org/p/zmxQBKgd44">http://play.golang.org/p/zmxQBKgd44</a></p>
 <p><strong>Output:</strong></p>
@@ -210,24 +213,26 @@ func <span style="color:#a6e22e">computeAndPrint</span>(i <span style="color:#66
 Value in function : 100<br>
 Value in main after calling function : 10</p>
 <p>We created variable <strong>i</strong> of type <strong>int</strong> in function <strong>main</strong> and initialized it to 10. Then we called the function <strong>computeAndPrint</strong>, in which we changed the value of <strong>i</strong> to 100 and printed it.</p>
-<p>Now if you check the output, you can see value of <strong>i</strong> as 10 when printed in function <strong>main</strong> before and after calling <strong>computeAndPrint</strong> function. And when printed within the function <strong>computeAndPrint</strong> it is printed as 100 since on 1<!-- raw HTML omitted -->st<!-- raw HTML omitted --> line in the function <strong>computeAndPrint</strong>, we are updating the value of <strong>i</strong> to 100.</p>
+<p>Now if you check the output, you can see value of <strong>i</strong> as 10 when printed in function <strong>main</strong> before and after calling <strong>computeAndPrint</strong> function. And when printed within the function <strong>computeAndPrint</strong> it is printed as 100 since on 1<sup>st</sup>
+
+ line in the function <strong>computeAndPrint</strong>, we are updating the value of <strong>i</strong> to 100.</p>
 <p>This shows that values passed as parameter to function are passed as value.</p>
 <p>Let us look at another example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">type Person <span style="color:#66d9ef">struct</span> {
-	FirstName string
-	LastName  string
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">FirstName</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">LastName</span>  <span style="color:#66d9ef">string</span>
 }
 
-func main() {
-	p :<span style="color:#f92672">=</span> Person{<span style="color:#e6db74">&#34;ABC&#34;</span>, <span style="color:#e6db74">&#34;XYZ&#34;</span>}
-	fmt.Println(<span style="color:#e6db74">&#34;Value of Person in main (before swap) :&#34;</span>, p)
-	swapAndPrint(p)
-	fmt.Println(<span style="color:#e6db74">&#34;Value of Person in main (after swap) :&#34;</span>, p)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Person</span>{<span style="color:#e6db74">&#34;ABC&#34;</span>, <span style="color:#e6db74">&#34;XYZ&#34;</span>}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of Person in main (before swap) :&#34;</span>, <span style="color:#a6e22e">p</span>)
+	<span style="color:#a6e22e">swapAndPrint</span>(<span style="color:#a6e22e">p</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of Person in main (after swap) :&#34;</span>, <span style="color:#a6e22e">p</span>)
 }
 
-func swapAndPrint(p Person) {
-	p.FirstName, p.LastName <span style="color:#f92672">=</span> p.LastName, p.FirstName
-	fmt.Println(<span style="color:#e6db74">&#34;Value of Person in function :&#34;</span>, p)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">swapAndPrint</span>(<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">Person</span>) {
+	<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">FirstName</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">LastName</span> = <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">LastName</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">FirstName</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of Person in function :&#34;</span>, <span style="color:#a6e22e">p</span>)
 }
 </code></pre></div><p><a href="http://play.golang.org/p/GSdAd2HHwm">http://play.golang.org/p/GSdAd2HHwm</a></p>
 <p><strong>Output:</strong></p>
@@ -236,27 +241,27 @@ Value of Person in function : {XYZ ABC}<br>
 Value of Person in main (after swap) : {ABC XYZ}</p>
 <p>We have struct <strong>Person</strong>, with 2 fields <strong>FirstName</strong> and <strong>LastName</strong>. In main function we create instance for Person and print it, then we call <strong>swapAndPrint</strong> function, which will swap <strong>FirstName</strong> and <strong>LastName</strong> and print it.</p>
 <p>After calling <strong>swapAndPrint</strong>, we again print Person in function main.</p>
-<p>From output you can see, that before and after call to <strong>swapAndPrint</strong> function, <strong>FirstName</strong> and **LastName **are printed as same as what they were set while creating instance of Person. While in <strong>swapAndPrint</strong> function, we have swapped <strong>FirstName</strong> and <strong>LastName</strong>.</p>
+<p>From output you can see, that before and after call to <strong>swapAndPrint</strong> function, <strong>FirstName</strong> and <strong>LastName</strong> are printed as same as what they were set while creating instance of Person. While in <strong>swapAndPrint</strong> function, we have swapped <strong>FirstName</strong> and <strong>LastName</strong>.</p>
 <p>This is because; when <strong>Person</strong> is passed to function a new copy of <strong>Person</strong> is created and passed. Hence any change in within the function does not get reflected outside the function i.e. in <strong>main</strong> function.</p>
 <h3 id="function-vs-method">Function Vs Method</h3>
-<p>Ideally the terms <strong>function</strong> and <strong>method</strong> are used interchangeably, but that&rsquo;s not correct. If functions are defined within class and called on object of that class they are called as methods.  Go is not OO language and does not have concept of class. In Go, if function is called upon struct it is called as method. Let us modify the function <strong>swapAndPrint</strong> in above example to method.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">type Person <span style="color:#66d9ef">struct</span> {
-	FirstName string
-	LastName  string
+<p>Ideally the terms <strong>function</strong> and <strong>method</strong> are used interchangeably, but that&rsquo;s not correct. If functions are defined within class and called on object of that class they are called as methods. Go is not OO language and does not have concept of class. In Go, if function is called upon struct it is called as method. Let us modify the function <strong>swapAndPrint</strong> in above example to method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">FirstName</span> <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">LastName</span>  <span style="color:#66d9ef">string</span>
 }
 
-func main() {
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	p :<span style="color:#f92672">=</span> Person{<span style="color:#e6db74">&#34;ABC&#34;</span>, <span style="color:#e6db74">&#34;XYZ&#34;</span>}
-	fmt.Println(<span style="color:#e6db74">&#34;Value of Person in main (before swap) :&#34;</span>, p)
-	p.swapAndPrint()
-	fmt.Println(<span style="color:#e6db74">&#34;Value of Person in main (after swap) :&#34;</span>, p)
+	<span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Person</span>{<span style="color:#e6db74">&#34;ABC&#34;</span>, <span style="color:#e6db74">&#34;XYZ&#34;</span>}
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of Person in main (before swap) :&#34;</span>, <span style="color:#a6e22e">p</span>)
+	<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">swapAndPrint</span>()
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of Person in main (after swap) :&#34;</span>, <span style="color:#a6e22e">p</span>)
 
 }
 
-func (p Person) swapAndPrint() {
-	p.FirstName, p.LastName <span style="color:#f92672">=</span> p.LastName, p.FirstName
-	fmt.Println(<span style="color:#e6db74">&#34;Value of Person in function :&#34;</span>, p)
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">Person</span>) <span style="color:#a6e22e">swapAndPrint</span>() {
+	<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">FirstName</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">LastName</span> = <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">LastName</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">FirstName</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of Person in function :&#34;</span>, <span style="color:#a6e22e">p</span>)
 
 }
 </code></pre></div><p><a href="http://play.golang.org/p/wtl5Ziwr0B">http://play.golang.org/p/wtl5Ziwr0B</a></p>
@@ -265,28 +270,28 @@ func (p Person) swapAndPrint() {
 Value of Person in function : {XYZ ABC}<br>
 Value of Person in main (after swap) : {ABC XYZ}</p>
 <p>Note the signature of function <strong>swapAndPrint</strong>,</p>
-<p><code>func (p Person)swapAndPrint()</code></p>
-<p>Here the preceding (p Person), is called as receiver for function <strong>swapAndPrint</strong> i.e.  <strong>swapAndPrint</strong> is a method and can only be called on Person.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#a6e22e">Person</span>)<span style="color:#a6e22e">swapAndPrint</span>()
+</code></pre></div><p>Here the preceding (p Person), is called as receiver for function <strong>swapAndPrint</strong> i.e. <strong>swapAndPrint</strong> is a method and can only be called on Person.</p>
 <p>Check the way method <strong>swapAndPrint</strong> is called in comparison to the previous example.</p>
 <h2 id="pointers">Pointers</h2>
 <p>Pointers are nothing but a variable holding memory address. Using pointers one can directly access memory location. Those who have used or know C/C++ should be familiar with the concept of pointers.</p>
 <p>As we have seen above, in Go when we pass parameters to a function, a copy of the parameter is passed and hence it is immutable i.e. any changes made within the function are not available to the caller. Since Pointers allow direct access to memory, using Pointers can save creating of copy, which can directly have a performance impact. But using Pointers will allow function to change the value, so depending upon the need, we need to wisely pick whether to use Pointers or not.</p>
 <p>Let us look at example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	i :<span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
-	p2i :<span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>i
+	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+	<span style="color:#a6e22e">p2i</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">i</span>
 
-	fmt.Println(<span style="color:#e6db74">&#34;Value of i :&#34;</span>, i)
-	fmt.Println(<span style="color:#e6db74">&#34;Value of Pointer to i :&#34;</span>, p2i)
-	fmt.Println(<span style="color:#e6db74">&#34;Value of i via Pointer :&#34;</span>, <span style="color:#f92672">*</span>p2i)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of i :&#34;</span>, <span style="color:#a6e22e">i</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of Pointer to i :&#34;</span>, <span style="color:#a6e22e">p2i</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of i via Pointer :&#34;</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">p2i</span>)
 
-	<span style="color:#f92672">*</span>p2i <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+	<span style="color:#f92672">*</span><span style="color:#a6e22e">p2i</span> = <span style="color:#ae81ff">100</span>
 	
-	fmt.Println(<span style="color:#e6db74">&#34;----------After Updating----------&#34;</span>)
-	fmt.Println(<span style="color:#e6db74">&#34;Value of i :&#34;</span>, i)
-	fmt.Println(<span style="color:#e6db74">&#34;Value of Pointer to i :&#34;</span>, p2i)
-	fmt.Println(<span style="color:#e6db74">&#34;Value of i via Pointer :&#34;</span>, <span style="color:#f92672">*</span>p2i)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;----------After Updating----------&#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of i :&#34;</span>, <span style="color:#a6e22e">i</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of Pointer to i :&#34;</span>, <span style="color:#a6e22e">p2i</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value of i via Pointer :&#34;</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">p2i</span>)
 }
 </code></pre></div><p><a href="http://play.golang.org/p/DJlKQhuSK1">http://play.golang.org/p/DJlKQhuSK1</a></p>
 <p><strong>Output:</strong></p>
@@ -300,26 +305,26 @@ Value of i via Pointer : 100</p>
 <h3 id="pointer-as-receiver">Pointer as Receiver</h3>
 <p>We have learnt so far that when passing parameters to function, Go passes by value. But if we have a need to modify value of the original element or if element is a complex and deep struct, copying it may have performance impact. In this case it will be ideal to use Pointers. Pointer can be passed as parameter to the function or can act as receiver to function.</p>
 <p>Let see an example for pointer as receiver to function:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">type Person <span style="color:#66d9ef">struct</span> {
-	Name  string
-	DOB   string
-	adult <span style="color:#66d9ef">bool</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">Name</span>  <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">DOB</span>   <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">adult</span> <span style="color:#66d9ef">bool</span>
 }
 
-func main() {
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	p :<span style="color:#f92672">=</span> Person{Name: <span style="color:#e6db74">&#34;ABC&#34;</span>, DOB: <span style="color:#e6db74">&#34;1983-11-01&#34;</span>}
-	ptr :<span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>p
-	ptr.checkIfAdult()
-	fmt.Println(<span style="color:#f92672">*</span>ptr)
+	<span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Person</span>{<span style="color:#a6e22e">Name</span>: <span style="color:#e6db74">&#34;ABC&#34;</span>, <span style="color:#a6e22e">DOB</span>: <span style="color:#e6db74">&#34;1983-11-01&#34;</span>}
+	<span style="color:#a6e22e">ptr</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">p</span>
+	<span style="color:#a6e22e">ptr</span>.<span style="color:#a6e22e">checkIfAdult</span>()
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#f92672">*</span><span style="color:#a6e22e">ptr</span>)
 
 }
 
-func (p <span style="color:#f92672">*</span>Person) checkIfAdult() {
-	t, err :<span style="color:#f92672">=</span> time.Parse(<span style="color:#e6db74">&#34;2006-01-02&#34;</span>, p.DOB)
-	<span style="color:#66d9ef">if</span> err <span style="color:#f92672">==</span> nil {
-		<span style="color:#66d9ef">if</span> t.Year() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1995</span> {
-			p.adult <span style="color:#f92672">=</span> true
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">p</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Person</span>) <span style="color:#a6e22e">checkIfAdult</span>() {
+	<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;2006-01-02&#34;</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">DOB</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Year</span>() &lt; <span style="color:#ae81ff">1995</span> {
+			<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">adult</span> = <span style="color:#66d9ef">true</span>
 		}
 	}
 }
@@ -329,36 +334,36 @@ func (p <span style="color:#f92672">*</span>Person) checkIfAdult() {
 <p>Method <strong>checkIfAdult</strong>, checks the year in DOB.If before 1995, it will treat that person as adult and will set <strong>adult</strong> flag to true. Here we have used &ldquo;<strong>time</strong>&rdquo;, for parsing DOB. First parameter to <strong>Parse</strong> method is layout, used to define the format. Second parameter is the actual string to be parsed. Method Parse return 2 values, time and error. We check if error is nil, means parsing was successful then check year in DOB to see if it is before 1995.</p>
 <p>Method <strong>checkIfAdult</strong>, is defined on receiver Pointer of type <strong>Person</strong>. Hence see the way we are calling this method from function <strong>main.</strong></p>
 <p>In this example in addition to package &ldquo;<strong>fmt</strong>&rdquo; we are importing package &ldquo;<strong>time</strong>&rdquo; for parsing DOB. You can import package as follow:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">import <span style="color:#e6db74">&#34;fmt&#34;</span>
-import <span style="color:#e6db74">&#34;time&#34;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+<span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;time&#34;</span>
 </code></pre></div><p>But, in Go most ideal way to do so is:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">import (
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> (
 	<span style="color:#e6db74">&#34;fmt&#34;</span>
 	<span style="color:#e6db74">&#34;time&#34;</span>
 )
 </code></pre></div><h3 id="pointer-as-parameter">Pointer as Parameter</h3>
 <p>We will change the above example we pass pointer as parameter.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">checkIfAdult</span>(p <span style="color:#f92672">*</span>Person) {
-	t, err :<span style="color:#f92672">=</span> time.Parse(<span style="color:#e6db74">&#34;2006-01-02&#34;</span>, p.DOB)
-	<span style="color:#66d9ef">if</span> err <span style="color:#f92672">==</span> nil {
-		<span style="color:#66d9ef">if</span> t.Year() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1995</span> {
-			p.adult <span style="color:#f92672">=</span> true
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">checkIfAdult</span>(<span style="color:#a6e22e">p</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Person</span>) {
+	<span style="color:#a6e22e">t</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;2006-01-02&#34;</span>, <span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">DOB</span>)
+	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
+		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">Year</span>() &lt; <span style="color:#ae81ff">1995</span> {
+			<span style="color:#a6e22e">p</span>.<span style="color:#a6e22e">adult</span> = <span style="color:#66d9ef">true</span>
 		}
 	}
 }
 </code></pre></div><p>Also change, call to the function <strong>checkIfAdult</strong>, in function <strong>main</strong> as below:</p>
 <p>checkIfAdult(ptr)</p>
 <h3 id="issue-while-using-pointers">Issue while using Pointers</h3>
-<p>, we have declared variable <strong>i</strong> as pointer of type int.  We pass this pointer variable to function <strong>assignValue</strong>. In function <strong>assignValue</strong> we create new variable <strong>j</strong> and initialize it to 1000 and update <strong>i</strong> to point to variable <strong>j</strong>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
-	var i <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>
-	assignValue(i)
-	fmt.Println(i)
+<p>, we have declared variable <strong>i</strong> as pointer of type int. We pass this pointer variable to function <strong>assignValue</strong>. In function <strong>assignValue</strong> we create new variable <strong>j</strong> and initialize it to 1000 and update <strong>i</strong> to point to variable <strong>j</strong>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>
+	<span style="color:#a6e22e">assignValue</span>(<span style="color:#a6e22e">i</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>)
 }
 
-func <span style="color:#a6e22e">assignValue</span>(i <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>) {
-	j :<span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
-	i <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>j
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">assignValue</span>(<span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>) {
+	<span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1000</span>
+	<span style="color:#a6e22e">i</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">j</span>
 }
 </code></pre></div><p><a href="http://play.golang.org/p/grLQI3uH_5">http://play.golang.org/p/grLQI3uH_5</a></p>
 <p>Output:</p>
@@ -366,25 +371,25 @@ func <span style="color:#a6e22e">assignValue</span>(i <span style="color:#f92672
 <p>Output is nil, because variable <strong>i</strong> is not initialized and when we pass it to function <strong>assignValue</strong> it is still **nil.**When in function <strong>assignValue</strong>, we assign value to variable <strong>i</strong> (<strong>i = &amp;j</strong>), which then gets initialized to values of memory address to <strong>j</strong>, but only for function <strong>assignValue</strong> execution.</p>
 <p>We can solve this, in two ways one by initializing variable <strong>i</strong> in main function or by returning from function <strong>assignValue</strong> and assigning it to <strong>i</strong>.</p>
 <p><strong>Approach 1: Initializing Value in main</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	a :<span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
-	var i <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>a
+	<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">a</span>
 
-	fmt.Println(<span style="color:#e6db74">&#34;Memory Address :&#34;</span>, i)
-	fmt.Println(<span style="color:#e6db74">&#34;Value at Memory Address :&#34;</span>, <span style="color:#f92672">*</span>i)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Memory Address :&#34;</span>, <span style="color:#a6e22e">i</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value at Memory Address :&#34;</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">i</span>)
 
-	assignValue(i)
+	<span style="color:#a6e22e">assignValue</span>(<span style="color:#a6e22e">i</span>)
 
-	fmt.Println(<span style="color:#e6db74">&#34;---------After assigning value-----------&#34;</span>)
-	fmt.Println(<span style="color:#e6db74">&#34;Memory Address :&#34;</span>, i)
-	fmt.Println(<span style="color:#e6db74">&#34;Value at Memory Address :&#34;</span>, <span style="color:#f92672">*</span>i)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;---------After assigning value-----------&#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Memory Address :&#34;</span>, <span style="color:#a6e22e">i</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value at Memory Address :&#34;</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">i</span>)
 
 }
 
-func <span style="color:#a6e22e">assignValue</span>(i <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>) {
-	j :<span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
-	<span style="color:#f92672">*</span>i <span style="color:#f92672">=</span> j
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">assignValue</span>(<span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>) {
+	<span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1000</span>
+	<span style="color:#f92672">*</span><span style="color:#a6e22e">i</span> = <span style="color:#a6e22e">j</span>
 }
 </code></pre></div><p><a href="http://play.golang.org/p/AAwGw-l4lP">http://play.golang.org/p/AAwGw-l4lP</a></p>
 <p><strong>Output:</strong></p>
@@ -395,22 +400,22 @@ Memory Address : 0x104382e0<br>
 Value at Memory Address : 1000</p>
 <p>In this approach, if you see the memory address before and after calling function <strong>assignValue</strong> is same, but value is updated from 10 to 1000. This is because of the call *<strong>i = j</strong> in function <strong>assignValue</strong>. This line updates value at the memory address pointed by <strong>i</strong> to the value of <strong>j</strong></p>
 <p><strong>Approach 2: Returning Value</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">func <span style="color:#a6e22e">main</span>() {
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	var i <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>
-	fmt.Println(<span style="color:#e6db74">&#34;Memory Address :&#34;</span>, i)
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Memory Address :&#34;</span>, <span style="color:#a6e22e">i</span>)
 
-	i <span style="color:#f92672">=</span> assignValue(i)
+	<span style="color:#a6e22e">i</span> = <span style="color:#a6e22e">assignValue</span>(<span style="color:#a6e22e">i</span>)
 
-	fmt.Println(<span style="color:#e6db74">&#34;---------After assigning value-----------&#34;</span>)
-	fmt.Println(<span style="color:#e6db74">&#34;Memory Address :&#34;</span>, i)
-	fmt.Println(<span style="color:#e6db74">&#34;Value at Memory Address :&#34;</span>, <span style="color:#f92672">*</span>i)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;---------After assigning value-----------&#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Memory Address :&#34;</span>, <span style="color:#a6e22e">i</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Value at Memory Address :&#34;</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">i</span>)
 }
 
-func <span style="color:#a6e22e">assignValue</span>(i <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span> {
-	j :<span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>
-	i <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>j
-	<span style="color:#66d9ef">return</span> i
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">assignValue</span>(<span style="color:#a6e22e">i</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span>) <span style="color:#f92672">*</span><span style="color:#66d9ef">int</span> {
+	<span style="color:#a6e22e">j</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">1000</span>
+	<span style="color:#a6e22e">i</span> = <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">j</span>
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">i</span>
 }
 </code></pre></div><p><a href="http://play.golang.org/p/M0dtKSlMvT">http://play.golang.org/p/M0dtKSlMvT</a></p>
 <p><strong>Output:</strong></p>
@@ -418,7 +423,7 @@ func <span style="color:#a6e22e">assignValue</span>(i <span style="color:#f92672
 &mdash;&mdash;&mdash;After assigning value&mdash;&mdash;&mdash;&ndash;<br>
 Memory Address : 0x104382f0<br>
 Value at Memory Address : 1000</p>
-<p>In this approach, since variable <strong>i</strong> is not initialized printing it we see it is nil, hence if call *<strong>i</strong>, it will throw error. Function <strong>assignValue</strong> here returns <strong>i</strong> back which is then assigned back. Check output after calling function <strong>assignValue</strong>, you can see memory address pointed and value as 1000.</p>
+<p>In this approach, since variable <strong>i</strong> is not initialized printing it we see it is nil, hence if call <em><strong>i</strong></em>, it will throw error. Function <strong>assignValue</strong> here returns <strong>i</strong> back which is then assigned back. Check output after calling function <strong>assignValue</strong>, you can see memory address pointed and value as 1000.</p>
 <h2 id="conclusion">Conclusion</h2>
 <p>Today&rsquo;s post introduced you to Functions and Pointers in Go. They form the base of Go, and play very important part while developing applications in Go. In next post we will look at a very important concept in Go : interface, which form the base of OO design in Go language.</p>
 
@@ -490,19 +495,19 @@ Value at Memory Address : 1000</p>
 			</div>
 			<aside class="sidebar"><div class="widget-search widget">
 	<form action="/search/index.html">
-				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
-			</form>
+		<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" placeholder="Enter min 3 chars for search" required></h1>
+	</form>
 	
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/defer/">Defer</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
 		</ul>
 	</div>
 </div>
@@ -546,9 +551,10 @@ Value at Memory Address : 1000</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/defer/" title="Defer">Defer (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (9)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (9)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
@@ -570,7 +576,16 @@ Value at Memory Address : 1000</p>
 		</div>
 	</div>
 </footer>
-	</div>
+	</div>	
+<script>
+$(document).ready(function() {
+$('#tipue_search_input').tipuesearch({
+	'showURL': false
+});
+});
+</script>	
 <script async defer src="/js/menu.js"></script>
-<script src="/tipuesearch/tipuesearch_content.js"></script><script src="/tipuesearch/tipuesearch_set.js"></script><script src="/tipuesearch/tipuesearch.min.js"></script></body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>

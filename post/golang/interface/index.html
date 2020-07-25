@@ -37,7 +37,8 @@ if (!doNotTrack) {
 	<script src="/tipuesearch/tipuesearch_content.js"></script>
 	<link href="/tipuesearch/tipuesearch.css" rel="stylesheet">
 	<script src="/tipuesearch/tipuesearch_set.js"></script>
-	<script src="/tipuesearch/tipuesearch.min.js"></script>
+	<script src="/tipuesearch/tipuesearch.js"></script>
+	
 </head>
 <body class="body">
 	<div class="container container--outer">
@@ -106,54 +107,54 @@ if (!doNotTrack) {
 <h2 id="interface">Interface</h2>
 <p>Interface is defined as group of methods without the actual method implementation. It is the responsibility of implementer of the interface to provide the actual implementation. Thus Interface can be considered as a contract/protocol which needs to be fulfilled by implementer.
 Go, has a keyword <strong>interface</strong> which is used for declaring an interface as shown below:</p>
-<pre><code>type TaxCalculator  interface {
-	calculate(basicAmount float32) float32
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TaxCalculator</span>  <span style="color:#66d9ef">interface</span> {
+	<span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>) <span style="color:#66d9ef">float32</span>
 }
 
-</code></pre><p>Here, we have declared interface called <strong>TaxCalculator</strong>, having method <strong>calculate</strong> which accepts basic amount on which tax is to be computed and returns back tax.
+</code></pre></div><p>Here, we have declared interface called <strong>TaxCalculator</strong>, having method <strong>calculate</strong> which accepts basic amount on which tax is to be computed and returns back tax.
 Let us look at the example below, and see how we have used interface <strong>TaxCalculator</strong> to compute tax for different states.</p>
-<pre><code>package main 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span> 
 
-import (
-	&quot;fmt&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
 )
 
-type TaxCalculaor interface {
-	calculate(basicAmount float32) float32
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TaxCalculaor</span> <span style="color:#66d9ef">interface</span> {
+	<span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>) <span style="color:#66d9ef">float32</span>
 }
 
-type State1 struct {
-	name    string
-	taxRate float32
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">State1</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">name</span>    <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">taxRate</span> <span style="color:#66d9ef">float32</span>
 }
 
-type State2 struct {
-	name    string
-	taxRate float32
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">State2</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">name</span>    <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">taxRate</span> <span style="color:#66d9ef">float32</span>
 }
 
-func (t State1) calculate(basicAmount float32) float32 {
-	return basicAmount * t.taxRate / 100
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">State1</span>) <span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>) <span style="color:#66d9ef">float32</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">basicAmount</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">taxRate</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>
 }
 
-func (t State2) calculate(basicAmount float32) float32 {
-	return basicAmount * t.taxRate / 100
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">State2</span>) <span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>) <span style="color:#66d9ef">float32</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">basicAmount</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">taxRate</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>
 }
 
-func calculateTax(basicAmount float32, t TaxCalculaor) {
-	fmt.Printf(&quot;The tax is %.2f\n&quot;, t.calculate(basicAmount))
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">calculateTax</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>, <span style="color:#a6e22e">t</span> <span style="color:#a6e22e">TaxCalculaor</span>) {
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;The tax is %.2f\n&#34;</span>, <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span>))
 }
 
-func main() {
-	st1 := State1{&quot;State1&quot;, 10.0}
-	st2 := State2{&quot;State2&quot;, 9.00}
-	var income float32 = 100.00
-	calculateTax(income, st1)
-	calculateTax(income, st2)
-	fmt.Println(&amp;st1)
-	fmt.Println(&amp;st2)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">st1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">State1</span>{<span style="color:#e6db74">&#34;State1&#34;</span>, <span style="color:#ae81ff">10.0</span>}
+	<span style="color:#a6e22e">st2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">State2</span>{<span style="color:#e6db74">&#34;State2&#34;</span>, <span style="color:#ae81ff">9.00</span>}
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">income</span> <span style="color:#66d9ef">float32</span> = <span style="color:#ae81ff">100.00</span>
+	<span style="color:#a6e22e">calculateTax</span>(<span style="color:#a6e22e">income</span>, <span style="color:#a6e22e">st1</span>)
+	<span style="color:#a6e22e">calculateTax</span>(<span style="color:#a6e22e">income</span>, <span style="color:#a6e22e">st2</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">st1</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">st2</span>)
 }
-</code></pre><p><strong>Ouput:</strong></p>
+</code></pre></div><p><strong>Ouput:</strong></p>
 <p>The tax is 10.00<br>
 The tax is 9.00<br>
 &amp;{State1 10}<br>
@@ -161,14 +162,14 @@ The tax is 9.00<br>
 <p><a href="https://play.golang.org/p/UAhUxCYiuz">https://play.golang.org/p/UAhUxCYiuz</a></p>
 <p>Here we have assumed 2 states, <strong>State1</strong> and <strong>State2</strong> and have defined struct for each of the state. Each of this states have different tax rate and computation logic.
 We have defined 2 calculate methods, one with <strong>State1</strong> as receiver and another with <strong>State2</strong> as receiver.</p>
-<pre><code>func (t State1) calculate(basicAmount float32) float32 {
-...
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">State1</span>) <span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>) <span style="color:#66d9ef">float32</span> {
+<span style="color:#f92672">...</span>
 }
-func (t State2) calculate(basicAmount float32) float32 {
-...
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">State2</span>) <span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>) <span style="color:#66d9ef">float32</span> {
+<span style="color:#f92672">...</span>
 }
 
-</code></pre><p>Now since <strong>TaxCalculator</strong> interface, has <strong>calculate</strong> method with same signature, <strong>State1</strong> and <strong>State2</strong> are said to be implementing interface <strong>TaxCalculator</strong>.</p>
+</code></pre></div><p>Now since <strong>TaxCalculator</strong> interface, has <strong>calculate</strong> method with same signature, <strong>State1</strong> and <strong>State2</strong> are said to be implementing interface <strong>TaxCalculator</strong>.</p>
 <h3 id="itable">iTable</h3>
 <p>Go, on runtime creates something called as iTable (interface table) which holds information like underlying concrete type and list of functions. Now when method is called, iTable is looked up based on concrete type to find the function to be called. (<em>Note only function that matches the method declared in interface are listed in iTable.</em>)</p>
 <p>
@@ -184,44 +185,44 @@ func (t State2) calculate(basicAmount float32) float32 {
 <h3 id="empty-interface-interface-">Empty Interface (interface {})</h3>
 <p>As the same says, it is an Interface with no methods. This is a special interface, which is implemented by all the concrete types in Go. Empty interface can be used when we are not sure about the type of element that can be passed and we need to support all the types.
 One of the example where Go, uses empty interface is function, <strong>Println</strong> from <strong>fmt</strong> package.</p>
-<pre><code>func Println(a...interface{})(nint,errerror)
-</code></pre><p>We have already used <strong>Println</strong>, and passed variety of types like, int, string, struct and it has printed all of them.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span><span style="color:#f92672">...</span><span style="color:#66d9ef">interface</span>{})(<span style="color:#a6e22e">nint</span>,<span style="color:#a6e22e">errerror</span>)
+</code></pre></div><p>We have already used <strong>Println</strong>, and passed variety of types like, int, string, struct and it has printed all of them.
 Function <strong>Println</strong>, does lot of things internally to print, but basically it uses reflection to identify the type and then accordingly handle each type.</p>
 <p>Let us look at simple example below to understand usage of empty interface.</p>
-<pre><code>package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-	&quot;fmt&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
 )
 
-type Person struct {
-	name string
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>
 }
 
-func main() {
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 
-	b := true
-	i := 10
-	p := Person{&quot;ABC&quot;}
+	<span style="color:#a6e22e">b</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">true</span>
+	<span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">10</span>
+	<span style="color:#a6e22e">p</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">Person</span>{<span style="color:#e6db74">&#34;ABC&#34;</span>}
 
-	printType(b)
-	printType(i)
-	printType(p)
+	<span style="color:#a6e22e">printType</span>(<span style="color:#a6e22e">b</span>)
+	<span style="color:#a6e22e">printType</span>(<span style="color:#a6e22e">i</span>)
+	<span style="color:#a6e22e">printType</span>(<span style="color:#a6e22e">p</span>)
 
 }
 
-func printType(i interface{}) {
-	switch i.(type) {
-	case bool:
-		fmt.Println(i, &quot; is boolean&quot;)
-	case int:
-		fmt.Println(i, &quot; is int&quot;)
-	default:
-		fmt.Println(i, &quot; is unknown&quot;)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">printType</span>(<span style="color:#a6e22e">i</span> <span style="color:#66d9ef">interface</span>{}) {
+	<span style="color:#66d9ef">switch</span> <span style="color:#a6e22e">i</span>.(<span style="color:#66d9ef">type</span>) {
+	<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">bool</span>:
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>, <span style="color:#e6db74">&#34; is boolean&#34;</span>)
+	<span style="color:#66d9ef">case</span> <span style="color:#66d9ef">int</span>:
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>, <span style="color:#e6db74">&#34; is int&#34;</span>)
+	<span style="color:#66d9ef">default</span>:
+		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">i</span>, <span style="color:#e6db74">&#34; is unknown&#34;</span>)
 	}
 }
 
-</code></pre><p><strong>Output:</strong><br>
+</code></pre></div><p><strong>Output:</strong><br>
 true  is boolean<br>
 10  is int<br>
 {ABC}  is unknown</p>
@@ -230,59 +231,59 @@ true  is boolean<br>
 <h2 id="composition">Composition</h2>
 <p>Composition is way of reusing the objects by referring them in another object there by supporting a mechanism of composing an object from smaller reusable objects. For example object Address can be used to hold address for objects like Employee, Vendor and Locations etc.
 Let us modify the above example and see how we can use composition and interface together.</p>
-<pre><code>package main
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
 
-import (
-	&quot;fmt&quot;
+<span style="color:#f92672">import</span> (
+	<span style="color:#e6db74">&#34;fmt&#34;</span>
 )
 
-type TaxCalculaor interface {
-	calculate(basicAmount float32) float32
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TaxCalculaor</span> <span style="color:#66d9ef">interface</span> {
+	<span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>) <span style="color:#66d9ef">float32</span>
 }
-type State struct {
-	name    string
-	taxRate float32
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">State</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">name</span>    <span style="color:#66d9ef">string</span>
+	<span style="color:#a6e22e">taxRate</span> <span style="color:#66d9ef">float32</span>
 }
-type State1 struct {
-	State
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">State1</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">State</span>
 }
-type State2 struct {
-	State
-}
-
-type State3 struct {
-	State
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">State2</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">State</span>
 }
 
-func (t State) calculate(basicAmount float32) float32 {
-	return basicAmount * t.taxRate / 100
+<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">State3</span> <span style="color:#66d9ef">struct</span> {
+	<span style="color:#a6e22e">State</span>
 }
 
-func (t State3) calculate(basicAmount float32) float32 {
-	return (basicAmount / 2) * t.taxRate / 100
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">State</span>) <span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>) <span style="color:#66d9ef">float32</span> {
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">basicAmount</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">taxRate</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>
 }
 
-func calculateTax(basicAmount float32, t TaxCalculaor) {
-	fmt.Println(t)
-	fmt.Printf(&quot;The tax is %.2f\n&quot;, t.calculate(basicAmount))
+<span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">t</span> <span style="color:#a6e22e">State3</span>) <span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>) <span style="color:#66d9ef">float32</span> {
+	<span style="color:#66d9ef">return</span> (<span style="color:#a6e22e">basicAmount</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>) <span style="color:#f92672">*</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">taxRate</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">100</span>
 }
 
-func main() {
-	st1 := State1{State{&quot;State1&quot;, 10.0}}
-	st2 := State2{State{&quot;State2&quot;, 9.00}}
-	st3 := State3{State{&quot;State3&quot;, 9.00}}
-	var income float32 = 100.00
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">calculateTax</span>(<span style="color:#a6e22e">basicAmount</span> <span style="color:#66d9ef">float32</span>, <span style="color:#a6e22e">t</span> <span style="color:#a6e22e">TaxCalculaor</span>) {
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">t</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;The tax is %.2f\n&#34;</span>, <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">calculate</span>(<span style="color:#a6e22e">basicAmount</span>))
+}
 
-	fmt.Println(&quot;Basic Amount to be taxed:&quot;, income)
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">st1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">State1</span>{<span style="color:#a6e22e">State</span>{<span style="color:#e6db74">&#34;State1&#34;</span>, <span style="color:#ae81ff">10.0</span>}}
+	<span style="color:#a6e22e">st2</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">State2</span>{<span style="color:#a6e22e">State</span>{<span style="color:#e6db74">&#34;State2&#34;</span>, <span style="color:#ae81ff">9.00</span>}}
+	<span style="color:#a6e22e">st3</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">State3</span>{<span style="color:#a6e22e">State</span>{<span style="color:#e6db74">&#34;State3&#34;</span>, <span style="color:#ae81ff">9.00</span>}}
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">income</span> <span style="color:#66d9ef">float32</span> = <span style="color:#ae81ff">100.00</span>
 
-	st := [...]TaxCalculaor{st1, st2, st3}
-	for _, s := range st {
-		calculateTax(income, s)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Basic Amount to be taxed:&#34;</span>, <span style="color:#a6e22e">income</span>)
+
+	<span style="color:#a6e22e">st</span> <span style="color:#f92672">:=</span> [<span style="color:#f92672">...</span>]<span style="color:#a6e22e">TaxCalculaor</span>{<span style="color:#a6e22e">st1</span>, <span style="color:#a6e22e">st2</span>, <span style="color:#a6e22e">st3</span>}
+	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">st</span> {
+		<span style="color:#a6e22e">calculateTax</span>(<span style="color:#a6e22e">income</span>, <span style="color:#a6e22e">s</span>)
 	}
 
 }
 
-</code></pre><p><strong>Output:</strong><br>
+</code></pre></div><p><strong>Output:</strong><br>
 Basic Amount to be taxed: 100<br>
 {{State1 10}}<br>
 The tax is 10.00<br>
@@ -372,19 +373,19 @@ The tax is 4.50</p>
 			</div>
 			<aside class="sidebar"><div class="widget-search widget">
 	<form action="/search/index.html">
-				<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" required></h1>
-			</form>
+		<h1 class="text-center"><input type="text" name="q" id="tipue_search_input" autocomplete="off" align="center" placeholder="Enter min 3 chars for search" required></h1>
+	</form>
 	
 </div>
 <div class="widget-recent widget">
 	<h4 class="widget__title">Recent Posts</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/golang/defer/">Defer</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/channels/">Channels</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/routines/">Go Routine</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/interface/">Interface and Composition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/golang/functions_pointers/">Functions and Pointers</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/golang/more_datatypes/">Struct, Map, Array and Slice</a></li>
 		</ul>
 	</div>
 </div>
@@ -428,9 +429,10 @@ The tax is 4.50</p>
 		<a class="widget-taglist__link widget__link btn" href="/tags/control-flows/" title="Control Flows">Control Flows (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/data-types/" title="Data Types">Data Types (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/database/" title="Database">Database (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/defer/" title="Defer">Defer (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/function/" title="Function">Function (1)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (8)</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (8)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="Go">Go (9)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="GoLang">GoLang (9)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/interface/" title="Interface">Interface (1)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/introduction/" title="Introduction">Introduction (2)</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/menus/" title="Menus">Menus (1)</a>
@@ -452,7 +454,16 @@ The tax is 4.50</p>
 		</div>
 	</div>
 </footer>
-	</div>
+	</div>	
+<script>
+$(document).ready(function() {
+$('#tipue_search_input').tipuesearch({
+	'showURL': false
+});
+});
+</script>	
 <script async defer src="/js/menu.js"></script>
-<script src="/tipuesearch/tipuesearch_content.js"></script><script src="/tipuesearch/tipuesearch_set.js"></script><script src="/tipuesearch/tipuesearch.min.js"></script></body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
 </html>
